@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Ton image de fond propre au certificat */
+        {# Remplace absolute_url par le chemin disque réel #}{#    background-image: url('{{ kernel_project_dir ~ "/public/assets/certificate/certificat_model.jpg" }}');#} background-image: url('{{ absolute_url(asset("assets/certificate/certificat_model.jpg")) }}');
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .content {
+            padding: 340px 80px;
+            font-family: 'Helvetica', sans-serif;
+            text-align: center;
+        }
+
+        .titre-certificat {
+            font-size: 50px;
+            color: #2c3e50;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .corps-texte {
+            font-size: 20px;
+            line-height: 2;
+            margin-bottom: 10px;
+        }
+
+        .nom-apprenant {
+            font-size: 38px;
+            font-weight: bold;
+            color: #d4af37; /* Doré */
+            /*text-decoration: none;*/
+            /*border-bottom: 1px solid #333;*/
+            padding-bottom: 5px;
+        }
+
+        .module-nom {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .footer-certif {
+            margin-top: 80px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="background"></div>
+
+<div class="content">
+    {#    <h1 class="titre-certificat">Attestation de Formation</h1> #}
+
+    <div class="corps-texte">
+        {#        La direction de <strong>BRVM Formation</strong> certifie que : #}
+        {#        <br> #}
+        <span class="nom-apprenant">
+                {{ inscription.participant.firstName }} {{ inscription.participant.lastName|upper }}
+            </span>
+        {#        <br> #}
+        {#        A suivi avec succès la formation : #}
+        {#        <br> #}
+        {#        <span class="module-nom">"{{ inscription.module.libelle }}"</span> #}
+        {#        <br> #}
+        {#        Délivré à Bamako, le {{ "now"|date("d/m/Y") }} #}
+    </div>
+
+    {#    <div class="footer-certif"> #}
+    {#        <p>Le Responsable Pédagogique</p> #}
+    {#    </div> #}
+</div>
+</body>
+</html>

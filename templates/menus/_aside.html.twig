@@ -1,0 +1,100 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="#" class="brand-link">
+        <span class="brand-text font-weight-bold ml-3">Smart<span class="font-weight-light">ERP</span></span>
+    </a>
+
+    <div class="sidebar">
+        <!-- Profil -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ app.user.firstName|default('Alassane') }}</a>
+            </div>
+        </div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <!-- ACCUEIL -->
+                <li class="nav-item">
+                    <a href="?page=dashboard" class="nav-link {{ app.request.query.get('page') == 'dashboard' or app.request.query.get('page') is empty ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Accueil (Vue d'ensemble)</p>
+                    </a>
+                </li>
+
+                <!-- ASSISTANT IA (Ton PFE) -->
+                <li class="nav-header text-warning font-weight-bold">ASSISTANT IA & PRÉVISIONS</li>
+                <li class="nav-item">
+                    <a href="?page=pred_sales" class="nav-link {{ app.request.query.get('page') == 'pred_sales' ? 'active' : '' }}">
+                        <i class="fas fa-brain nav-icon text-warning"></i>
+                        <p>Prédictions des Ventes</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="?page=pred_stocks" class="nav-link {{ app.request.query.get('page') == 'pred_stocks' ? 'active' : '' }}">
+                        <i class="fas fa-boxes nav-icon text-warning"></i>
+                        <p>Alerte Rupture & Stock</p>
+                    </a>
+                </li>
+
+                <!-- COMPTOIR & VENTES -->
+                <li class="nav-header">VENTES AU QUOTIDIEN</li>
+                <li class="nav-item">
+                    <!-- Le POS devient la Caisse -->
+                    <a href="?page=sales_pos" class="nav-link {{ app.request.query.get('page') == 'sales_pos' ? 'active' : '' }} text-info">
+                        <i class="nav-icon fas fa-cash-register"></i>
+                        <p><b>Faire une Vente (Caisse)</b></p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="?page=sales_orders" class="nav-link {{ app.request.query.get('page') == 'sales_orders' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
+                        <p>Factures & Commandes</p>
+                    </a>
+                </li>
+
+                <!-- STOCK & ARTICLES -->
+                <li class="nav-header">MON STOCK</li>
+                <li class="nav-item">
+                    <a href="?page=products" class="nav-link {{ app.request.query.get('page') == 'products' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cubes"></i>
+                        <p>Mes Produits / Articles</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="?page=stock_movements" class="nav-link {{ app.request.query.get('page') == 'stock_movements' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-exchange-alt"></i>
+                        <p>Mouvements du Stock</p>
+                    </a>
+                </li>
+
+                <!-- ARGENT / FINANCES -->
+                <li class="nav-header">ARGENT & TRÉSORERIE</li>
+                <li class="nav-item">
+                    <a href="?page=finance_expenses" class="nav-link {{ app.request.query.get('page') == 'finance_expenses' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-arrow-circle-down text-danger"></i>
+                        <p>Enregistrer une Dépense</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="?page=finance_accounts" class="nav-link {{ app.request.query.get('page') == 'finance_accounts' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-wallet"></i>
+                        <p>État de la Caisse / Banque</p>
+                    </a>
+                </li>
+
+                <!-- DECONNEXION -->
+                <li class="nav-item mt-4">
+                    <a href="#" class="nav-link text-muted">
+                        <i class="nav-icon fas fa-power-off"></i>
+                        <p>Quitter le logiciel</p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</aside>

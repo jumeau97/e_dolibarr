@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Membre</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                            <li class="breadcrumb-item active">Membre</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                {{ component('UserComponent') }}
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+{#        ------------------- form -------------------#}
+        <div class="modal fade" id="modal-add-user">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title font-weight-bold">
+                            <i class="fas fa-user-shield mr-2"></i> Créer un nouvel utilisateur
+                        </h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    {# On commence le formulaire #}
+                    {{ form_start(userForm) }}
+                    <div class="modal-body">
+
+
+                        <h6 class="text-primary font-weight-bold mb-3 border-bottom pb-2">
+                            <i class="fas fa-user mr-2"></i> Informations Personnelles
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-5 form-group">
+                                <label>Prénom</label>
+                                {{ form_widget(userForm.firstName, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                            <div class="col-md-5 form-group">
+                                <label>Nom</label>
+                                {{ form_widget(userForm.lastName, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label>Sexe</label>
+                                {{ form_widget(userForm.sexe, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                        </div>
+
+
+                        <h6 class="text-primary font-weight-bold mt-3 mb-3 border-bottom pb-2">
+                            <i class="fas fa-lock mr-2"></i> Compte & Sécurité
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>E-mail (Identifiant)</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    {{ form_widget(userForm.email, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Téléphone</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    {{ form_widget(userForm.phoneNumber, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+{#                            <div class="col-md-6 form-group">#}
+{#                                <label>Mot de passe</label>#}
+{#                                {{ form_widget(userForm.plainPassword, {'attr': {'class': 'form-control form-control-sm'}}) }}#}
+{#                            </div>#}
+                            <div class="col-md-6 form-group">
+                                <label>Rôle</label>
+                                {{ form_widget(userForm.roles, {'attr': {'class': 'form-control form-control-sm select2'}}) }}
+                            </div>
+                        </div>
+
+                        {# --- SECTION 3 : PROFIL PRO --- #}
+                        <h6 class="text-primary font-weight-bold mt-3 mb-3 border-bottom pb-2">
+                            <i class="fas fa-briefcase mr-2"></i> Informations Professionnelles
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-4 form-group">
+                                <label>Profession</label>
+                                {{ form_widget(userForm.profession, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Domaine</label>
+                                {{ form_widget(userForm.domaine, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Niveau</label>
+                                {{ form_widget(userForm.niveau, {'attr': {'class': 'form-control form-control-sm'}}) }}
+                            </div>
+                        </div>
+{#                        <div class="form-group">#}
+{#                            <label>Bio / Profil (Optionnel)</label>#}
+{#                            {{ form_widget(userForm.profil, {'attr': {'class': 'form-control form-control-sm', 'rows': '2'}}) }}#}
+{#                        </div>#}
+
+                    </div>
+
+                    <div class="modal-footer justify-content-between bg-light">
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-sm btn-primary px-4 shadow-sm">
+                            <i class="fas fa-save mr-1"></i> Créer l'utilisateur
+                        </button>
+                    </div>
+                    {{ form_end(userForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+{% endblock %}

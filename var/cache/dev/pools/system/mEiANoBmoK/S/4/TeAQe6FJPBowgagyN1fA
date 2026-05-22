@@ -1,0 +1,20 @@
+<?php //ux.twig_component.component_properties
+
+return [PHP_INT_MAX, [
+    'App\\Twig\\Components\\UserComponent' => [
+        'properties' => [],
+        'methods' => [],
+    ],
+    'EasyCorp\\Bundle\\EasyAdminBundle\\Twig\\Component\\Icon' => [
+        'properties' => [],
+        'methods' => [],
+    ],
+    'EasyCorp\\Bundle\\EasyAdminBundle\\Twig\\Component\\Flag' => [
+        'properties' => [],
+        'methods' => [],
+    ],
+    'EasyCorp\\Bundle\\EasyAdminBundle\\Twig\\Component\\Alert' => [
+        'properties' => [],
+        'methods' => [],
+    ],
+]];

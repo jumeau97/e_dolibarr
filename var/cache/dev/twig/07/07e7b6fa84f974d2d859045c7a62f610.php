@@ -1,0 +1,620 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Extension\CoreExtension;
+use Twig\Extension\SandboxExtension;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+use Twig\TemplateWrapper;
+
+/* predprediction_vente/index.html.twig */
+class __TwigTemplate_1d77d0d1cbac16a4f32b932f42ea6abb extends Template
+{
+    private Source $source;
+    /**
+     * @var array<string, Template>
+     */
+    private array $macros = [];
+
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->source = $this->getSourceContext();
+
+        $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
+            'body' => [$this, 'block_body'],
+        ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "predprediction_vente/index.html.twig"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "predprediction_vente/index.html.twig"));
+
+        $this->parent = $this->load("base.html.twig", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_title(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        yield "Nos produits";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 5
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 6
+        yield "
+  ";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 11
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 12
+        yield "
+    <div class=\"content-wrapper\">
+        <!-- En-tête de la page -->
+        <div class=\"content-header\">
+            <div class=\"container-fluid\">
+                <div class=\"row mb-2\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-chart-line text-warning mr-2\"></i> Prévisions
+                            des Ventes par IA</h1>
+                        <p class=\"text-muted mb-0\">Anticipez la demande de vos clients pour planifier votre
+                            activité.</p>
+                    </div>
+                    <div class=\"col-sm-6\">
+                        <ol class=\"breadcrumb float-sm-right\">
+                            <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+                            <li class=\"breadcrumb-item active\">Prévisions Ventes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu Principal -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+
+                <!-- SECTION 1 : LES CHIFFRES CLÉS DE L'IA -->
+                <div class=\"row\">
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-success\">
+                            <span class=\"info-box-icon\"><i class=\"fas fa-arrow-trend-up\"></i></span>
+                            <div class=\"info-box-content\">
+                                <span class=\"info-box-text font-weight-bold\">Tendance Prochain Mois</span>
+                                <span class=\"info-box-number\">+ 15,4 %</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar\" style=\"width: 100%\"></div>
+                                </div>
+                                <span class=\"progress-description\">Hausse globale d'activité détectée</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-info\">
+                            <span class=\"info-box-icon\"><i class=\"fas fa-shopping-bag\"></i></span>
+                            <div class=\"info-box-content\">
+                                <span class=\"info-box-text font-weight-bold\">Estimation du Chiffre d'Affaires</span>
+                                <span class=\"info-box-number\">4 200 000 FCFA</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar\" style=\"width: 100%\"></div>
+                                </div>
+                                <span class=\"progress-description\">Prévu pour les 30 prochains jours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-warning text-white\">
+                            <span class=\"info-box-icon text-white\"><i class=\"fas fa-bullseye\"></i></span>
+                            <div class=\"info-box-content text-white\">
+                                <span class=\"info-box-text font-weight-bold text-white\">Précision Globale de l'IA</span>
+                                <span class=\"info-box-number text-white\">94.2 %</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar bg-white\" style=\"width: 94%\"></div>
+                                </div>
+                                <span class=\"progress-description text-white\">Fiabilité mesurée sur vos ventes passées</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2 : LE GRAPHIQUE PRÉDICTIF (Le point fort du PFE) -->
+                <div class=\"row mt-3\">
+                    <div class=\"col-md-12\">
+                        <div class=\"card card-outline card-warning\">
+                            <div class=\"card-header\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"far fa-chart-bar text-warning mr-2\"></i> Évolution des ventes : Réel vs
+                                    Prévisions
+                                </h3>
+                                <div class=\"card-tools\">
+                                    <span class=\"badge badge-success p-2\">Historique</span>
+                                    <span class=\"badge badge-warning p-2 text-dark\">Prévisions IA</span>
+                                </div>
+                            </div>
+                            <div class=\"card-body\">
+                                <div class=\"position-relative mb-4\">
+                                    <!-- Conteneur du graphique Chart.js -->
+                                    <canvas id=\"sales-prediction-chart\" height=\"300\"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3 : LES RECOMMANDATIONS PRODUITS DIRECTES -->
+                <div class=\"row\">
+                    <div class=\"col-md-12\">
+                        <div class=\"card\">
+                            <div class=\"card-header bg-dark\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"fas fa-lightbulb text-warning mr-2\"></i> Produits à forte demande estimée
+                                    (30 prochains jours)
+                                </h3>
+                            </div>
+                            <div class=\"card-body table-responsive p-0\">
+                                <table class=\"table table-hover table-striped text-nowrap mb-0\">
+                                    <thead>
+                                    <tr>
+                                        <th>Article / Produit</th>
+                                        <th>Ventes Moyennes habituelles</th>
+                                        <th>Quantité Prévue par l'IA</th>
+                                        <th>Évolution estimée</th>
+                                        <th>Action conseillée</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Sac de Ciment 50kg</td>
+                                        <td>200 sacs / mois</td>
+                                        <td class=\"text-success font-weight-bold\">250 sacs</td>
+                                        <td><span class=\"badge badge-success\"><i class=\"fas fa-arrow-up mr-1\"></i> + 25%</span>
+                                        </td>
+                                        <td><a href=\"?page=stock_replenishment\"
+                                               class=\"btn btn-xs btn-primary font-weight-bold px-2\">Augmenter le
+                                                stock</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Fer à béton 12 (Unité)</td>
+                                        <td>150 barres / mois</td>
+                                        <td class=\"text-success font-weight-bold\">180 barres</td>
+                                        <td><span class=\"badge badge-success\"><i class=\"fas fa-arrow-up mr-1\"></i> + 20%</span>
+                                        </td>
+                                        <td><a href=\"?page=stock_replenishment\"
+                                               class=\"btn btn-xs btn-primary font-weight-bold px-2\">Augmenter le
+                                                stock</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Peinture Blanche 20L</td>
+                                        <td>80 pots / mois</td>
+                                        <td class=\"text-muted\">78 pots</td>
+                                        <td><span class=\"badge badge-secondary\"><i class=\"fas fa-minus mr-1\"></i> Stable</span>
+                                        </td>
+                                        <td><span class=\"text-muted text-sm\">Rien à faire</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Briques creuses (Mille)</td>
+                                        <td>12 lots / mois</td>
+                                        <td class=\"text-danger font-weight-bold\">8 lots</td>
+                                        <td><span class=\"badge badge-danger\"><i class=\"fas fa-arrow-down mr-1\"></i> - 33%</span>
+                                        </td>
+                                        <td>
+                                            <span class=\"text-danger text-sm font-weight-bold\">Éviter le surstockage</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- LE SCRIPT CHART.JS POUR SIMULER L'IA -->
+    <!-- Conseil : place ce bloc à la fin de ton fichier ou dans ton bloc javascripts -->
+    <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>
+    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            var ctx = document.getElementById('sales-prediction-chart').getContext('2d');
+
+            var salesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    // Les mois passés et futurs (simulation)
+                    labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai (En cours)', 'Juin (IA)', 'Juillet (IA)', 'Août (IA)'],
+                    datasets: [
+                        {
+                            label: 'Ventes Réelles (Historique)',
+                            data: [2100000, 2400000, 1950000, 2800000, 3100000, null, null, null], // S'arrête en Mai
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Prévisions (Moteur IA)',
+                            // Commence en Mai (jonction) et continue sur le futur
+                            data: [null, null, null, null, 3100000, 3500000, 3900000, 4200000],
+                            borderColor: '#ffc107',
+                            borderDash: [5, 5], // Ligne pointillée pour symboliser le futur/le calcul prédictif
+                            backgroundColor: 'rgba(255, 193, 7, 0.05)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false} // Géré par nos badges HTML pour un rendu plus propre
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return value.toLocaleString() + ' F';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getTemplateName(): string
+    {
+        return "predprediction_vente/index.html.twig";
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getDebugInfo(): array
+    {
+        return array (  126 => 12,  113 => 11,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+    }
+
+    public function getSourceContext(): Source
+    {
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+  {% block stylesheets %}
+
+  {% endblock %}
+
+
+
+{% block body %}
+
+    <div class=\"content-wrapper\">
+        <!-- En-tête de la page -->
+        <div class=\"content-header\">
+            <div class=\"container-fluid\">
+                <div class=\"row mb-2\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-chart-line text-warning mr-2\"></i> Prévisions
+                            des Ventes par IA</h1>
+                        <p class=\"text-muted mb-0\">Anticipez la demande de vos clients pour planifier votre
+                            activité.</p>
+                    </div>
+                    <div class=\"col-sm-6\">
+                        <ol class=\"breadcrumb float-sm-right\">
+                            <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+                            <li class=\"breadcrumb-item active\">Prévisions Ventes</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu Principal -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+
+                <!-- SECTION 1 : LES CHIFFRES CLÉS DE L'IA -->
+                <div class=\"row\">
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-success\">
+                            <span class=\"info-box-icon\"><i class=\"fas fa-arrow-trend-up\"></i></span>
+                            <div class=\"info-box-content\">
+                                <span class=\"info-box-text font-weight-bold\">Tendance Prochain Mois</span>
+                                <span class=\"info-box-number\">+ 15,4 %</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar\" style=\"width: 100%\"></div>
+                                </div>
+                                <span class=\"progress-description\">Hausse globale d'activité détectée</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-info\">
+                            <span class=\"info-box-icon\"><i class=\"fas fa-shopping-bag\"></i></span>
+                            <div class=\"info-box-content\">
+                                <span class=\"info-box-text font-weight-bold\">Estimation du Chiffre d'Affaires</span>
+                                <span class=\"info-box-number\">4 200 000 FCFA</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar\" style=\"width: 100%\"></div>
+                                </div>
+                                <span class=\"progress-description\">Prévu pour les 30 prochains jours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=\"col-md-4 col-sm-6 col-12\">
+                        <div class=\"info-box bg-gradient-warning text-white\">
+                            <span class=\"info-box-icon text-white\"><i class=\"fas fa-bullseye\"></i></span>
+                            <div class=\"info-box-content text-white\">
+                                <span class=\"info-box-text font-weight-bold text-white\">Précision Globale de l'IA</span>
+                                <span class=\"info-box-number text-white\">94.2 %</span>
+                                <div class=\"progress\">
+                                    <div class=\"progress-bar bg-white\" style=\"width: 94%\"></div>
+                                </div>
+                                <span class=\"progress-description text-white\">Fiabilité mesurée sur vos ventes passées</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2 : LE GRAPHIQUE PRÉDICTIF (Le point fort du PFE) -->
+                <div class=\"row mt-3\">
+                    <div class=\"col-md-12\">
+                        <div class=\"card card-outline card-warning\">
+                            <div class=\"card-header\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"far fa-chart-bar text-warning mr-2\"></i> Évolution des ventes : Réel vs
+                                    Prévisions
+                                </h3>
+                                <div class=\"card-tools\">
+                                    <span class=\"badge badge-success p-2\">Historique</span>
+                                    <span class=\"badge badge-warning p-2 text-dark\">Prévisions IA</span>
+                                </div>
+                            </div>
+                            <div class=\"card-body\">
+                                <div class=\"position-relative mb-4\">
+                                    <!-- Conteneur du graphique Chart.js -->
+                                    <canvas id=\"sales-prediction-chart\" height=\"300\"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION 3 : LES RECOMMANDATIONS PRODUITS DIRECTES -->
+                <div class=\"row\">
+                    <div class=\"col-md-12\">
+                        <div class=\"card\">
+                            <div class=\"card-header bg-dark\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"fas fa-lightbulb text-warning mr-2\"></i> Produits à forte demande estimée
+                                    (30 prochains jours)
+                                </h3>
+                            </div>
+                            <div class=\"card-body table-responsive p-0\">
+                                <table class=\"table table-hover table-striped text-nowrap mb-0\">
+                                    <thead>
+                                    <tr>
+                                        <th>Article / Produit</th>
+                                        <th>Ventes Moyennes habituelles</th>
+                                        <th>Quantité Prévue par l'IA</th>
+                                        <th>Évolution estimée</th>
+                                        <th>Action conseillée</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Sac de Ciment 50kg</td>
+                                        <td>200 sacs / mois</td>
+                                        <td class=\"text-success font-weight-bold\">250 sacs</td>
+                                        <td><span class=\"badge badge-success\"><i class=\"fas fa-arrow-up mr-1\"></i> + 25%</span>
+                                        </td>
+                                        <td><a href=\"?page=stock_replenishment\"
+                                               class=\"btn btn-xs btn-primary font-weight-bold px-2\">Augmenter le
+                                                stock</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Fer à béton 12 (Unité)</td>
+                                        <td>150 barres / mois</td>
+                                        <td class=\"text-success font-weight-bold\">180 barres</td>
+                                        <td><span class=\"badge badge-success\"><i class=\"fas fa-arrow-up mr-1\"></i> + 20%</span>
+                                        </td>
+                                        <td><a href=\"?page=stock_replenishment\"
+                                               class=\"btn btn-xs btn-primary font-weight-bold px-2\">Augmenter le
+                                                stock</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Peinture Blanche 20L</td>
+                                        <td>80 pots / mois</td>
+                                        <td class=\"text-muted\">78 pots</td>
+                                        <td><span class=\"badge badge-secondary\"><i class=\"fas fa-minus mr-1\"></i> Stable</span>
+                                        </td>
+                                        <td><span class=\"text-muted text-sm\">Rien à faire</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class=\"font-weight-bold\">Briques creuses (Mille)</td>
+                                        <td>12 lots / mois</td>
+                                        <td class=\"text-danger font-weight-bold\">8 lots</td>
+                                        <td><span class=\"badge badge-danger\"><i class=\"fas fa-arrow-down mr-1\"></i> - 33%</span>
+                                        </td>
+                                        <td>
+                                            <span class=\"text-danger text-sm font-weight-bold\">Éviter le surstockage</span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- LE SCRIPT CHART.JS POUR SIMULER L'IA -->
+    <!-- Conseil : place ce bloc à la fin de ton fichier ou dans ton bloc javascripts -->
+    <script src=\"https://cdn.jsdelivr.net/npm/chart.js\"></script>
+    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            var ctx = document.getElementById('sales-prediction-chart').getContext('2d');
+
+            var salesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    // Les mois passés et futurs (simulation)
+                    labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai (En cours)', 'Juin (IA)', 'Juillet (IA)', 'Août (IA)'],
+                    datasets: [
+                        {
+                            label: 'Ventes Réelles (Historique)',
+                            data: [2100000, 2400000, 1950000, 2800000, 3100000, null, null, null], // S'arrête en Mai
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        },
+                        {
+                            label: 'Prévisions (Moteur IA)',
+                            // Commence en Mai (jonction) et continue sur le futur
+                            data: [null, null, null, null, 3100000, 3500000, 3900000, 4200000],
+                            borderColor: '#ffc107',
+                            borderDash: [5, 5], // Ligne pointillée pour symboliser le futur/le calcul prédictif
+                            backgroundColor: 'rgba(255, 193, 7, 0.05)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false} // Géré par nos badges HTML pour un rendu plus propre
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function (value) {
+                                    return value.toLocaleString() + ' F';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
+{% endblock %}
+", "predprediction_vente/index.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/predprediction_vente/index.html.twig");
+    }
+}

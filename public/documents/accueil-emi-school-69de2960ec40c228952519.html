@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://emischoolmali.com/ -->
+<html class="wide wow-animation scrollTo desktop landscape mac-os rd-navbar-static-linked" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Site Title-->
+    <title>Accueil - EMI SCHOOL</title>
+    
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="intense web design multipurpose template">
+    <meta name="date" content="Dec 26">
+    <link rel="icon" href="./Accueil - EMI SCHOOL_files/logo_150_x_85.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="./Accueil - EMI SCHOOL_files/materialdesignicons.min.css">
+
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="./Accueil - EMI SCHOOL_files/css">
+    <!-- Add this link to include Slick carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="./Accueil - EMI SCHOOL_files/slick.css">
+
+    <!-- Add this link to include Slick carousel theme CSS (optional) -->
+    <link rel="stylesheet" type="text/css" href="./Accueil - EMI SCHOOL_files/slick-theme.css">
+
+    <link rel="stylesheet" href="./Accueil - EMI SCHOOL_files/bootstrap.css">
+    <link rel="stylesheet" href="./Accueil - EMI SCHOOL_files/fonts.css">
+    <link rel="stylesheet" href="./Accueil - EMI SCHOOL_files/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./Accueil - EMI SCHOOL_files/style.css">
+
+    <link rel="stylesheet" type="text/css" href="./Accueil - EMI SCHOOL_files/tiny-slider.css">
+
+    
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"> -->
+
+<!-- <link href="assets/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <style>
+     @media screen and (max-width: 768px) {
+        .mobile-swiper {
+            display: block;
+        }
+
+        .other-screen-swiper {
+            display: none;
+        }
+        .card-img{
+            height:300px;
+            object-fit: cover;
+        }
+
+    }
+
+   @media screen and (min-width: 769px) and (max-width: 1024px) {
+        .mobile-swiper {
+            display: none;
+        }
+
+        .other-screen-swiper {
+            display: block;
+        }
+    }
+
+    @media screen and (min-width: 1025px) {
+        .mobile-swiper {
+            display: none;
+        }
+
+        .other-screen-swiper {
+            display: block;
+        }
+    }
+
+    .carousel {
+        max-height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .error {
+        color: red;
+    }
+    </style>
+    <script>
+    // Fonction de validation côté client en JavaScript
+    function validateForm() {
+        var name = document.forms["subscribeForm"]["full-name"].value;
+        var address = document.forms["subscribeForm"]["address"].value;
+        var country = document.forms["subscribeForm"]["country"].value;
+        var email = document.forms["subscribeForm"]["email"].value;
+        var phone = document.forms["subscribeForm"]["phone"].value;
+        var filiere = document.forms["subscribeForm"]["filiere"].value;
+        var birthday = document.forms["subscribeForm"]["birthday"].value;
+        var diploma = document.forms["subscribeForm"]["diploma"].value;
+        // var identity = document.forms["subscribeForm"]["identity"].value;
+        // var birthday_place = document.forms["subscribeForm"]["birthday_place"].value;
+        var native_country = document.forms["subscribeForm"]["native_country"].value;
+        // Validation du champ 'Nom complet'
+        if (name === "") {
+            document.getElementById("nameErr").innerHTML = "Le nom est requis";
+            // return false;
+        } else {
+            document.getElementById("nameErr").innerHTML = "";
+        }
+
+        // Validation du champ 'Adresse'
+        if (address === "") {
+            document.getElementById("addressErr").innerHTML = "L' Adresse est requis";
+            // return false;
+        } else {
+            document.getElementById("addressErr").innerHTML = "";
+        }
+
+        //Validation du champ 'country' 
+        if (country === "") {
+            document.getElementById("countryErr").innerHTML = "La ville est requis";
+            // return false;
+        } else {
+            document.getElementById("countryErr").innerHTML = "";
+        }
+
+        // Validation du champ 'Email'
+        if (email === "") {
+            document.getElementById("emailErr").innerHTML = "L'email est requis";
+            // return false;
+        } else {
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailErr").innerHTML = "Format d'email invalide";
+                // return false;
+            } else {
+                document.getElementById("emailErr").innerHTML = "";
+            }
+        }
+
+        // Validation du champ 'phone'
+        if (phone === "") {
+            document.getElementById("phoneErr").innerHTML = "Le numéro portable est requis";
+            // return false;
+        } else {
+            document.getElementById("phoneErr").innerHTML = "";
+        }
+
+        // Validation du champ 'birthday'
+        if (birthday === "") {
+            document.getElementById("birthdayErr").innerHTML = "Veuillez sélectionner une date";
+        } else {
+            // Vérifier si la date est dans un format valide (exemple : YYYY-MM-DD)
+            var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+            if (!datePattern.test(birthday)) {
+                document.getElementById("birthdayErr").innerHTML = "Format de date invalide (ex : YYYY-MM-DD)";
+            } else {
+                document.getElementById("birthdayErr").innerHTML = "";
+            }
+        }
+
+        //Validation du champ 'country' 
+        if (birthday_place === "") {
+            document.getElementById("birthday_placeErr").innerHTML = "Le lieu de naissance est requis";
+            // return false;
+        } else {
+            document.getElementById("birthday_placeErr").innerHTML = "";
+        }
+
+        //Validation du champ 'country' 
+        if (filiere === "") {
+            document.getElementById("filiereErr").innerHTML = "La filiere est requis";
+            // return false;
+        } else {
+            document.getElementById("filiereErr").innerHTML = "";
+        }
+
+        // // Validation du champ 'identity'
+        // if (identity === "") {
+        //     document.getElementById("identityErr").innerHTML = "Veuillez sélectionner un fichier";
+
+        // } else {
+        //     var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        //     if (!allowedExtensions.exec(identity)) {
+        //         document.getElementById("identityErr").innerHTML =
+        //             "Les fichiers autorisés sont de type JPG, JPEG, PNG ou GIF";
+
+        //     } else {
+        //         document.getElementById("identityErr").innerHTML = "";
+        //     }
+        // }
+
+        // // Validation du champ 'diplome'
+        // if (diploma === "") {
+        //     document.getElementById("diplomaErr").innerHTML = "Veuillez sélectionner un fichier";
+        //     return false;
+        // } else {
+        //     var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        //     if (!allowedExtensions.exec(diploma)) {
+        //         document.getElementById("diplomaErr").innerHTML =
+        //             "Les fichiers autorisés sont de type JPG, JPEG, PNG ou GIF";
+        //         return false;
+        //     } else {
+        //         document.getElementById("diplomaErr").innerHTML = "";
+        //     }
+        // }
+
+    }
+
+    // Fonction de validation côté client en JavaScript
+    function validateField(fieldName) {
+        var fieldValue = document.forms["subscribeForm"][fieldName].value;
+
+        // Validation du champ
+        switch (fieldName) {
+            case "full-name":
+                document.getElementById("nameErr").innerHTML = fieldValue === "" ? "Le nom est requis" : "";
+                break;
+            case "address":
+                document.getElementById("addressErr").innerHTML = fieldValue === "" ? "L'adresse est requis" : "";
+                break;
+            case "country":
+                document.getElementById("countryErr").innerHTML = fieldValue === "" ? "La ville est requis" : "";
+                break;
+            case "email":
+                if (fieldValue === "") {
+                    document.getElementById("emailErr").innerHTML = "L'email est requis";
+                } else {
+                    // var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                    var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+                    if (!emailPattern.test(fieldValue)) {
+                        document.getElementById("emailErr").innerHTML = "Format d'email invalide";
+                    } else {
+                        document.getElementById("emailErr").innerHTML = "";
+                    }
+                }
+                break;
+            case "phone":
+                document.getElementById("phoneErr").innerHTML = fieldValue === "" ? "Le numéro portable est requis" :
+                    "";
+                break;
+            case "diploma":
+                if (fieldValue === "") {
+                    document.getElementById("diplomaErr").innerHTML = "Veuillez sélectionner un fichier";
+                } else {
+                    var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                    if (!allowedExtensions.exec(fieldValue)) {
+                        document.getElementById("diplomaErr").innerHTML =
+                            "Les fichiers autorisés sont de type JPG, JPEG, PNG ou GIF";
+                    } else {
+                        document.getElementById("diplomaErr").innerHTML = "";
+                    }
+                }
+                break;
+            // case "identity":
+            //     if (fieldValue === "") {
+            //         document.getElementById("identityErr").innerHTML = "Veuillez sélectionner un fichier";
+            //     } else {
+            //         var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            //         if (!allowedExtensions.exec(fieldValue)) {
+            //             document.getElementById("identityErr").innerHTML =
+            //                 "Les fichiers autorisés sont de type JPG, JPEG, PNG ou GIF";
+            //         } else {
+            //             document.getElementById("identityErr").innerHTML = "";
+            //         }
+            //     }
+            //     break;
+            // case "birthday":
+            //     if (fieldValue === "") {
+            //         document.getElementById("birthdayErr").innerHTML = "Veuillez sélectionner une date";
+            //     } else {
+            //         // Vérifier si la date est dans un format valide (exemple : YYYY-MM-DD)
+            //         var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+            //         if (!datePattern.test(fieldValue)) {
+            //             document.getElementById("birthdayErr").innerHTML = "Format de date invalide (ex : YYYY-MM-DD)";
+            //         } else {
+            //             document.getElementById("birthdayErr").innerHTML = "";
+            //         }
+            //     }
+            //     break;
+            case "birthday_place":
+                if (fieldValue === "") {
+                    document.getElementById("birthday_placeErr").innerHTML = "Le lieu de naissance est requis";
+                } else {
+                    document.getElementById("birthday_placeErr").innerHTML = "";
+                }
+
+                case "filiere":
+                    if (fieldValue === "") {
+                        document.getElementById("filiereErr").innerHTML = "La filière est requise";
+                    } else {
+                        document.getElementById("filiereErr").innerHTML = "";
+                    }
+        }
+    }
+    </script>
+
+<style></style></head>
+
+<body>
+    <div class="preloader loaded">
+        <div class="preloader-body">
+            <div class="cssload-container">
+                <div class="cssload-speeding-wheel"></div>
+            </div>
+            <p>Chargement...</p>
+        </div>
+    </div>
+    <!-- Page-->
+    <div class="page text-center animated" style="animation-duration: 500ms;">
+        <!-- main -->
+        <main>
+            <header class="page-head header-panel-absolute">
+    <!-- RD Navbar Transparent-->
+    <div class="rd-navbar-wrap" style="height: 207.986px;">
+        <nav class="rd-navbar rd-navbar-default rd-navbar-original rd-navbar-static" data-auto-height="false" data-lg-auto-height="true" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-md-device-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="210px" data-xl-stick-up-offset="85px" data-xxl-stick-up-offset="85px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-inner">
+                <!-- RD Navbar Panel-->
+                <div class="rd-navbar-panel">
+                    <!-- RD Navbar Toggle-->
+                    <button class="rd-navbar-toggle toggle-original" data-rd-navbar-toggle=".rd-navbar, .rd-navbar-nav-wrap"><span></span></button>
+                    <h4 class="panel-title d-lg-none">Accueil</h4>
+                    <!-- RD Navbar Right Side Toggle-->
+                    <button class="rd-navbar-top-panel-toggle d-lg-none toggle-original" data-rd-navbar-toggle=".rd-navbar-top-panel"><span></span></button>
+                    <div class="rd-navbar-top-panel toggle-original-elements">
+                        <div class="rd-navbar-top-panel-left-part">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                                        <div class="unit-left"><span class="icon mdi mdi-phone align-middle"></span>
+                                        </div>
+                                        <div class="unit-body">
+                                            <!-- <a href="#">+223 76 64 88 12</a>  -->
+                                            <a class="d-block d-lg-inline-block" href="tel:+22376648812">+223 76 64 88 12</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                                        <div class="unit-left"><span class="icon mdi mdi-map-marker align-middle"></span></div>
+                                        <div class="unit-body"><a href="https://emischoolmali.com/#">Rue du Gouverneur, Faladiè, Bamako, Mali</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                                        <div class="unit-left"><span class="icon mdi mdi-email-open align-middle"></span></div>
+                                        <div class="unit-body"><a href="mailto:emischoolmali@gmail.com">emischoolmali@gmail.com</a></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="rd-navbar-top-panel-right-part">
+                            <div class="rd-navbar-top-panel-left-part">
+                                <div class="unit flex-row align-items-center unit-spacing-xs">
+                                    <div class="unit-left"><span class="icon mdi mdi-login align-middle"></span></div>
+                                       <!-- Se conencter/S'inscrire -->
+                                                                        Se connecter
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rd-navbar-menu-wrap ">
+                    <!--Navbar Brand-->
+                    <div class="rd-navbar-brand"><a class="d-inline-block" href="https://emischoolmali.com/">
+                            <div class="unit align-items-sm-center unit-xl unit-spacing-custom">
+                                <div class="unit-left"><img src="./Accueil - EMI SCHOOL_files/logo_150_x_85.jpg" width="100px" alt="">
+                                </div>
+                                <!-- <div class="unit-body">
+                        <div class="rd-navbar-brand-title">EMI SCHOOL</div>
+                        <div class="rd-navbar-brand-slogan">L'École des Affaires</div>
+                      </div> -->
+                            </div>
+                        </a></div>
+                    <div class="rd-navbar-nav-wrap toggle-original-elements">
+                        <div class="rd-navbar-mobile-scroll">
+                            <div class="rd-navbar-mobile-header-wrap">
+                                <!--Navbar Brand Mobile-->
+                                <div class="rd-navbar-mobile-brand"><a href="https://emischoolmali.com/"><img height="90px" src="./Accueil - EMI SCHOOL_files/logo_150_x_85.jpg" alt=""></a></div>
+                            </div>
+                            <!-- RD Navbar Nav-->
+                            <ul class="rd-navbar-nav">
+                                <li class="active"><a href="https://emischoolmali.com/">Accueil</a>
+                                </li>
+                                <li><a href="https://emischoolmali.com/inscription">Inscription</a>
+                                </li>
+                                <li><a href="https://emischoolmali.com/school">L'ecole</a>
+                                </li>
+                                <li><a href="https://emischoolmali.com/contact">Contacts</a>
+                                </li>
+                                 
+
+
+                                <!-- <li class="d-lg-none"><a href="shopping-cart.html">Shopping Cart (2)</a></li> -->
+                            </ul>
+                            <!--RD Navbar Mobile Search-->
+                            <div class="rd-navbar-search-mobile" id="rd-navbar-search-mobile">
+                                <form class="rd-navbar-search-form search-form-icon-right rd-search" action="https://emischoolmali.com/search-results.html" method="GET">
+                                    <div class="form-wrap">
+                                        <label class="form-label rd-input-label" for="rd-navbar-mobile-search-form-input">Rechercher...</label>
+                                        <input class="rd-navbar-search-form-input form-input form-input-gray-lightest" id="rd-navbar-mobile-search-form-input" type="text" name="s" autocomplete="off">
+                                    </div>
+                                    <button class="icon fa fa-search rd-navbar-search-button" type="submit"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <!--RD Navbar Search-->
+                            <div class="rd-navbar-search toggle-original-elements"><a class="rd-navbar-search-toggle mdi toggle-original" data-rd-navbar-toggle=".rd-navbar-search" href="https://emischoolmali.com/#"><span></span></a>
+                                <form class="rd-navbar-search-form search-form-icon-right rd-search" action="https://emischoolmali.com/search-results.html" data-search-live="rd-search-results-live" method="GET">
+                                    <div class="form-wrap">
+                                        <label class="form-label rd-input-label" for="rd-navbar-search-form-input">Rechercher</label>
+                                        <input class="rd-navbar-search-form-input form-input form-input-gray-lightest" id="rd-navbar-search-form-input" type="text" name="s" autocomplete="off">
+                                        <div class="rd-search-results-live cleared" id="rd-search-results-live"></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--RD Navbar shop-->
+                            <!-- <div class="rd-navbar-cart"><span class="icon fa fa-shopping-cart"></span><a class="inset-left-10" href="shopping-cart.html">2</a></div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- Le reste du contenu de la page -->
+<!-- Classic Breadcrumbs-->
+<section class="section">
+    <!-- Slider START -->
+    <div class="tiny-slider arrow-round arrow-creative arrow-blur arrow-hover">
+        <div class="tns-outer" id="tns1-ow"><div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">5</span>  of 2</div><div id="tns1-mw" class="tns-ovh"><div class="tns-inner" id="tns1-iw"><div class="tiny-slider-inner  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" data-autoplay="true" data-arrow="false" data-dots="false" data-items-xl="1" data-items-md="1" data-items-xs="1" id="tns1" style="transform: translate3d(-66.6667%, 0px, 0px);"><div class="card bg-transparent tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/banner_school.jpg" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5 " style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Nouvelle Année <br> Académique
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white">Inscrivez vous avant le <span class="h4 text-white">29 Avril
+                                            2024</span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Nouvelle Année Académique
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">Inscrivez-vous avant le <span class="h4 text-white">29 Avril
+                                        2024</span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card bg-transparent tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/10.png" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5" style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Bourse d'Etude <br> Internationale
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white"> - 30% pour les apprenants internationaux <span class="h4 text-white"></span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Bourse d'Etude Internationale
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">- 30% pour les apprenants internationaux<span class="h4 text-white"></span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card item START -->
+            <div class="card bg-transparent tns-item" id="tns1-item0" aria-hidden="true" tabindex="-1">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/banner_school.jpg" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5 " style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Nouvelle Année <br> Académique
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white">Inscrivez vous avant le <span class="h4 text-white">29 Avril
+                                            2024</span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Nouvelle Année Académique
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">Inscrivez-vous avant le <span class="h4 text-white">29 Avril
+                                        2024</span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card item END -->
+
+            <!-- Card item START -->
+            <div class="card bg-transparent tns-item" id="tns1-item1" aria-hidden="true" tabindex="-1">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/10.png" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5" style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Bourse d'Etude <br> Internationale
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white"> - 30% pour les apprenants internationaux <span class="h4 text-white"></span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Bourse d'Etude Internationale
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">- 30% pour les apprenants internationaux<span class="h4 text-white"></span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="card bg-transparent tns-item tns-slide-cloned tns-slide-active">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/banner_school.jpg" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5 " style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Nouvelle Année <br> Académique
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white">Inscrivez vous avant le <span class="h4 text-white">29 Avril
+                                            2024</span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Nouvelle Année Académique
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">Inscrivez-vous avant le <span class="h4 text-white">29 Avril
+                                        2024</span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="card bg-transparent tns-item tns-slide-cloned" aria-hidden="true" tabindex="-1">
+                <div class="position-relative">
+                    <!-- Image -->
+                    <img src="./Accueil - EMI SCHOOL_files/10.png" class="card-img" alt="course image">
+                    <!-- Overlay -->
+                    <div class="card-img-overlay d-flex align-items-start flex-column p-3">
+                        <!-- <div class="w-100 mt-auto">
+									<a href="#" class="badge text-dark bg-white fs-6 rounded-1"><i class="far fa-calendar-alt text-orange me-2"></i>29 September 2021</a>
+								</div> -->
+                        <div class="other-screen-swiper p-5" style="background-color: rgba(0, 0, 0, 0.5); margin-top:200px;">
+                            <div class="row justify-content-center">
+                                <div>
+                                    <!-- Title -->
+                                    <h1 class="text-white display-6">
+                                        Bourse d'Etude <br> Internationale
+                                    </h1>
+                                    <!-- <p class="text-white"> -->
+                                    <h5 class="text-white"> - 30% pour les apprenants internationaux <span class="h4 text-white"></span></h5>
+                                    <!-- </p> -->
+                                    <!-- Button -->
+                                    <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                    <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card body -->
+                <div class="mobile-swiper">
+                    <div class="p-5 mt-auto" style="background-color: black;">
+                        <div class="row justify-content-center">
+                            <div>
+                                <!-- Title -->
+                                <h1 class="text-white display-6">
+                                    Bourse d'Etude Internationale
+                                </h1>
+                                <!-- <p class="text-white"> -->
+                                <h5 class="text-white">- 30% pour les apprenants internationaux<span class="h4 text-white"></span></h5>
+                                <!-- </p> -->
+                                <!-- Button -->
+                                <a href="https://emischoolmali.com/inscription" class="btn btn-madison me-2 mb-0">Inscrivez-vous !</a>
+                                <a href="https://emischoolmali.com/school" class="btn btn-outline-madison mt-2 mb-0">En savoir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div></div></div></div></div>
+        <!-- Slider END -->
+</div>
+</section>
+
+
+<div class="carousel slick-initialized slick-slider"><button type="button" class="slick-prev slick-arrow" style="">&lt;</button>
+    <!-- Add your partner logos here -->
+
+
+    <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 6720px; transform: translate3d(-3780px, 0px, 0px);"><img src="./Accueil - EMI SCHOOL_files/dante_tech.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="-8" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="-7" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/iyayetv.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="-6" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="-5" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/kuma.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/wassatv.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/2k_f.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="1" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/alkatrace.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="3" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/amis_de_la_nature.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="4" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="5" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/anacarde.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="6" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="7" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/arafa.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="8" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="9" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/artemisia.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="10" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="11" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/dante_tech.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="12" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="13" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/iyayetv.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="14" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="15" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/kuma.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="16" aria-hidden="true" tabindex="-1"><div class="slick-slide" data-slick-index="17" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/wassatv.png" style="width: 140px;" alt="Partner 1" class="slick-slide" data-slick-index="18" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-current slick-active" data-slick-index="19" aria-hidden="false" style="width: 140px;" tabindex="0"></div><img src="./Accueil - EMI SCHOOL_files/2k_f.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned slick-active" data-slick-index="20" id="" aria-hidden="false" tabindex="-1"><div class="slick-slide slick-cloned slick-active" data-slick-index="21" id="" aria-hidden="false" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/alkatrace.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned slick-active" data-slick-index="22" id="" aria-hidden="false" tabindex="-1"><div class="slick-slide slick-cloned slick-active" data-slick-index="23" id="" aria-hidden="false" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/amis_de_la_nature.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned slick-active" data-slick-index="24" id="" aria-hidden="false" tabindex="-1"><div class="slick-slide slick-cloned slick-active" data-slick-index="25" id="" aria-hidden="false" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/anacarde.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned slick-active" data-slick-index="26" id="" aria-hidden="false" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="27" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/arafa.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="28" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="29" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/artemisia.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="30" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="31" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/dante_tech.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="32" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="33" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/iyayetv.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="34" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="35" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/kuma.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="36" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="37" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div><img src="./Accueil - EMI SCHOOL_files/wassatv.png" style="width: 140px;" alt="Partner 1" class="slick-slide slick-cloned" data-slick-index="38" id="" aria-hidden="true" tabindex="-1"><div class="slick-slide slick-cloned" data-slick-index="39" id="" aria-hidden="true" style="width: 140px;" tabindex="-1"></div></div></div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+    <!-- Repeat the logos as needed -->
+<button type="button" class="slick-next slick-arrow" style="">&gt;</button></div>
+
+
+<!-- Setion About Us-->
+<!-- A Few Words About the University-->
+<!-- <section class="section section-xl bg-default">
+    <div class="container">
+        <div class="row row-50 text-md-start align-items-md-center justify-content-md-between">
+            <div class="col-md-5 col-lg-4 order-md-2"><a href="#"><img class="img-responsive d-inline-block" src="assets/images/logo.jpg" width="326" height="329" alt=""></a></div>
+            <div class="col-md-7 col-lg-7 order-md-1">
+                <h2 class="fw-bold">
+                    À propos de EMI SCHOOL</h2>
+                <hr class="divider bg-madison divider-md-0">
+                <div class="offset-top-35 offset-lg-top-60">
+                    <p>EMI SCHOOL est une initiative né du constant
+                        amère des jeunes à s&#39;insérer professionnellement après leur études supérieur. La
+                        mission de ces initiateurs est d&#39;offrir aux apprenants des opportunités de développer
+                        des compétences théoriques couplées à des compétences pratiques.</p>
+                </div>
+                <div class="offset-top-30"><a class="btn btn-icon btn-icon-right button-default" href="#"><span class="icon fa fa-arrow-right"></span><span>Savoir plus</span></a></div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Nos parcours-->
+<section class="section bg-catskill section-xl">
+    <div class="container">
+        <h2 class="fw-bold">Parcours</h2>
+        <hr class="divider bg-madison">
+        <div class="row row-30  text-start justify-content-sm-start">
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/entrepreneuriat.jpg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Entrepreneuriat</a></h6>
+                        <div class="offset-top-20">
+                            <p>Explorez l'entrepreneuriat avec nous! Du concept à la réalité, notre programme offre un parcours complet. Transformez votre vision en entreprise florissante. Rejoignez-nous maintenant!.</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison " href="https://emischoolmali.com/formation-details?id=9f90a2b2-entrepreneuriat">S'inscrire</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison ">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/management.jpg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Management</a></h6>
+                        <div class="offset-top-20">
+                            <p>Développez votre leadership avec notre formation en gestion. Du débutant au professionnel chevronné, découvrez comment atteindre de nouveaux sommets. Inscrivez-vous pour façonner votre avenir professionnel!.</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison " href="https://emischoolmali.com/formation-details?id=b12f24bb-management">S'inscrire</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison ">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/info.jpeg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Infographisme</a></h6>
+                        <div class="offset-top-20">
+                            <p>Plongez dans le design visuel! Notre cours d'infographisme offre une chance unique de maîtriser les compétences créatives et techniques essentielles. Libérez votre créativité en vous inscrivant maintenant!.</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison " href="https://emischoolmali.com/formation-details?id=db3382dd-infographisme">S'inscrire</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison ">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/assistant.jpeg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Assistanat</a></h6>
+                        <div class="offset-top-20">
+                            <p>Explorez le monde de l'assistanat avec notre programme. Acquérez des compétences essentielles pour exceller en tant qu'assistant. Rejoignez-nous pour donner un coup de pouce à votre carrière d'assistant!.</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison " href="https://emischoolmali.com/formation-details?id=42502586-assistanat">S'inscrire</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison ">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/informatique.jpg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Informatique</a></h6>
+                        <div class="offset-top-20">
+                            <p>Le parcours Informatique à EMI SCHOOL offre une opportunité exceptionnelle aux passionnés de technologie et d'informatique de développer des compétences pointues dans ce domaine en constante évolution..</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison " href="https://emischoolmali.com/formation-details?id=a621ec8d-informatique">S'inscrire</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison ">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <!--                  <li>-->
+            <!--                      <strong>-->            <!--</strong>: -->            <!--                  </li>-->
+            <div class="col-md-6 col-lg-4">
+                <article class="post-news"><a href="https://emischoolmali.com/#"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/investissement.jpg" width="370" height="240" alt=""></a>
+                    <div class="post-news-body">
+                        <h6><a href="https://emischoolmali.com/#">Parcours Investissement</a></h6>
+                        <div class="offset-top-20">
+                            <p>Découvrez l'univers de l'investissement avec notre programme. Développez des compétences clés pour réussir en tant qu'investisseur. Rejoignez-nous pour booster votre carrière dans l'investissement !.</p>
+                        </div>
+                        <div class="post-news-meta offset-top-20">
+                            <a class="btn btn-block btn-outline-madison disabled" href="https://emischoolmali.com/formation-details?id=04cf62b9-investissement">Ouverture prochaine</a>
+                            <!-- <button
+                                class="btn btn-block btn-outline-madison disabled">S'inscrire</button> -->
+                            <!--                                  <span class="icon icon-xs mdi mdi-calendar-clock align-middle text-madison"></span>-->
+                            <!--                                  <span class="align-middle inset-left-10 fst-italic text-black">2 days ago</span>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+        </div>
+        <div class="offset-top-50"><a class="btn button-primary" href="https://emischoolmali.com/#">Voir tous les parcours</a></div>
+    </div>
+</section>
+<!-- Gallery Simple-->
+<!--Our Featured Courses-->
+<!-- <section class="section bg-madison context-dark">
+  <div class="container">
+    <div class="row justify-content-sm-center justify-content-md-end offset-top-0">
+      <div class="col-sm-10 col-md-7 section-image-aside section-image-aside-left text-md-start">
+        <div class="section-image-aside-img d-none d-md-block" style="background-image: url(assets/images/home-01-846x1002.jpg)"></div>
+        <div class="section-image-aside-body section-xl inset-md-left-70 inset-xl-left-110">
+          <h2 class="fw-bold">Our Featured Courses</h2>
+          <hr class="divider divider-md-0 bg-default">
+          <div class="offset-top-35 offset-lg-top-60 text-light">Our Featured Courses are selected through a rigorous process and uniquely created for each semester.</div>
+          <div class="text-start">
+            <div class="offset-top-60">
+              <article class="post-vacation"><a class="post-vacation-img-wrap bg-image" href="academics.html" style="background-image: url(assets/images/course-01-150x120.jpg)"></a>
+                <div class="post-vacation-body">
+                  <div>
+                    <h6 class="post-vacation-title"><a href="academics.html">Financial Analyst Course</a></h6>
+                  </div>
+                  <div class="offset-lg-top-10">
+                    <p>Charles Banks</p>
+                  </div>
+                  <div class="post-vacation-meta offset-top-10">
+                    <time class="text-dark" datetime="2022-01-01">June 3, 2022</time>
+                    <ul class="list-inline list-unstyled list-inline-primary">
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-timer-sand" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Part time"></span></li>
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Certified"></span></li>
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-laptop-chromebook" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Online Course"></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="offset-top-30">
+              <article class="post-vacation"><a class="post-vacation-img-wrap bg-image" href="academics.html" style="background-image: url(images/course-02-150x120.jpg)"></a>
+                <div class="post-vacation-body">
+                  <div>
+                    <h6 class="post-vacation-title"><a href="academics.html">Digital Marketing Course</a></h6>
+                  </div>
+                  <div class="offset-lg-top-10">
+                    <p>Maria Howard</p>
+                  </div>
+                  <div class="post-vacation-meta offset-top-10">
+                    <time class="text-dark" datetime="2022-01-01">June 3, 2022</time>
+                    <ul class="list-inline list-unstyled list-inline-primary">
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-battery-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facultative"></span></li>
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Certified"></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="offset-top-30">
+              <article class="post-vacation"><a class="post-vacation-img-wrap bg-image" href="academics.html" style="background-image: url(images/course-03-150x120.jpg)"></a>
+                <div class="post-vacation-body">
+                  <div>
+                    <h6 class="post-vacation-title"><a href="academics.html">Graphic Design Course</a></h6>
+                  </div>
+                  <div class="offset-lg-top-10">
+                    <p>Steven Carter</p>
+                  </div>
+                  <div class="post-vacation-meta offset-top-10">
+                    <time class="text-dark" datetime="2022-01-01">June 3, 2022</time>
+                    <ul class="list-inline list-unstyled list-inline-primary">
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-battery-50" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facultative"></span></li>
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Certified"></span></li>
+                      <li><span class="text-hover-custom icon icon-xxs mdi mdi-laptop-chromebook" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Online Course"></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="offset-top-60"><a class="btn button-primary" href="academics.html">View All Courses</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- Counters-->
+<section class="section section-xl bg-default">
+    <div class="container">
+        <h2 class="fw-bold">Statistiques</h2>
+        <hr class="divider bg-madison">
+        <div class="row justify-content-sm-center offset-top-60">
+            <div class="col-sm-10 col-md-8">
+                <p>L'école des Managers, des Entrepreneurs et des Investisseurs
+                    accueil se veut être une école Panafricain offrant l'opportunités à toute la jeunesse
+                    africaine de bénéficiers d'un savoir-faire adapté à leur réalité..</p>
+            </div>
+        </div>
+        <div class="row row-50 row-lg-65 justify-content-sm-center justify-content-lg-start offset-top-65 counters">
+            <div class="col-md-6 col-lg-3">
+                <!-- Counter type 1-->
+                <div class="counter-type-1"><span class="icon icon-lg icon-outlined text-madison mdi mdi-school-outline"></span>
+                    <div class="h3 fw-bold text-warning offset-top-15"><span class="counter" data-duration="1300">6</span></div>
+                    <hr class="divider bg-gray-light divider-sm">
+                    <div class="offset-top-21">
+                        <h6 class="text-black font-accent">Parcours</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- Counter type 1-->
+                <div class="counter-type-1"><span class="icon icon-lg icon-outlined text-madison mdi mdi-card-account-details"></span>
+                    <div class="h3 fw-bold text-warning offset-top-15"><span class="counter" data-duration="1250">8</span>
+                        <!-- <span>+</span> -->
+                    </div>
+                    <hr class="divider bg-gray-light divider-sm">
+                    <div class="offset-top-21">
+                        <h6 class="text-black font-accent">Nationalités</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- Counter type 1-->
+                <div class="counter-type-1"><span class="icon icon-lg icon-outlined text-madison mdi mdi-account-school-outline"></span>
+                    <div class="h3 fw-bold text-warning offset-top-15"><span class="counter" data-duration="1500">60</span></div>
+                    <hr class="divider bg-gray-light divider-sm">
+                    <div class="offset-top-21">
+                        <h6 class="text-black font-accent">Étudiants</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <!-- Counter type 1-->
+                <div class="counter-type-1"><span class="icon icon-lg icon-outlined text-madison mdi mdi-book-education-outline"></span>
+                    <div class="h3 fw-bold text-warning offset-top-15"><span class="counter" data-duration="500">10</span></div>
+                    <hr class="divider bg-gray-light divider-sm">
+                    <div class="offset-top-21">
+                        <h6 class="text-black font-accent">Formations</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Trusted by Over 6000+ Students-->
+<section class="section context-dark">
+    <div class="bg-vide" data-vide-bg="assets/images/banner/middle_bg.jpeg" data-vide-options="posterType: jpeg"><div style="position: absolute; z-index: 0; inset: 0px; overflow: hidden; background-size: cover; background-color: transparent; background-repeat: no-repeat; background-position: 50% 50%; background-image: url(&quot;assets/images/banner/middle_bg.jpeg&quot;);"><video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: hidden; opacity: 0; width: auto; height: 570.325px;"><source src="assets/images/banner/middle_bg.mp4" type="video/mp4"><source src="assets/images/banner/middle_bg.webm" type="video/webm"><source src="assets/images/banner/middle_bg.ogv" type="video/ogg"></video></div>
+        <div class="container section-100 section-lg-160">
+            <h2 class="fw-bold text-warning">Joignez-vous à Notre Communauté Grandissante</h2>
+            <div class="offset-top-30">
+                <p>Intégrez Notre Communauté Internationale de participants Engagés</p>
+            </div>
+            <div class="offset-top-35 offset-xl-top-70"><a class="btn button-primary" href="https://emischoolmali.com/#">Commencez</a></div>
+        </div>
+    </div>
+</section>
+<!-- <section class="section text-center parallax-container" data-parallax-img="assets/images/banner/middle_bg.jpg">
+    <div class="parallax-content">
+        <div class="section-lg">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-10 col-lg-7 col-xl-6">
+                        <h2>Dedicated 24/7 Support</h2>
+                        <hr class="divider bg-default">
+                        <p>Our Support Service is always available 24 hours a day, 7 days a week to help you create your
+                            own business solution.</p>
+                        <div class="offset-top-50"><a class="btn button-primary"
+                                href="https://www.templatemonster.com/website-templates/responsive-website-template-59029.html"
+                                target="_blank">Get Template!</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Events-->
+<section class="section bg-catskill section-xl">
+    <div class="container container-wide">
+        <h2 class="fw-bold">Formations en Bambara</h2>
+        <hr class="divider bg-madison">
+        <div class="row row-50 offset-top-60 justify-content-sm-center">
+                        <div class="col-md-6 col-lg-5 col-xxl-3">
+                <article class="post-event">
+                    <div class="post-event-img-overlay"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/image_1.jpg" width="420" height="420" alt="">
+                        <div class="post-event-overlay context-dark"><a class="btn button-primary" href="https://emischoolmali.com/subscribe-seminar?id=5b467b6a-formation">Participez</a>
+                            <div class="offset-top-20"><a class="btn button-default" href="https://emischoolmali.com/event-page.html">Savoir
+                                    plus</a></div>
+                        </div>
+                    </div>
+                    <div class="unit unit-lg flex-column flex-xl-row">
+                        <div class="unit-left">
+                            <div class="post-event-meta text-center">
+                                <div class="h3 fw-bold d-inline-block d-xl-block">06</div>
+                                <p class="d-inline-block d-xl-block">avril                                </p>
+                                <span class="fw-bold d-inline-block d-xl-block inset-left-10 inset-xl-left-0">2025</span>
+                            </div>
+                        </div>
+                        <div class="unit-body">
+                            <div class="post-event-body text-xl-start">
+                                <h6><a href="https://emischoolmali.com/event-page.html">Formation en entrepreneuriat (kɛnyɛrɛye ka kalan)</a></h6>
+                                <!--                                    <ul class="list-inline list-inline-xs">-->
+                                <!--                                        <li><a href="team-member-profile.html"><span class="icon icon-xxs mdi mdi-account-outline align-middle"></span><span class="inset-left-10 text-dark align-middle">Walter Stanley</span></a></li>-->
+                                <!--                                    </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <div class="col-md-6 col-lg-5 col-xxl-3">
+                <article class="post-event">
+                    <div class="post-event-img-overlay"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/image_2.jpg" width="420" height="420" alt="">
+                        <div class="post-event-overlay context-dark"><a class="btn button-primary" href="https://emischoolmali.com/subscribe-seminar?id=cad6f507-formation">Participez</a>
+                            <div class="offset-top-20"><a class="btn button-default" href="https://emischoolmali.com/event-page.html">Savoir
+                                    plus</a></div>
+                        </div>
+                    </div>
+                    <div class="unit unit-lg flex-column flex-xl-row">
+                        <div class="unit-left">
+                            <div class="post-event-meta text-center">
+                                <div class="h3 fw-bold d-inline-block d-xl-block">22</div>
+                                <p class="d-inline-block d-xl-block">juin                                </p>
+                                <span class="fw-bold d-inline-block d-xl-block inset-left-10 inset-xl-left-0">2025</span>
+                            </div>
+                        </div>
+                        <div class="unit-body">
+                            <div class="post-event-body text-xl-start">
+                                <h6><a href="https://emischoolmali.com/event-page.html">Formation en entrepreneuriat (kɛnyɛrɛye ka kalan)</a></h6>
+                                <!--                                    <ul class="list-inline list-inline-xs">-->
+                                <!--                                        <li><a href="team-member-profile.html"><span class="icon icon-xxs mdi mdi-account-outline align-middle"></span><span class="inset-left-10 text-dark align-middle">Walter Stanley</span></a></li>-->
+                                <!--                                    </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <div class="col-md-6 col-lg-5 col-xxl-3">
+                <article class="post-event">
+                    <div class="post-event-img-overlay"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/image_3.jpg" width="420" height="420" alt="">
+                        <div class="post-event-overlay context-dark"><a class="btn button-primary" href="https://emischoolmali.com/subscribe-seminar?id=6bb842fd-formation">Participez</a>
+                            <div class="offset-top-20"><a class="btn button-default" href="https://emischoolmali.com/event-page.html">Savoir
+                                    plus</a></div>
+                        </div>
+                    </div>
+                    <div class="unit unit-lg flex-column flex-xl-row">
+                        <div class="unit-left">
+                            <div class="post-event-meta text-center">
+                                <div class="h3 fw-bold d-inline-block d-xl-block">07</div>
+                                <p class="d-inline-block d-xl-block">septembre                                </p>
+                                <span class="fw-bold d-inline-block d-xl-block inset-left-10 inset-xl-left-0">2024</span>
+                            </div>
+                        </div>
+                        <div class="unit-body">
+                            <div class="post-event-body text-xl-start">
+                                <h6><a href="https://emischoolmali.com/event-page.html">Formation en entrepreneuriat (kɛnyɛrɛye ka kalan)</a></h6>
+                                <!--                                    <ul class="list-inline list-inline-xs">-->
+                                <!--                                        <li><a href="team-member-profile.html"><span class="icon icon-xxs mdi mdi-account-outline align-middle"></span><span class="inset-left-10 text-dark align-middle">Walter Stanley</span></a></li>-->
+                                <!--                                    </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+                        <div class="col-md-6 col-lg-5 col-xxl-3">
+                <article class="post-event">
+                    <div class="post-event-img-overlay"><img class="img-responsive" src="./Accueil - EMI SCHOOL_files/image_4.jpg" width="420" height="420" alt="">
+                        <div class="post-event-overlay context-dark"><a class="btn button-primary" href="https://emischoolmali.com/subscribe-seminar?id=ceae2eac-formation">Participez</a>
+                            <div class="offset-top-20"><a class="btn button-default" href="https://emischoolmali.com/event-page.html">Savoir
+                                    plus</a></div>
+                        </div>
+                    </div>
+                    <div class="unit unit-lg flex-column flex-xl-row">
+                        <div class="unit-left">
+                            <div class="post-event-meta text-center">
+                                <div class="h3 fw-bold d-inline-block d-xl-block">23</div>
+                                <p class="d-inline-block d-xl-block">novembre                                </p>
+                                <span class="fw-bold d-inline-block d-xl-block inset-left-10 inset-xl-left-0">2024</span>
+                            </div>
+                        </div>
+                        <div class="unit-body">
+                            <div class="post-event-body text-xl-start">
+                                <h6><a href="https://emischoolmali.com/event-page.html">Formation en entrepreneuriat (kɛnyɛrɛye ka kalan)</a></h6>
+                                <!--                                    <ul class="list-inline list-inline-xs">-->
+                                <!--                                        <li><a href="team-member-profile.html"><span class="icon icon-xxs mdi mdi-account-outline align-middle"></span><span class="inset-left-10 text-dark align-middle">Walter Stanley</span></a></li>-->
+                                <!--                                    </ul>-->
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+                    </div>
+        <div class="offset-top-50 offset-lg-top-56"><a class="btn btn-icon btn-icon-right button-primary" href="https://emischoolmali.com/#"><span class="icon fa fa-arrow-right"></span><span>Voir plus</span></a></div>
+    </div>
+</section>
+<!-- Testimonials-->
+<section class="section bg-madison context-dark position-relative">
+    <div class="owl-carousel owl-carousel-default owl-carousel-nav-xl owl-loaded owl-drag" data-items="1" data-nav="true" data-dots="true" data-autoplay="true" data-nav-class="[&quot;owl-prev fa fa-angle-left&quot;, &quot;owl-next fa fa-angle-right&quot;]" style="">
+        
+        
+
+    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-2240px, 0px, 0px); transition: 0.25s; width: 6720px;"><div class="owl-item cloned" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/mho.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>L’université
+                                    est censée être le laboratoire qui prépare la jeunesse afin d’être
+                                    professionnellement active. Je pense qu’il est temps de passer à une version
+                                    plus récente de formation accentuée sur la pratique et le développement des
+                                    talents.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Coach Moussa Hubert OUOLOGUEM</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Fondateur de EMI SCHOOL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="owl-item cloned" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/nt.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>En plus de
+                                    développer des compétences dans son domaine de prédilection,
+                                    l'entrepreneur doit avoir des connaissances matière contractuelle.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Nouhoum TOURÉ</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Coach Formateur en développement personnel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="owl-item active" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/mho.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>L’université
+                                    est censée être le laboratoire qui prépare la jeunesse afin d’être
+                                    professionnellement active. Je pense qu’il est temps de passer à une version
+                                    plus récente de formation accentuée sur la pratique et le développement des
+                                    talents.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Coach Moussa Hubert OUOLOGUEM</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Fondateur de EMI SCHOOL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="owl-item" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/nt.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>En plus de
+                                    développer des compétences dans son domaine de prédilection,
+                                    l'entrepreneur doit avoir des connaissances matière contractuelle.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Nouhoum TOURÉ</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Coach Formateur en développement personnel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="owl-item cloned" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/mho.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>L’université
+                                    est censée être le laboratoire qui prépare la jeunesse afin d’être
+                                    professionnellement active. Je pense qu’il est temps de passer à une version
+                                    plus récente de formation accentuée sur la pratique et le développement des
+                                    talents.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Coach Moussa Hubert OUOLOGUEM</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Fondateur de EMI SCHOOL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div><div class="owl-item cloned" style="width: 1120px;"><div>
+            <div class="container section-70 section-xl-100 section-xl-bottom-114">
+                <div class="row justify-content-sm-center align-items-sm-center">
+                    <div class="col-md-3 text-md-end order-md-2"><img class="img-responsive d-inline-block rounded-circle" src="./Accueil - EMI SCHOOL_files/nt.jpg" width="230" height="230" alt=""></div>
+                    <div class="col-md-9 order-md-1">
+                        <div class="quote-classic-boxed text-start">
+                            <div class="quote-body">
+                                <q>En plus de
+                                    développer des compétences dans son domaine de prédilection,
+                                    l'entrepreneur doit avoir des connaissances matière contractuelle.</q>
+                                <div class="offset-top-30 text-end">
+                                    <cite class="font-accent">Nouhoum TOURÉ</cite>
+                                    <div class="offset-top-5">
+                                        <p class="text-dark fst-italic">Coach Formateur en développement personnel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev fa fa-angle-left"></button><button type="button" role="presentation" class="owl-next fa fa-angle-right"></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></div>
+</section>
+<section class="section bg-catskill section-lg">
+    <div class="container">
+        <h2>Liens Sociaux</h2>
+        <hr class="divider bg-madison">
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 col-lg-7 col-xl-6">
+                <p>Rejoignez-nous sur nos différentes plateformes sociales en suivant les liens, afin de partager un
+                    moment et profiter de nos formations.</p>
+                <div class="offset-top-35">
+                    <ul class="list-inline list-inline-sm list-inline-madison">
+                        <li><a class="icon icon-xxs fa fa-facebook icon-rect icon-gray-light-filled" href="https://web.facebook.com/emischoolmali"></a></li>
+                        <li><a class="icon icon-xxs fa fa-twitter icon-rect icon-gray-light-filled" href="https://emischoolmali.com/#"></a></li>
+                        <li><a class="icon icon-xxs fa fa-linkedin icon-rect icon-gray-light-filled" href="https://emischoolmali.com/#"></a></li>
+                        <li><a class="icon icon-xxs bi-tiktok icon-rect icon-gray-light-filled" href="https://www.tiktok.com/@emi.school?_t=8kG7ccDLhOX&amp;_r=1"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Gallery-->
+<section class="section">
+    <div class="owl-carousel flickr owl-carousel-fullheight owl-loaded owl-drag" data-items="2" data-sm-items="2" data-autoplay="true" data-md-items="4" data-xxl-items="6" data-nav="false" data-dots="false" data-mouse-drag="true" data-lightgallery="group" data-stage-padding="0" data-xl-stage-padding="0" style="">
+        
+        
+        
+        
+        
+        <!-- <a class="thumbnail-default" data-lightgallery="item" href="assets/images/galerie/image_6.jpg"><img width="320"
+                height="320" src="assets/images/galerie/image_6.jpg" alt=""><span
+                class="icon fa fa-search-plus"></span></a> -->
+    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1120px, 0px, 0px); transition: 0.25s; width: 3640px;"><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/2.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/2.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/1.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/1.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_4(1).jpg"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/image_4(1).jpg" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_5.jpg"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/image_5.jpg" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item active" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_1.png"><img width="320" height="320" data-title="alt" src="./Accueil - EMI SCHOOL_files/image_1.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item active" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/2.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/2.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item active" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/1.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/1.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item active" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_4(1).jpg"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/image_4(1).jpg" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_5.jpg"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/image_5.jpg" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_1.png"><img width="320" height="320" data-title="alt" src="./Accueil - EMI SCHOOL_files/image_1.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/2.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/2.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/1.png"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/1.png" alt=""><span class="icon fa fa-search-plus"></span></a></div><div class="owl-item cloned" style="width: 280px;"><a class="thumbnail-default" data-lightgallery="item" href="./Accueil - EMI SCHOOL_files/image_4(1).jpg"><img width="320" height="320" src="./Accueil - EMI SCHOOL_files/image_4(1).jpg" alt=""><span class="icon fa fa-search-plus"></span></a></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"></button><button type="button" role="presentation" class="owl-next"></button></div><div class="owl-dots disabled"></div></div>
+</section>
+<!-- Google Map-->
+<!--Google Map-->
+<section class="section">
+    <!--Please, add the data attribute data-key="YOUR_API_KEY" in order to insert your own API key for the Google map.-->
+    <!--Please note that YOUR_API_KEY should replaced with your key.-->
+    <!--Example: <div class="google-map-container" data-key="YOUR_API_KEY">-->
+    <!-- <div class="google-map-container" data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45." data-zoom="5"
+        data-icon="images/gmap_marker.png" data-icon-active="images/gmap_marker_active.png"
+        data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
+        <div class="google-map"></div>
+        <ul class="google-map-markers">
+            <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45."
+                data-description="9870 St Vincent Place, Glasgow"></li>
+        </ul>
+    </div> -->
+</section>
+<!-- Autre contenu de la page -->
+
+        </main>
+        <!-- Page Footer-->
+        <!-- Corporate footer-->
+        <footer class="page-footer">
+        <div class="hr bg-gray-light"></div>
+        <div class="container section-xs block-after-divider">
+          <div class="row row-50 justify-content-xl-between justify-content-sm-center">
+            <div class="col-lg-3 col-xl-2">
+              <!--Footer brand-->
+              <a class="d-inline-block" href="https://emischoolmali.com/#"><img height="200" style="object-fit:cover;" src="./Accueil - EMI SCHOOL_files/logo_with_def.jpg" alt="">
+                <div>
+                  <!-- <h6 class="barnd-name fw-bold offset-top-5">EMI SCHOOL</h6> -->
+                </div>
+                <div>
+                  <!-- <p class="brand-slogan text-gray fst-italic font-accent">L'École des Affaires</p> -->
+                </div></a>
+            </div>
+            <div class="col-sm-10 col-lg-5 col-xl-4 text-xl-start">
+              <h6 class="fw-bold">Nous contactez</h6>
+              <div class="text-subline"></div>
+              <div class="offset-top-30">
+                <ul class="list-unstyled contact-info list">
+                  <li>
+                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                      <div class="unit-left"><span class="icon mdi mdi-phone align-middle icon-xs text-madison"></span></div>
+                      <div class="unit-body">
+                        <!-- <a class="text-dark" href="#">+223 76 64 88 12,</a> -->
+                         <a class="d-block d-lg-inline-block text-dark" href="tel:+223 76 64 88 12">+223 76 64 88 12</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="offset-top-15">
+                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                      <div class="unit-left"><span class="icon mdi mdi-map-marker align-middle icon-xs text-madison"></span></div>
+                      <div class="unit-body text-start"><a class="text-dark" href="https://emischoolmali.com/#">Rue du Gouverneur, Faladiè, Bamako, Mali</a></div>
+                    </div>
+                  </li>
+                  <li class="offset-top-15">
+                    <div class="unit flex-row align-items-center unit-spacing-xs">
+                      <div class="unit-left"><span class="icon mdi mdi-email-open align-middle icon-xs text-madison"></span></div>
+                      <div class="unit-body"><a href="mailto:emischoolmali@gmail.com">emischoolmali@gmail.com</a></div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- <div class="offset-top-15 text-start">
+                <ul class="list-inline list-inline-xs list-inline-madison">
+                  <li><a class="icon icon-xxs fa fa-facebook icon-circle icon-gray-light-filled" href="#"></a></li>
+                  <li><a class="icon icon-xxs fa fa-twitter icon-circle icon-gray-light-filled" href="#"></a></li>
+                  <li><a class="icon icon-xxs fa fa-google icon-circle icon-gray-light-filled" href="#"></a></li>
+                  <li><a class="icon icon-xxs fa fa-instagram icon-circle icon-gray-light-filled" href="#"></a></li>
+                </ul>
+              </div> -->
+            </div>
+            <div class="col-sm-10 col-lg-8 col-xl-4 text-xl-start">
+              <h6 class="fw-bold">Newsletter</h6>
+              <div class="text-subline"></div>
+              <div class="offset-top-30 text-start">
+                <p>Saisissez votre adresse e-mail pour recevoir les dernières actualités de l'école, des événements spéciaux et les activités des étudiants directement dans votre boîte de réception.</p>
+              </div>
+              <div class="offset-top-10">
+                <form class="rd-mailform form-subscribe" data-form-output="form-output-global" data-form-type="subscribe" method="post" action="https://emischoolmali.com/bat/rd-mailform.php" novalidate="novalidate">
+                  <div class="form-wrap">
+                    <div class="input-group input-group-sm">
+                      <input class="form-input form-control-has-validation" placeholder="Votre adresse e-mail" type="email" name="email" data-constraints="@Required @Email" id="regula-generated-149201"><span class="form-validation"></span><span class="input-group-btn">
+                        <button class="btn btn-sm button-primary" type="submit">S'abonnez</button></span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-madison context-dark">
+          <div class="container text-lg-center section-5">
+            <p class="rights"><span>©&nbsp;</span><a href="http://www.groupexpertpro.com/" class="text-bold text-warning">Groupe Xpertpro </a><span class="copyright-year">2026</span><span>.&nbsp;</span><span>Tous droits réservés</span><span>.&nbsp;</span></p>
+          </div>
+        </div>
+      </footer>    </div>
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+    <!-- Java script-->
+    <script src="./Accueil - EMI SCHOOL_files/core.min.js"></script>
+    <script src="./Accueil - EMI SCHOOL_files/script.js"></script>
+    <script src="./Accueil - EMI SCHOOL_files/slick.min.js"></script>
+    <!-- Vendors -->
+    <script src="./Accueil - EMI SCHOOL_files/tiny-slider.js"></script>
+    <script src="./Accueil - EMI SCHOOL_files/glightbox.js"></script>
+    <script src="./Accueil - EMI SCHOOL_files/functions.js"></script>
+    <!-- <script src="assets/js/bootstrap.bundle.min.js"></script> -->
+
+    <script>
+    $(document).ready(function() {
+        $('.carousel').slick({
+            infinite: true,
+            slidesToShow: 8,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1000, // Adjust the speed (in milliseconds)
+            pauseOnHover: true,
+            prevArrow: '<button type="button" class="slick-prev">&lt;</button>',
+            nextArrow: '<button type="button" class="slick-next">&gt;</button>'
+        });
+    });
+    </script>
+
+
+<a href="https://emischoolmali.com/#" id="ui-to-top" class="ui-to-top icon icon-xs icon-circle icon-darker-filled mdi mdi-chevron-up"></a></body></html>

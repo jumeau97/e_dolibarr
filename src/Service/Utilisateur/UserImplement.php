@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Service\Utilisateur;
+
+
+use App\Payload\Utils\UtilisService;
+
+use App\Repository\UserRepository;
+
+use App\Request\Search\SearchUser;
+
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
+
+class UserImplement implements UserInterface
+{
+
+    public function __construct(
+        private UtilisService   $utilisService,
+        private UserRepository  $userRepository,
+        private MailerInterface $mailer
+
+    )
+    {
+    }
+
+
+    public function findAllByCriteria($pageNumber, $limit, SearchUser $data)
+    {
+        return $this->utilisService->ToPaginate($pageNumber, $limit, $this->userRepository->findAllByCriteria($data, $pageNumber, $limit));
+    }
+
+    public function sendingEmailTo(array $to, string $subject, ?array $context, string $template): void
+    {
+        $email = (new TemplatedEmail())
+            ->from(new Address('contact@sanfeni.com'))
+            ->to(...$to)
+//            ->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+//            ->priority(Email::PRIORITY_HIGH)
+            ->subject($subject)
+            ->context($context)
+            ->htmlTemplate($template);
+
+        $this->mailer->send($email);
+    }
+
+    public function sendingEmailFromToBstp( array $addresses, string $subject, $body): void
+    {
+        $email = (new Email())
+            ->from(...$addresses)
+            ->to(new Address('contact@sanfeni.com'))
+//            ->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+//            ->priority(Email::PRIORITY_HIGH)
+            ->subject($subject)
+            ->text($body);
+
+        $this->mailer->send($email);
+    }
+}

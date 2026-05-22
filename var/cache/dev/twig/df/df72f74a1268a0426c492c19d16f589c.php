@@ -1,0 +1,536 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Extension\CoreExtension;
+use Twig\Extension\SandboxExtension;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+use Twig\TemplateWrapper;
+
+/* alert_rupture_stock/index.html.twig */
+class __TwigTemplate_a6b4b867228ef6335370470911250538 extends Template
+{
+    private Source $source;
+    /**
+     * @var array<string, Template>
+     */
+    private array $macros = [];
+
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->source = $this->getSourceContext();
+
+        $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
+            'body' => [$this, 'block_body'],
+        ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "alert_rupture_stock/index.html.twig"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "alert_rupture_stock/index.html.twig"));
+
+        $this->parent = $this->load("base.html.twig", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_title(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        yield "Nos produits";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 5
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 6
+        yield "
+  ";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 11
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 12
+        yield "
+  <div class=\"content-wrapper\">
+    <!-- En-tête de la page -->
+    <div class=\"content-header\">
+      <div class=\"container-fluid\">
+        <div class=\"row mb-2\">
+          <div class=\"col-sm-6\">
+            <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-boxes text-warning mr-2\"></i> Alertes & Réapprovisionnement Intelligent</h1>
+            <p class=\"text-muted mb-0\">L'IA surveille vos stocks et calcule automatiquement vos besoins pour éviter les ruptures.</p>
+          </div>
+          <div class=\"col-sm-6\">
+            <ol class=\"breadcrumb float-sm-right\">
+              <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+              <li class=\"breadcrumb-item active\">Alertes Stocks</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <section class=\"content\">
+      <div class=\"container-fluid\">
+
+        <!-- SECTION 1 : RÉSUMÉ DE L'ÉTAT DU STOCK -->
+        <div class=\"row\">
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-danger\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-exclamation-triangle\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Ruptures Urgentes</span>
+                <span class=\"info-box-number\">2 Articles</span>
+                <span class=\"progress-description text-sm\">À commander immédiatement</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-warning text-dark\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-hourglass-half\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Stocks Critiques</span>
+                <span class=\"info-box-number\">4 Articles</span>
+                <span class=\"progress-description text-sm\">Moins de 5 jours d'autonomie</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-success\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-check-circle\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Articles Sécurisés</span>
+                <span class=\"info-box-number\">142 Articles</span>
+                <span class=\"progress-description text-sm\">Niveaux de stock corrects</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-info\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-brain\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Optimisation IA</span>
+                <span class=\"info-box-number\">18 % d'économie</span>
+                <span class=\"progress-description text-sm\">De capital dormant évité</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 : TABLEAU DES ALERTES ET SUGGESTIONS DE COMMANDE (Le cœur du module) -->
+        <div class=\"row mt-3\">
+          <div class=\"col-12\">
+            <div class=\"card card-outline card-danger\">
+              <div class=\"card-header\">
+                <h3 class=\"card-title font-weight-bold text-danger\">
+                  <i class=\"fas fa-bell mr-2\"></i> Articles nécessitant votre attention
+                </h3>
+                <div class=\"card-tools\">
+                  <button class=\"btn btn-sm btn-outline-primary font-weight-bold\"><i class=\"fas fa-print mr-1\"></i> Imprimer le bon de commande</button>
+                </div>
+              </div>
+              <div class=\"card-body table-responsive p-0\">
+                <table class=\"table table-head-fixed table-hover text-nowrap align-middle mb-0\">
+                  <thead class=\"bg-light\">
+                  <tr>
+                    <th>Article / Produit</th>
+                    <th>En Stock Actuel</th>
+                    <th>Niveau du Stock (Visuel)</th>
+                    <th>Autonomie Estimée (IA)</th>
+                    <th class=\"bg-warning text-dark font-weight-bold\"><i class=\"fas fa-magic mr-1\"></i> Quantité Conseillée par l'IA</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- Cas 1 : Rupture totale -->
+                  <tr class=\"table-danger\">
+                    <td class=\"font-weight-bold text-danger\"><i class=\"fas fa-times-circle mr-2\"></i> Sac de Ciment 50kg</td>
+                    <td class=\"font-weight-bold\">0 sac</td>
+                    <td style=\"width: 200px;\">
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-danger\" style=\"width: 0%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-danger font-weight-bold px-2 py-1\">ÉPUISÉ ❌</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">120 sacs</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-danger font-weight-bold px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 2 : Stock Critique proche rupture -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-exclamation-triangle text-warning mr-2\"></i> Fer à béton 12 (Unité)</td>
+                    <td class=\"font-weight-bold\">8 barres</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-warning\" style=\"width: 15%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-warning text-dark font-weight-bold px-2 py-1\">2 jours restants</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">90 barres</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-warning font-weight-bold text-dark px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 3 : Autre alerte -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-exclamation-triangle text-warning mr-2\"></i> Pot de Peinture Blanche 20L</td>
+                    <td class=\"font-weight-bold\">3 pots</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-warning\" style=\"width: 22%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-warning text-dark font-weight-bold px-2 py-1\">4 jours restants</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">25 pots</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-warning font-weight-bold text-dark px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 4 : Stock en baisse mais calculé intelligemment selon saisonnalité -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-info-circle text-info mr-2\"></i> Briques creuses (Mille)</td>
+                    <td class=\"font-weight-bold\">2 lots</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-info\" style=\"width: 35%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-info font-weight-bold px-2 py-1\">7 jours (Baisse de la demande)</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">5 lots <small class=\"text-muted text-xs\">(Ajusté 📉)</small></td>
+                    <td>
+                      <button class=\"btn btn-sm btn-outline-secondary font-weight-bold px-3\">Plus tard</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3 : COMMENT L'IA CALCULE CELA ? (Parfait pour rassurer le jury de PFE) -->
+        <div class=\"row mt-3\">
+          <div class=\"col-md-12\">
+            <div class=\"card card-outline card-info bg-light\">
+              <div class=\"card-body\">
+                <h5><i class=\"fas fa-lightbulb text-info mr-2\"></i> <b>Comprendre les suggestions de commande</b></h5>
+                <p class=\"text-muted mb-0\">
+                  Pour chaque article en alerte, notre algorithme croise <b>votre vitesse de vente actuelle</b>, le <b>délai de livraison théorique de vos fournisseurs</b> et l'<b>historique de vos ventes de l'année passée</b> pour vous proposer la quantité idéale à commander. Cela évite d'acheter trop de stock inutilement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getTemplateName(): string
+    {
+        return "alert_rupture_stock/index.html.twig";
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getDebugInfo(): array
+    {
+        return array (  126 => 12,  113 => 11,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+    }
+
+    public function getSourceContext(): Source
+    {
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+  {% block stylesheets %}
+
+  {% endblock %}
+
+
+
+{% block body %}
+
+  <div class=\"content-wrapper\">
+    <!-- En-tête de la page -->
+    <div class=\"content-header\">
+      <div class=\"container-fluid\">
+        <div class=\"row mb-2\">
+          <div class=\"col-sm-6\">
+            <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-boxes text-warning mr-2\"></i> Alertes & Réapprovisionnement Intelligent</h1>
+            <p class=\"text-muted mb-0\">L'IA surveille vos stocks et calcule automatiquement vos besoins pour éviter les ruptures.</p>
+          </div>
+          <div class=\"col-sm-6\">
+            <ol class=\"breadcrumb float-sm-right\">
+              <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+              <li class=\"breadcrumb-item active\">Alertes Stocks</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <section class=\"content\">
+      <div class=\"container-fluid\">
+
+        <!-- SECTION 1 : RÉSUMÉ DE L'ÉTAT DU STOCK -->
+        <div class=\"row\">
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-danger\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-exclamation-triangle\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Ruptures Urgentes</span>
+                <span class=\"info-box-number\">2 Articles</span>
+                <span class=\"progress-description text-sm\">À commander immédiatement</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-warning text-dark\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-hourglass-half\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Stocks Critiques</span>
+                <span class=\"info-box-number\">4 Articles</span>
+                <span class=\"progress-description text-sm\">Moins de 5 jours d'autonomie</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-success\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-check-circle\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Articles Sécurisés</span>
+                <span class=\"info-box-number\">142 Articles</span>
+                <span class=\"progress-description text-sm\">Niveaux de stock corrects</span>
+              </div>
+            </div>
+          </div>
+          <div class=\"col-md-3 col-sm-6 col-12\">
+            <div class=\"info-box bg-info\">
+              <span class=\"info-box-icon\"><i class=\"fas fa-brain\"></i></span>
+              <div class=\"info-box-content\">
+                <span class=\"info-box-text font-weight-bold\">Optimisation IA</span>
+                <span class=\"info-box-number\">18 % d'économie</span>
+                <span class=\"progress-description text-sm\">De capital dormant évité</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 2 : TABLEAU DES ALERTES ET SUGGESTIONS DE COMMANDE (Le cœur du module) -->
+        <div class=\"row mt-3\">
+          <div class=\"col-12\">
+            <div class=\"card card-outline card-danger\">
+              <div class=\"card-header\">
+                <h3 class=\"card-title font-weight-bold text-danger\">
+                  <i class=\"fas fa-bell mr-2\"></i> Articles nécessitant votre attention
+                </h3>
+                <div class=\"card-tools\">
+                  <button class=\"btn btn-sm btn-outline-primary font-weight-bold\"><i class=\"fas fa-print mr-1\"></i> Imprimer le bon de commande</button>
+                </div>
+              </div>
+              <div class=\"card-body table-responsive p-0\">
+                <table class=\"table table-head-fixed table-hover text-nowrap align-middle mb-0\">
+                  <thead class=\"bg-light\">
+                  <tr>
+                    <th>Article / Produit</th>
+                    <th>En Stock Actuel</th>
+                    <th>Niveau du Stock (Visuel)</th>
+                    <th>Autonomie Estimée (IA)</th>
+                    <th class=\"bg-warning text-dark font-weight-bold\"><i class=\"fas fa-magic mr-1\"></i> Quantité Conseillée par l'IA</th>
+                    <th>Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- Cas 1 : Rupture totale -->
+                  <tr class=\"table-danger\">
+                    <td class=\"font-weight-bold text-danger\"><i class=\"fas fa-times-circle mr-2\"></i> Sac de Ciment 50kg</td>
+                    <td class=\"font-weight-bold\">0 sac</td>
+                    <td style=\"width: 200px;\">
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-danger\" style=\"width: 0%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-danger font-weight-bold px-2 py-1\">ÉPUISÉ ❌</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">120 sacs</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-danger font-weight-bold px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 2 : Stock Critique proche rupture -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-exclamation-triangle text-warning mr-2\"></i> Fer à béton 12 (Unité)</td>
+                    <td class=\"font-weight-bold\">8 barres</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-warning\" style=\"width: 15%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-warning text-dark font-weight-bold px-2 py-1\">2 jours restants</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">90 barres</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-warning font-weight-bold text-dark px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 3 : Autre alerte -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-exclamation-triangle text-warning mr-2\"></i> Pot de Peinture Blanche 20L</td>
+                    <td class=\"font-weight-bold\">3 pots</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-warning\" style=\"width: 22%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-warning text-dark font-weight-bold px-2 py-1\">4 jours restants</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">25 pots</td>
+                    <td>
+                      <button class=\"btn btn-sm btn-warning font-weight-bold text-dark px-3\"><i class=\"fas fa-shopping-cart mr-1\"></i> Commander</button>
+                    </td>
+                  </tr>
+                  <!-- Cas 4 : Stock en baisse mais calculé intelligemment selon saisonnalité -->
+                  <tr>
+                    <td class=\"font-weight-bold\"><i class=\"fas fa-info-circle text-info mr-2\"></i> Briques creuses (Mille)</td>
+                    <td class=\"font-weight-bold\">2 lots</td>
+                    <td>
+                      <div class=\"progress progress-xs mt-2\" style=\"height: 10px;\">
+                        <div class=\"progress-bar bg-info\" style=\"width: 35%\"></div>
+                      </div>
+                    </td>
+                    <td><span class=\"badge badge-info font-weight-bold px-2 py-1\">7 jours (Baisse de la demande)</span></td>
+                    <td class=\"bg-light font-weight-bold text-dark text-center h5\">5 lots <small class=\"text-muted text-xs\">(Ajusté 📉)</small></td>
+                    <td>
+                      <button class=\"btn btn-sm btn-outline-secondary font-weight-bold px-3\">Plus tard</button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3 : COMMENT L'IA CALCULE CELA ? (Parfait pour rassurer le jury de PFE) -->
+        <div class=\"row mt-3\">
+          <div class=\"col-md-12\">
+            <div class=\"card card-outline card-info bg-light\">
+              <div class=\"card-body\">
+                <h5><i class=\"fas fa-lightbulb text-info mr-2\"></i> <b>Comprendre les suggestions de commande</b></h5>
+                <p class=\"text-muted mb-0\">
+                  Pour chaque article en alerte, notre algorithme croise <b>votre vitesse de vente actuelle</b>, le <b>délai de livraison théorique de vos fournisseurs</b> et l'<b>historique de vos ventes de l'année passée</b> pour vous proposer la quantité idéale à commander. Cela évite d'acheter trop de stock inutilement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+
+{% endblock %}
+", "alert_rupture_stock/index.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/alert_rupture_stock/index.html.twig");
+    }
+}

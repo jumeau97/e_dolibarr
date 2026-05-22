@@ -1,0 +1,11 @@
+<?php
+
+namespace App\Model;
+
+class RoleStatus
+{
+    CONST ROLE_APPRENANT = "ROLE_APPRENANT";
+    CONST ROLE_ADMINISTRATEUR = "ROLE_ADMIN";
+    CONST ROLE_FORMATEUR = "ROLE_FORMATEUR";
+
+}
