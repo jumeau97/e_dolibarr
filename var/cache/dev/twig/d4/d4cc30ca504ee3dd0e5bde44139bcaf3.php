@@ -1,0 +1,607 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Extension\CoreExtension;
+use Twig\Extension\SandboxExtension;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+use Twig\TemplateWrapper;
+
+/* entrepot/details.html.twig */
+class __TwigTemplate_ac8a10913d2b1b083aa4be0888fbee9a extends Template
+{
+    private Source $source;
+    /**
+     * @var array<string, Template>
+     */
+    private array $macros = [];
+
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->source = $this->getSourceContext();
+
+        $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
+        ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "entrepot/details.html.twig"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "entrepot/details.html.twig"));
+
+        $this->parent = $this->load("base.html.twig", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_title(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        yield "Détails de l'Entrepôt : Dépôt Central";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 5
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 6
+        yield "    <div class=\"content-wrapper\">
+        <!-- Fil d'Ariane & En-tête -->
+        <div class=\"content-header py-3 border-bottom bg-white mb-4\">
+            <div class=\"container-fluid\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-sm-6\">
+                        <span class=\"text-xs text-uppercase font-weight-bold text-muted\"><i class=\"fas fa-link mr-1\"></i> Logistique &amp; Entrepôts</span>
+                        <h1 class=\"m-0 font-weight-bold text-dark\">
+                            <i class=\"fas fa-warehouse text-indigo mr-2\"></i> Fiche : Dépôt Central
+                        </h1>
+                    </div>
+                    <div class=\"col-sm-6 text-sm-right mt-2 mt-sm-0\">
+                        <a href=\"?page=warehouse_index\" class=\"btn btn-default btn-sm mr-2 shadow-sm\">
+                            <i class=\"fas fa-arrow-left mr-1\"></i> Retour à la liste
+                        </a>
+                        <button type=\"button\" class=\"btn btn-warning btn-sm mr-2 shadow-sm text-dark font-weight-bold\" data-toggle=\"modal\" data-target=\"#modal-edit\">
+                            <i class=\"fas fa-edit mr-1\"></i> Modifier le site
+                        </button>
+                        <button type=\"button\" class=\"btn btn-indigo btn-sm shadow-sm\" data-toggle=\"modal\" data-target=\"#modal-ajustement\">
+                            <i class=\"fas fa-plus-circle mr-1\"></i> Ajuster le Stock
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Principale -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+
+                <div class=\"row\">
+                    <!-- COLONNE GAUCHE : INFORMATIONS ET STATISTIQUES CARDS -->
+                    <div class=\"col-lg-4\">
+                        <!-- Card Profil de l'entrepôt -->
+                        <div class=\"card card-outline card-dark shadow-sm\">
+                            <div class=\"card-body box-profile\">
+                                <div class=\"text-center mb-3\">
+                                    <span class=\"p-3 rounded-circle bg-light d-inline-block\"><i class=\"fas fa-warehouse fa-2x text-muted\"></i></span>
+                                </div>
+                                <h3 class=\"profile-username text-center font-weight-bold text-lg mb-1\">Dépôt Central</h3>
+                                <p class=\"text-muted text-xs text-center font-mono mb-3\">ID: WH-DEP-CEN</p>
+
+                                <ul class=\"list-group list-group-unbordered mb-3 text-sm\">
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Responsable</b> <span class=\"text-muted\">M. Diarra</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Téléphone</b> <span class=\"text-muted\">+223 70 00 00 00</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Localisation</b> <span class=\"text-muted\">Zone Industrielle</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Capacité Max</b> <span class=\"text-muted\">5 000 Palettes</span>
+                                    </li>
+                                </ul>
+
+                                <div class=\"bg-light p-3 rounded mb-0\">
+                                    <div class=\"d-flex justify-content-between text-xs font-weight-bold text-muted mb-1\">
+                                        <span>Seuil d'occupation volumétrique</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class=\"progress progress-sm\">
+                                        <div class=\"progress-bar bg-danger\" role=\"progressbar\" style=\"width: 85%\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>
+                                    </div>
+                                    <small class=\"text-danger text-xs d-block mt-1\"><i class=\"fas fa-exclamation-triangle mr-1\"></i> Espace critique (Alerte saturation)</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Mini KPIs spécifiques -->
+                        <div class=\"card card-outline card-indigo shadow-sm\">
+                            <div class=\"card-header bg-white py-2\"><h5 class=\"card-title text-sm font-weight-bold m-0\">Performance du mois</h5></div>
+                            <div class=\"card-body py-2\">
+                                <div class=\"d-flex justify-content-between align-items-center border-bottom py-2\">
+                                    <span class=\"text-sm text-muted\"><i class=\"fas fa-arrow-down text-success mr-2\"></i> Entrées reçues</span>
+                                    <span class=\"font-weight-bold\">14 Bon de livraisons</span>
+                                </div>
+                                <div class=\"d-flex justify-content-between align-items-center py-2\">
+                                    <span class=\"text-sm text-muted\"><i class=\"fas fa-arrow-up text-indigo mr-2\"></i> Expéditions / Transferts</span>
+                                    <span class=\"font-weight-bold\">38 Sorties valides</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNE DROITE : LES ONGLETS DE CONTENU -->
+                    <div class=\"col-lg-8\">
+                        <div class=\"card shadow-sm border-0\">
+                            <div class=\"card-header p-2 bg-white border-bottom\">
+                                <ul class=\"nav nav-pills\" id=\"warehouseTabs\" role=\"tablist\">
+                                    <li class=\"nav-item\">
+                                        <a class=\"nav-link active text-sm font-weight-bold\" id=\"stock-tab\" data-toggle=\"pill\" href=\"#tab-stock\" role=\"tab\" aria-selected=\"true\">
+                                            <i class=\"fas fa-boxes mr-1\"></i> Inventaire des Articles
+                                        </a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a class=\"nav-link text-sm font-weight-bold\" id=\"logs-tab\" data-toggle=\"pill\" href=\"#tab-logs\" role=\"tab\" aria-selected=\"false\">
+                                            <i class=\"fas fa-history mr-1\"></i> Historique des Flux (Mouvements)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class=\"card-body p-0\">
+                                <div class=\"tab-content\" id=\"warehouseTabsContent\">
+
+                                    <!-- ONGLET 1 : INVENTAIRE DES ARTICLES DES STOCK -->
+                                    <div class=\"tab-pane fade show active\" id=\"tab-stock\" role=\"tabpanel\">
+                                        <div class=\"p-3 bg-light border-bottom\">
+                                            <input type=\"text\" id=\"table-search-stock\" class=\"form-control form-control-sm\" placeholder=\"Rechercher une référence ou un produit spécifique dans cet entrepôt...\">
+                                        </div>
+                                        <div class=\"table-responsive\">
+                                            <table class=\"table table-striped table-valign-middle m-0\" id=\"table-items\">
+                                                <thead class=\"thead-light\">
+                                                <tr>
+                                                    <th>Référence</th>
+                                                    <th>Désignation</th>
+                                                    <th class=\"text-center\">Allée / Rayon</th>
+                                                    <th class=\"text-right\">En Stock</th>
+                                                    <th class=\"text-center\">Statut</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">HPR-001</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Huile de Palme Raffinée 1L</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Rayon A-12</span></td>
+                                                    <td class=\"text-right font-weight-bold text-indigo\">1 450</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-success-light text-success text-xs px-2 py-1\">Disponible</span></td>
+                                                </tr>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">RIZ-B50</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Sac de Riz Brisure 50kg</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Hangar B-02</span></td>
+                                                    <td class=\"text-right font-weight-bold text-indigo\">420</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-success-light text-success text-xs px-2 py-1\">Disponible</span></td>
+                                                </tr>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">SAD-MAD</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Carton de Savon Madar</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Rayon C-05</span></td>
+                                                    <td class=\"text-right font-weight-bold text-danger\">2</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-danger-light text-danger text-xs px-2 py-1\">Rupture Proche</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- ONGLET 2 : HISTORIQUE DES FLUX ET TRANSACTIONS DE STOCK -->
+                                    <div class=\"tab-pane fade\" id=\"tab-logs\" role=\"tabpanel\">
+                                        <div class=\"table-responsive\">
+                                            <table class=\"table table-hover table-valign-middle m-0\">
+                                                <thead class=\"thead-light\">
+                                                <tr>
+                                                    <th>Date &amp; Heure</th>
+                                                    <th>N° Pièce</th>
+                                                    <th>Type</th>
+                                                    <th>Désignation Produit</th>
+                                                    <th class=\"text-right\">Qté</th>
+                                                    <th>Opérateur</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class=\"text-sm\">
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">22/05/2026 14:15</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">TR-2026-089</span></td>
+                                                    <td><span class=\"badge bg-purple\"><i class=\"fas fa-exchange-alt mr-1\"></i> Transfert</span></td>
+                                                    <td>Huile de Palme Raffinée 1L</td>
+                                                    <td class=\"text-right font-weight-bold text-danger\">-50</td>
+                                                    <td class=\"text-muted text-xs\">A. Sanogo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">21/05/2026 09:30</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">BL-FOURN-45</span></td>
+                                                    <td><span class=\"badge bg-success\"><i class=\"fas fa-arrow-down mr-1\"></i> Entrée</span></td>
+                                                    <td>Sac de Riz Brisure 50kg</td>
+                                                    <td class=\"text-right font-weight-bold text-success\">+200</td>
+                                                    <td class=\"text-muted text-xs\">M. Diarra</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">20/05/2026 16:45</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">INV-REAJ-02</span></td>
+                                                    <td><span class=\"badge bg-secondary\"><i class=\"fas fa-tools mr-1\"></i> Ajustement</span></td>
+                                                    <td>Carton de Savon Madar</td>
+                                                    <td class=\"text-right font-weight-bold text-warning\">-3</td>
+                                                    <td class=\"text-muted text-xs\">A. Sanogo</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 211
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascripts(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 212
+        yield "    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            const searchInput = document.getElementById('table-search-stock');
+            const rows = document.querySelectorAll('.item-row');
+
+            // Filtre dynamique pour la table d'inventaire interne de l'entrepôt
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                rows.forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    row.style.display = rowText.includes(query) ? \"\" : \"none\";
+                });
+            });
+        });
+    </script>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getTemplateName(): string
+    {
+        return "entrepot/details.html.twig";
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getDebugInfo(): array
+    {
+        return array (  328 => 212,  315 => 211,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+    }
+
+    public function getSourceContext(): Source
+    {
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'Entrepôt : Dépôt Central{% endblock %}
+
+{% block body %}
+    <div class=\"content-wrapper\">
+        <!-- Fil d'Ariane & En-tête -->
+        <div class=\"content-header py-3 border-bottom bg-white mb-4\">
+            <div class=\"container-fluid\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-sm-6\">
+                        <span class=\"text-xs text-uppercase font-weight-bold text-muted\"><i class=\"fas fa-link mr-1\"></i> Logistique &amp; Entrepôts</span>
+                        <h1 class=\"m-0 font-weight-bold text-dark\">
+                            <i class=\"fas fa-warehouse text-indigo mr-2\"></i> Fiche : Dépôt Central
+                        </h1>
+                    </div>
+                    <div class=\"col-sm-6 text-sm-right mt-2 mt-sm-0\">
+                        <a href=\"?page=warehouse_index\" class=\"btn btn-default btn-sm mr-2 shadow-sm\">
+                            <i class=\"fas fa-arrow-left mr-1\"></i> Retour à la liste
+                        </a>
+                        <button type=\"button\" class=\"btn btn-warning btn-sm mr-2 shadow-sm text-dark font-weight-bold\" data-toggle=\"modal\" data-target=\"#modal-edit\">
+                            <i class=\"fas fa-edit mr-1\"></i> Modifier le site
+                        </button>
+                        <button type=\"button\" class=\"btn btn-indigo btn-sm shadow-sm\" data-toggle=\"modal\" data-target=\"#modal-ajustement\">
+                            <i class=\"fas fa-plus-circle mr-1\"></i> Ajuster le Stock
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Principale -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+
+                <div class=\"row\">
+                    <!-- COLONNE GAUCHE : INFORMATIONS ET STATISTIQUES CARDS -->
+                    <div class=\"col-lg-4\">
+                        <!-- Card Profil de l'entrepôt -->
+                        <div class=\"card card-outline card-dark shadow-sm\">
+                            <div class=\"card-body box-profile\">
+                                <div class=\"text-center mb-3\">
+                                    <span class=\"p-3 rounded-circle bg-light d-inline-block\"><i class=\"fas fa-warehouse fa-2x text-muted\"></i></span>
+                                </div>
+                                <h3 class=\"profile-username text-center font-weight-bold text-lg mb-1\">Dépôt Central</h3>
+                                <p class=\"text-muted text-xs text-center font-mono mb-3\">ID: WH-DEP-CEN</p>
+
+                                <ul class=\"list-group list-group-unbordered mb-3 text-sm\">
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Responsable</b> <span class=\"text-muted\">M. Diarra</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Téléphone</b> <span class=\"text-muted\">+223 70 00 00 00</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Localisation</b> <span class=\"text-muted\">Zone Industrielle</span>
+                                    </li>
+                                    <li class=\"list-group-item d-flex justify-content-between align-items-center\">
+                                        <b>Capacité Max</b> <span class=\"text-muted\">5 000 Palettes</span>
+                                    </li>
+                                </ul>
+
+                                <div class=\"bg-light p-3 rounded mb-0\">
+                                    <div class=\"d-flex justify-content-between text-xs font-weight-bold text-muted mb-1\">
+                                        <span>Seuil d'occupation volumétrique</span>
+                                        <span>85%</span>
+                                    </div>
+                                    <div class=\"progress progress-sm\">
+                                        <div class=\"progress-bar bg-danger\" role=\"progressbar\" style=\"width: 85%\" aria-valuenow=\"85\" aria-valuemin=\"0\" aria-valuemax=\"100\"></div>
+                                    </div>
+                                    <small class=\"text-danger text-xs d-block mt-1\"><i class=\"fas fa-exclamation-triangle mr-1\"></i> Espace critique (Alerte saturation)</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Mini KPIs spécifiques -->
+                        <div class=\"card card-outline card-indigo shadow-sm\">
+                            <div class=\"card-header bg-white py-2\"><h5 class=\"card-title text-sm font-weight-bold m-0\">Performance du mois</h5></div>
+                            <div class=\"card-body py-2\">
+                                <div class=\"d-flex justify-content-between align-items-center border-bottom py-2\">
+                                    <span class=\"text-sm text-muted\"><i class=\"fas fa-arrow-down text-success mr-2\"></i> Entrées reçues</span>
+                                    <span class=\"font-weight-bold\">14 Bon de livraisons</span>
+                                </div>
+                                <div class=\"d-flex justify-content-between align-items-center py-2\">
+                                    <span class=\"text-sm text-muted\"><i class=\"fas fa-arrow-up text-indigo mr-2\"></i> Expéditions / Transferts</span>
+                                    <span class=\"font-weight-bold\">38 Sorties valides</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNE DROITE : LES ONGLETS DE CONTENU -->
+                    <div class=\"col-lg-8\">
+                        <div class=\"card shadow-sm border-0\">
+                            <div class=\"card-header p-2 bg-white border-bottom\">
+                                <ul class=\"nav nav-pills\" id=\"warehouseTabs\" role=\"tablist\">
+                                    <li class=\"nav-item\">
+                                        <a class=\"nav-link active text-sm font-weight-bold\" id=\"stock-tab\" data-toggle=\"pill\" href=\"#tab-stock\" role=\"tab\" aria-selected=\"true\">
+                                            <i class=\"fas fa-boxes mr-1\"></i> Inventaire des Articles
+                                        </a>
+                                    </li>
+                                    <li class=\"nav-item\">
+                                        <a class=\"nav-link text-sm font-weight-bold\" id=\"logs-tab\" data-toggle=\"pill\" href=\"#tab-logs\" role=\"tab\" aria-selected=\"false\">
+                                            <i class=\"fas fa-history mr-1\"></i> Historique des Flux (Mouvements)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class=\"card-body p-0\">
+                                <div class=\"tab-content\" id=\"warehouseTabsContent\">
+
+                                    <!-- ONGLET 1 : INVENTAIRE DES ARTICLES DES STOCK -->
+                                    <div class=\"tab-pane fade show active\" id=\"tab-stock\" role=\"tabpanel\">
+                                        <div class=\"p-3 bg-light border-bottom\">
+                                            <input type=\"text\" id=\"table-search-stock\" class=\"form-control form-control-sm\" placeholder=\"Rechercher une référence ou un produit spécifique dans cet entrepôt...\">
+                                        </div>
+                                        <div class=\"table-responsive\">
+                                            <table class=\"table table-striped table-valign-middle m-0\" id=\"table-items\">
+                                                <thead class=\"thead-light\">
+                                                <tr>
+                                                    <th>Référence</th>
+                                                    <th>Désignation</th>
+                                                    <th class=\"text-center\">Allée / Rayon</th>
+                                                    <th class=\"text-right\">En Stock</th>
+                                                    <th class=\"text-center\">Statut</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">HPR-001</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Huile de Palme Raffinée 1L</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Rayon A-12</span></td>
+                                                    <td class=\"text-right font-weight-bold text-indigo\">1 450</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-success-light text-success text-xs px-2 py-1\">Disponible</span></td>
+                                                </tr>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">RIZ-B50</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Sac de Riz Brisure 50kg</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Hangar B-02</span></td>
+                                                    <td class=\"text-right font-weight-bold text-indigo\">420</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-success-light text-success text-xs px-2 py-1\">Disponible</span></td>
+                                                </tr>
+                                                <tr class=\"item-row\">
+                                                    <td><span class=\"text-xs font-mono text-muted\">SAD-MAD</span></td>
+                                                    <td class=\"font-weight-bold text-sm\">Carton de Savon Madar</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-light border\">Rayon C-05</span></td>
+                                                    <td class=\"text-right font-weight-bold text-danger\">2</td>
+                                                    <td class=\"text-center\"><span class=\"badge badge-pill bg-danger-light text-danger text-xs px-2 py-1\">Rupture Proche</span></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- ONGLET 2 : HISTORIQUE DES FLUX ET TRANSACTIONS DE STOCK -->
+                                    <div class=\"tab-pane fade\" id=\"tab-logs\" role=\"tabpanel\">
+                                        <div class=\"table-responsive\">
+                                            <table class=\"table table-hover table-valign-middle m-0\">
+                                                <thead class=\"thead-light\">
+                                                <tr>
+                                                    <th>Date &amp; Heure</th>
+                                                    <th>N° Pièce</th>
+                                                    <th>Type</th>
+                                                    <th>Désignation Produit</th>
+                                                    <th class=\"text-right\">Qté</th>
+                                                    <th>Opérateur</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody class=\"text-sm\">
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">22/05/2026 14:15</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">TR-2026-089</span></td>
+                                                    <td><span class=\"badge bg-purple\"><i class=\"fas fa-exchange-alt mr-1\"></i> Transfert</span></td>
+                                                    <td>Huile de Palme Raffinée 1L</td>
+                                                    <td class=\"text-right font-weight-bold text-danger\">-50</td>
+                                                    <td class=\"text-muted text-xs\">A. Sanogo</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">21/05/2026 09:30</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">BL-FOURN-45</span></td>
+                                                    <td><span class=\"badge bg-success\"><i class=\"fas fa-arrow-down mr-1\"></i> Entrée</span></td>
+                                                    <td>Sac de Riz Brisure 50kg</td>
+                                                    <td class=\"text-right font-weight-bold text-success\">+200</td>
+                                                    <td class=\"text-muted text-xs\">M. Diarra</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class=\"text-muted text-xs\">20/05/2026 16:45</td>
+                                                    <td><span class=\"font-weight-bold text-xs\">INV-REAJ-02</span></td>
+                                                    <td><span class=\"badge bg-secondary\"><i class=\"fas fa-tools mr-1\"></i> Ajustement</span></td>
+                                                    <td>Carton de Savon Madar</td>
+                                                    <td class=\"text-right font-weight-bold text-warning\">-3</td>
+                                                    <td class=\"text-muted text-xs\">A. Sanogo</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            const searchInput = document.getElementById('table-search-stock');
+            const rows = document.querySelectorAll('.item-row');
+
+            // Filtre dynamique pour la table d'inventaire interne de l'entrepôt
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                rows.forEach(row => {
+                    const rowText = row.textContent.toLowerCase();
+                    row.style.display = rowText.includes(query) ? \"\" : \"none\";
+                });
+            });
+        });
+    </script>
+{% endblock %}", "entrepot/details.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/entrepot/details.html.twig");
+    }
+}

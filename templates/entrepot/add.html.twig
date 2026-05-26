@@ -1,0 +1,98 @@
+<!-- MODAL : AJOUTER UN NOUVEL ENTREPÔT / SITE -->
+<div class="modal fade" id="modal-add-warehouse" tabindex="-1" role="dialog" aria-labelledby="modalAddWarehouseLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <!-- En-tête de la Modal -->
+            <div class="modal-header bg-dark text-white py-3">
+                <h5 class="modal-title font-weight-bold" id="modalAddWarehouseLabel">
+                    <i class="fas fa-warehouse text-warning mr-2"></i> Enregistrer une Nouvelle Infrastructure
+                </h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Formulier -->
+            <form action="?page=warehouse_create" method="POST" id="form-add-warehouse">
+                <div class="modal-body bg-light">
+
+                    <div class="row">
+                        <!-- Code Identifiant Unique -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Code Site <span class="text-danger">*</span></label>
+                                <input type="text" name="code" class="form-control font-weight-bold text-uppercase" placeholder="Ex: DEP-KAYES" required>
+                                <small class="text-xs text-muted">Identifiant unique court.</small>
+                            </div>
+                        </div>
+                        <!-- Nom ou Désignation -->
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Nom de l'entrepôt / point de vente <span class="text-danger">*</span></label>
+                                <input type="text" name="name" class="form-control" placeholder="Ex: Dépôt Régional de Kayes" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <!-- Type d'entrepôt -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Type d'Infrastructure</label>
+                                <select name="type" class="form-control custom-select">
+                                    <option value="depot">Dépôt Central / Zone de Stockage de gros</option>
+                                    <option value="boutique">Boutique / Comptoir de vente directe</option>
+                                    <option value="transit">Zone de Transit / Hub Logistique</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Responsable -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Responsable du Site</label>
+                                <input type="text" name="manager" class="form-control" placeholder="Nom du gestionnaire principal">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <!-- Capacité max -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Capacité Maximale Évaluée</label>
+                                <div class="input-group">
+                                    <input type="number" name="capacity" class="form-control" placeholder="Ex: 5000" min="1">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text text-xs">Palettes / Unités</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Contact Téléphonique -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">Contact Téléphonique</label>
+                                <input type="tel" name="phone" class="form-control" placeholder="Ex: +223 70 00 00 00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Adresse / Emplacement Géographique -->
+                    <div class="form-group mt-2">
+                        <label class="text-xs text-uppercase font-weight-bold text-muted">Adresse physique complète <span class="text-danger">*</span></label>
+                        <textarea name="address" class="form-control" rows="2" placeholder="Quartier, rue, repères géographiques précis..." required></textarea>
+                    </div>
+
+                </div>
+
+                <!-- Actions du Formulaire -->
+                <div class="modal-footer bg-white py-2">
+                    <button type="button" class="btn btn-default btn-sm text-sm" data-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-indigo btn-sm text-sm font-weight-bold">
+                        <i class="fas fa-save mr-1"></i> Enregistrer le site
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

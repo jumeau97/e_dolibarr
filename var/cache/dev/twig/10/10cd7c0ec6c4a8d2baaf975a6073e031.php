@@ -1,0 +1,1013 @@
+<?php
+
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Extension\CoreExtension;
+use Twig\Extension\SandboxExtension;
+use Twig\Markup;
+use Twig\Sandbox\SecurityError;
+use Twig\Sandbox\SecurityNotAllowedTagError;
+use Twig\Sandbox\SecurityNotAllowedFilterError;
+use Twig\Sandbox\SecurityNotAllowedFunctionError;
+use Twig\Source;
+use Twig\Template;
+use Twig\TemplateWrapper;
+
+/* vente/index.html.twig */
+class __TwigTemplate_7389e69949fb53f55a3ce6a9064c23a9 extends Template
+{
+    private Source $source;
+    /**
+     * @var array<string, Template>
+     */
+    private array $macros = [];
+
+    public function __construct(Environment $env)
+    {
+        parent::__construct($env);
+
+        $this->source = $this->getSourceContext();
+
+        $this->blocks = [
+            'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
+            'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
+        ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.html.twig";
+    }
+
+    protected function doDisplay(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "vente/index.html.twig"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "vente/index.html.twig"));
+
+        $this->parent = $this->load("base.html.twig", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_title(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+
+        yield "Caisse - Simulation Vente";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 5
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 6
+        yield "    <style>
+        /* Optimisation ergonomique pour l'écran de caisse */
+        .product-grid {
+            max-height: 68vh;
+            overflow-y: auto;
+        }
+        .cart-table-container {
+            max-height: 42vh;
+            overflow-y: auto;
+        }
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+        }
+    </style>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 27
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_body(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 28
+        yield "    <div class=\"content-wrapper\">
+        <!-- En-tête minimal pour maximiser la hauteur de travail -->
+        <div class=\"content-header py-2\">
+            <div class=\"container-fluid\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold text-dark\">
+                            <i class=\"fas fa-cash-register text-indigo mr-2\"></i> Comptoir &amp; Encaissement
+                        </h1>
+                    </div>
+                    <div class=\"col-sm-6 text-right\">
+                    <span class=\"badge badge-success p-2 shadow-sm\">
+                        <i class=\"fas fa-dot-circle mr-1 animate-pulse\"></i> Mode Standard Statie
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu Principal -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+                <div class=\"row\">
+
+                    <!-- ZONE GAUCHE : RECHERCHE & PRODUITS EXEMPLES -->
+                    <div class=\"col-lg-7 col-md-6\">
+                        <div class=\"card card-outline card-indigo shadow-sm\">
+                            <div class=\"card-header bg-white py-2\">
+                                <div class=\"input-group\">
+                                    <div class=\"input-group-prepend\">
+                                        <span class=\"input-group-text bg-light\"><i class=\"fas fa-search\"></i></span>
+                                    </div>
+                                    <input type=\"text\" id=\"search-product\" class=\"form-control form-control-lg\" placeholder=\"Rechercher un article ou sa référence...\">
+                                </div>
+                            </div>
+
+                            <!-- Liste de produits fictifs pour tester l'UX -->
+                            <div class=\"card-body product-grid bg-light p-3\">
+                                <div class=\"row\" id=\"products-list\">
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"1\" data-libelle=\"Huile de Palme Raffinée 1L\" data-prix=\"1200\" data-ref=\"HPR-001\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: HPR-001</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Huile de Palme 1L</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">45 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">1 200 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"2\" data-libelle=\"Sac de Riz Brisure 50kg\" data-prix=\"22500\" data-ref=\"RIZ-B50\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: RIZ-B50</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Sac de Riz 50kg</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">12 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">22 500 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"3\" data-libelle=\"Carton de Savon Madar\" data-prix=\"8500\" data-ref=\"SAD-MAD\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: SAD-MAD</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Carton Savon Madar</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-danger\">2 Alerte</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">8 500 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"4\" data-libelle=\"Paquet de Pâtes Alimentaires 500g\" data-prix=\"450\" data-ref=\"PAT-500\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: PAT-500</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Paquet Pâtes 500g</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">120 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">450 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"5\" data-libelle=\"Sucre en Poudre 1kg\" data-prix=\"750\" data-ref=\"SUC-001\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: SUC-001</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Sucre Poudre 1kg</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">80 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">750 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ZONE DROITE : PANIER ACTIF & RÈGLEMENT -->
+                    <div class=\"col-lg-5 col-md-6\">
+
+                        <!-- Le Panier Statique -->
+                        <div class=\"card card-dark shadow-sm mb-3\">
+                            <div class=\"card-header bg-dark\">
+                                <h3 class=\"card-title font-weight-bold\"><i class=\"fas fa-shopping-basket mr-2\"></i> Panier de vente</h3>
+                                <div class=\"card-tools\">
+                                    <button type=\"button\" class=\"btn btn-tool\" id=\"clear-cart\" title=\"Vider tout le panier\"><i class=\"fas fa-trash-alt text-danger\"></i></button>
+                                </div>
+                            </div>
+
+                            <div class=\"card-body p-0 cart-table-container bg-white\">
+                                <table class=\"table table-striped table-valign-middle m-0\" id=\"cart-table\">
+                                    <thead class=\"thead-light\">
+                                    <tr>
+                                        <th>Article</th>
+                                        <th style=\"width: 90px;\">Qté</th>
+                                        <th class=\"text-right\">Prix</th>
+                                        <th class=\"text-right\">Total</th>
+                                        <th style=\"width: 35px;\"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr id=\"empty-cart-row\">
+                                        <td colspan=\"5\" class=\"text-center text-muted py-5\">
+                                            <i class=\"fas fa-cart-plus fa-2x mb-2 text-gray d-block\"></i>
+                                            Cliquez sur un article à gauche pour l'ajouter
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Calculs financiers finaux -->
+                        <div class=\"card card-outline card-dark shadow-sm\">
+                            <div class=\"card-body bg-light\">
+
+                                <div class=\"d-flex justify-content-between align-items-center mb-2\">
+                                    <span class=\"text-muted\">Sous-total brut :</span>
+                                    <span class=\"font-weight-bold text-dark\" id=\"summary-subtotal\">0 FCFA</span>
+                                </div>
+
+                                <div class=\"row mb-3 align-items-center\">
+                                    <div class=\"col-6\">
+                                        <span class=\"text-muted\">Remise appliquée :</span>
+                                    </div>
+                                    <div class=\"col-6\">
+                                        <div class=\"input-group input-group-sm\">
+                                            <input type=\"number\" id=\"discount-input\" value=\"0\" min=\"0\" step=\"50\" class=\"form-control text-right font-weight-bold text-danger\">
+                                            <div class=\"input-group-append\">
+                                                <span class=\"input-group-text bg-white\">FCFA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class=\"my-2\">
+
+                                <div class=\"d-flex justify-content-between align-items-center bg-dark text-white p-3 rounded shadow-sm my-3\">
+                                    <h5 class=\"m-0 font-weight-bold\">NET À PAYER :</h5>
+                                    <h3 class=\"m-0 font-weight-bold text-warning\" id=\"summary-total\">0 FCFA</h3>
+                                </div>
+
+                                <!-- Choix du règlement -->
+                                <div class=\"form-group mb-3\">
+                                    <label class=\"text-xs text-muted text-uppercase font-weight-bold\">Mode de règlement :</label>
+                                    <div class=\"btn-group btn-group-toggle d-flex\" data-toggle=\"buttons\">
+                                        <label class=\"btn btn-outline-secondary active flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\" checked> <i class=\"fas fa-money-bill-wave d-block mb-1\"></i> Espèces
+                                        </label>
+                                        <label class=\"btn btn-outline-secondary flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\"> <i class=\"fas fa-mobile-alt d-block mb-1\"></i> Mobile
+                                        </label>
+                                        <label class=\"btn btn-outline-secondary flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\"> <i class=\"fas fa-credit-card d-block mb-1\"></i> Chèque
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Calcul de monnaie -->
+                                <div class=\"row bg-white p-2 rounded border mx-0 mb-2\">
+                                    <div class=\"col-6\">
+                                        <div class=\"form-group mb-0\">
+                                            <label class=\"text-xs text-muted mb-0\">Montant Reçu</label>
+                                            <input type=\"number\" id=\"amount-received\" class=\"form-control form-control-sm font-weight-bold text-success text-lg border-0 p-0\" placeholder=\"0\" style=\"font-size: 1.3rem;\">
+                                        </div>
+                                    </div>
+                                    <div class=\"col-6 text-right d-flex flex-column justify-content-center\">
+                                        <span class=\"text-xs text-muted\">Monnaie à rendre</span>
+                                        <h4 class=\"font-weight-bold text-danger m-0\" id=\"change-to-return\">0 FCFA</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class=\"card-footer bg-white p-2\">
+                                <button type=\"button\" class=\"btn btn-success btn-lg btn-block font-weight-bold shadow-sm py-3\" id=\"btn-validate-sale\" disabled>
+                                    <i class=\"fas fa-print mr-2\"></i> Valider l'encaissement (Ticket)
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 259
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascripts(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 260
+        yield "    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            const productsList = document.getElementById('products-list');
+            const searchInput = document.getElementById('search-product');
+            const cartTableBody = document.querySelector('#cart-table tbody');
+            const emptyCartRow = document.getElementById('empty-cart-row');
+            const clearCartBtn = document.getElementById('clear-cart');
+
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
+            const discountInput = document.getElementById('discount-input');
+            const amountReceivedInput = document.getElementById('amount-received');
+            const changeToReturnEl = document.getElementById('change-to-return');
+            const btnValidateSale = document.getElementById('btn-validate-sale');
+
+            let cart = [];
+
+            // Filtre de recherche dynamique
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                const items = productsList.getElementsByClassName('product-item');
+
+                Array.from(items).forEach(item => {
+                    const libelle = item.getAttribute('data-libelle').toLowerCase();
+                    const reference = item.getAttribute('data-ref').toLowerCase();
+                    if (libelle.includes(query) || reference.includes(query)) {
+                        item.style.setProperty('display', '', 'important');
+                    } else {
+                        item.style.setProperty('display', 'none', 'important');
+                    }
+                });
+            });
+
+            // Ajout au panier au clic
+            productsList.addEventListener('click', function(e) {
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+
+                const itemEl = card.closest('.product-item');
+                const id = itemEl.getAttribute('data-id');
+                const libelle = itemEl.getAttribute('data-libelle');
+                const prix = parseFloat(itemEl.getAttribute('data-prix'));
+
+                const existingItem = cart.find(item => item.id === id);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ id, libelle, prix, quantity: 1 });
+                }
+                renderCart();
+            });
+
+            // Rendu d'affichage du panier
+            function renderCart() {
+                cartTableBody.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartTableBody.appendChild(emptyCartRow);
+                    btnValidateSale.disabled = true;
+                    updateTotals(0);
+                    return;
+                }
+
+                btnValidateSale.disabled = false;
+                let subtotal = 0;
+
+                cart.forEach((item) => {
+                    const itemTotal = item.prix * item.quantity;
+                    subtotal += itemTotal;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                <td class=\"py-2\">
+                    <span class=\"font-weight-bold d-block text-truncate text-sm\" style=\"max-width: 160px;\">\${item.libelle}</span>
+                </td>
+                <td class=\"py-1\">
+                    <input type=\"number\" class=\"form-control form-control-sm text-center change-qty py-0 px-1\" data-id=\"\${item.id}\" value=\"\${item.quantity}\" min=\"1\" style=\"height: 26px;\">
+                </td>
+                <td class=\"text-right text-sm py-2\">\${item.prix.toLocaleString()}</td>
+                <td class=\"text-right font-weight-bold text-sm py-2\">\${itemTotal.toLocaleString()}</td>
+                <td class=\"text-center py-2\">
+                    <button type=\"button\" class=\"btn btn-xs text-danger remove-item\" data-id=\"\${item.id}\">
+                        <i class=\"fas fa-times-circle\"></i>
+                    </button>
+                </td>
+            `;
+                    cartTableBody.appendChild(tr);
+                });
+
+                updateTotals(subtotal);
+            }
+
+            // Gestion Totaux & Calcul de monnaie
+            function updateTotals(subtotal) {
+                const discount = parseFloat(discountInput.value) || 0;
+                const total = Math.max(0, subtotal - discount);
+
+                subtotalEl.textContent = `\${subtotal.toLocaleString()} FCFA`;
+                totalEl.textContent = `\${total.toLocaleString()} FCFA`;
+
+                calculateChange(total);
+            }
+
+            function calculateChange(totalNet) {
+                const received = parseFloat(amountReceivedInput.value) || 0;
+                const change = received - totalNet;
+
+                if (change >= 0 && totalNet > 0) {
+                    changeToReturnEl.textContent = `\${change.toLocaleString()} FCFA`;
+                    changeToReturnEl.className = \"font-weight-bold text-success m-0\";
+                } else {
+                    changeToReturnEl.textContent = `0 FCFA`;
+                    changeToReturnEl.className = \"font-weight-bold text-danger m-0\";
+                }
+            }
+
+            // Écouteurs d'actions à l'intérieur du panier
+            cartTableBody.addEventListener('input', function(e) {
+                if (e.target.classList.contains('change-qty')) {
+                    const id = e.target.getAttribute('data-id');
+                    const newQty = parseInt(e.target.value) || 1;
+                    const item = cart.find(i => i.id === id);
+                    if (item) {
+                        item.quantity = newQty;
+                        renderCart();
+                    }
+                }
+            });
+
+            cartTableBody.addEventListener('click', function(e) {
+                const btn = e.target.closest('.remove-item');
+                if (!btn) return;
+                const id = btn.getAttribute('data-id');
+                cart = cart.filter(item => item.id !== id);
+                renderCart();
+            });
+
+            discountInput.addEventListener('input', () => renderCart());
+
+            amountReceivedInput.addEventListener('input', () => {
+                const totalNet = parseFloat(totalEl.textContent.replace(/[^0-9]/g, '')) || 0;
+                calculateChange(totalNet);
+            });
+
+            clearCartBtn.addEventListener('click', function() {
+                cart = [];
+                renderCart();
+            });
+
+            // Simulation d'impression de ticket à la validation
+            btnValidateSale.addEventListener('click', function() {
+                alert(\"Succès : Enregistrement de la vente et simulation d'impression du ticket de caisse effectué !\");
+                cart = [];
+                discountInput.value = 0;
+                amountReceivedInput.value = '';
+                renderCart();
+            });
+        });
+    </script>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getTemplateName(): string
+    {
+        return "vente/index.html.twig";
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function isTraitable(): bool
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
+    public function getDebugInfo(): array
+    {
+        return array (  398 => 260,  385 => 259,  145 => 28,  132 => 27,  102 => 6,  89 => 5,  66 => 3,  43 => 1,);
+    }
+
+    public function getSourceContext(): Source
+    {
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block title %}Caisse - Simulation Vente{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        /* Optimisation ergonomique pour l'écran de caisse */
+        .product-grid {
+            max-height: 68vh;
+            overflow-y: auto;
+        }
+        .cart-table-container {
+            max-height: 42vh;
+            overflow-y: auto;
+        }
+        .product-card {
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class=\"content-wrapper\">
+        <!-- En-tête minimal pour maximiser la hauteur de travail -->
+        <div class=\"content-header py-2\">
+            <div class=\"container-fluid\">
+                <div class=\"row align-items-center\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold text-dark\">
+                            <i class=\"fas fa-cash-register text-indigo mr-2\"></i> Comptoir &amp; Encaissement
+                        </h1>
+                    </div>
+                    <div class=\"col-sm-6 text-right\">
+                    <span class=\"badge badge-success p-2 shadow-sm\">
+                        <i class=\"fas fa-dot-circle mr-1 animate-pulse\"></i> Mode Standard Statie
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu Principal -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+                <div class=\"row\">
+
+                    <!-- ZONE GAUCHE : RECHERCHE & PRODUITS EXEMPLES -->
+                    <div class=\"col-lg-7 col-md-6\">
+                        <div class=\"card card-outline card-indigo shadow-sm\">
+                            <div class=\"card-header bg-white py-2\">
+                                <div class=\"input-group\">
+                                    <div class=\"input-group-prepend\">
+                                        <span class=\"input-group-text bg-light\"><i class=\"fas fa-search\"></i></span>
+                                    </div>
+                                    <input type=\"text\" id=\"search-product\" class=\"form-control form-control-lg\" placeholder=\"Rechercher un article ou sa référence...\">
+                                </div>
+                            </div>
+
+                            <!-- Liste de produits fictifs pour tester l'UX -->
+                            <div class=\"card-body product-grid bg-light p-3\">
+                                <div class=\"row\" id=\"products-list\">
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"1\" data-libelle=\"Huile de Palme Raffinée 1L\" data-prix=\"1200\" data-ref=\"HPR-001\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: HPR-001</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Huile de Palme 1L</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">45 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">1 200 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"2\" data-libelle=\"Sac de Riz Brisure 50kg\" data-prix=\"22500\" data-ref=\"RIZ-B50\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: RIZ-B50</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Sac de Riz 50kg</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">12 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">22 500 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"3\" data-libelle=\"Carton de Savon Madar\" data-prix=\"8500\" data-ref=\"SAD-MAD\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: SAD-MAD</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Carton Savon Madar</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-danger\">2 Alerte</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">8 500 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"4\" data-libelle=\"Paquet de Pâtes Alimentaires 500g\" data-prix=\"450\" data-ref=\"PAT-500\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: PAT-500</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Paquet Pâtes 500g</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">120 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">450 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class=\"col-xl-4 col-md-6 mb-3 product-item\" data-id=\"5\" data-libelle=\"Sucre en Poudre 1kg\" data-prix=\"750\" data-ref=\"SUC-001\">
+                                        <div class=\"card h-100 m-0 shadow-sm product-card border-left-success\">
+                                            <div class=\"card-body p-3 d-flex flex-column justify-content-between\">
+                                                <div>
+                                                    <span class=\"text-xs text-muted d-block\">Ref: SUC-001</span>
+                                                    <h6 class=\"font-weight-bold text-dark my-1\">Sucre Poudre 1kg</h6>
+                                                </div>
+                                                <div class=\"d-flex justify-content-between align-items-center mt-2\">
+                                                    <span class=\"badge badge-success\">80 dispo</span>
+                                                    <span class=\"text-md font-weight-bold text-indigo\">750 F</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ZONE DROITE : PANIER ACTIF & RÈGLEMENT -->
+                    <div class=\"col-lg-5 col-md-6\">
+
+                        <!-- Le Panier Statique -->
+                        <div class=\"card card-dark shadow-sm mb-3\">
+                            <div class=\"card-header bg-dark\">
+                                <h3 class=\"card-title font-weight-bold\"><i class=\"fas fa-shopping-basket mr-2\"></i> Panier de vente</h3>
+                                <div class=\"card-tools\">
+                                    <button type=\"button\" class=\"btn btn-tool\" id=\"clear-cart\" title=\"Vider tout le panier\"><i class=\"fas fa-trash-alt text-danger\"></i></button>
+                                </div>
+                            </div>
+
+                            <div class=\"card-body p-0 cart-table-container bg-white\">
+                                <table class=\"table table-striped table-valign-middle m-0\" id=\"cart-table\">
+                                    <thead class=\"thead-light\">
+                                    <tr>
+                                        <th>Article</th>
+                                        <th style=\"width: 90px;\">Qté</th>
+                                        <th class=\"text-right\">Prix</th>
+                                        <th class=\"text-right\">Total</th>
+                                        <th style=\"width: 35px;\"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr id=\"empty-cart-row\">
+                                        <td colspan=\"5\" class=\"text-center text-muted py-5\">
+                                            <i class=\"fas fa-cart-plus fa-2x mb-2 text-gray d-block\"></i>
+                                            Cliquez sur un article à gauche pour l'ajouter
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Calculs financiers finaux -->
+                        <div class=\"card card-outline card-dark shadow-sm\">
+                            <div class=\"card-body bg-light\">
+
+                                <div class=\"d-flex justify-content-between align-items-center mb-2\">
+                                    <span class=\"text-muted\">Sous-total brut :</span>
+                                    <span class=\"font-weight-bold text-dark\" id=\"summary-subtotal\">0 FCFA</span>
+                                </div>
+
+                                <div class=\"row mb-3 align-items-center\">
+                                    <div class=\"col-6\">
+                                        <span class=\"text-muted\">Remise appliquée :</span>
+                                    </div>
+                                    <div class=\"col-6\">
+                                        <div class=\"input-group input-group-sm\">
+                                            <input type=\"number\" id=\"discount-input\" value=\"0\" min=\"0\" step=\"50\" class=\"form-control text-right font-weight-bold text-danger\">
+                                            <div class=\"input-group-append\">
+                                                <span class=\"input-group-text bg-white\">FCFA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class=\"my-2\">
+
+                                <div class=\"d-flex justify-content-between align-items-center bg-dark text-white p-3 rounded shadow-sm my-3\">
+                                    <h5 class=\"m-0 font-weight-bold\">NET À PAYER :</h5>
+                                    <h3 class=\"m-0 font-weight-bold text-warning\" id=\"summary-total\">0 FCFA</h3>
+                                </div>
+
+                                <!-- Choix du règlement -->
+                                <div class=\"form-group mb-3\">
+                                    <label class=\"text-xs text-muted text-uppercase font-weight-bold\">Mode de règlement :</label>
+                                    <div class=\"btn-group btn-group-toggle d-flex\" data-toggle=\"buttons\">
+                                        <label class=\"btn btn-outline-secondary active flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\" checked> <i class=\"fas fa-money-bill-wave d-block mb-1\"></i> Espèces
+                                        </label>
+                                        <label class=\"btn btn-outline-secondary flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\"> <i class=\"fas fa-mobile-alt d-block mb-1\"></i> Mobile
+                                        </label>
+                                        <label class=\"btn btn-outline-secondary flex-fill py-2\">
+                                            <input type=\"radio\" name=\"pay_opt\"> <i class=\"fas fa-credit-card d-block mb-1\"></i> Chèque
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Calcul de monnaie -->
+                                <div class=\"row bg-white p-2 rounded border mx-0 mb-2\">
+                                    <div class=\"col-6\">
+                                        <div class=\"form-group mb-0\">
+                                            <label class=\"text-xs text-muted mb-0\">Montant Reçu</label>
+                                            <input type=\"number\" id=\"amount-received\" class=\"form-control form-control-sm font-weight-bold text-success text-lg border-0 p-0\" placeholder=\"0\" style=\"font-size: 1.3rem;\">
+                                        </div>
+                                    </div>
+                                    <div class=\"col-6 text-right d-flex flex-column justify-content-center\">
+                                        <span class=\"text-xs text-muted\">Monnaie à rendre</span>
+                                        <h4 class=\"font-weight-bold text-danger m-0\" id=\"change-to-return\">0 FCFA</h4>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class=\"card-footer bg-white p-2\">
+                                <button type=\"button\" class=\"btn btn-success btn-lg btn-block font-weight-bold shadow-sm py-3\" id=\"btn-validate-sale\" disabled>
+                                    <i class=\"fas fa-print mr-2\"></i> Valider l'encaissement (Ticket)
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener(\"DOMContentLoaded\", function () {
+            const productsList = document.getElementById('products-list');
+            const searchInput = document.getElementById('search-product');
+            const cartTableBody = document.querySelector('#cart-table tbody');
+            const emptyCartRow = document.getElementById('empty-cart-row');
+            const clearCartBtn = document.getElementById('clear-cart');
+
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
+            const discountInput = document.getElementById('discount-input');
+            const amountReceivedInput = document.getElementById('amount-received');
+            const changeToReturnEl = document.getElementById('change-to-return');
+            const btnValidateSale = document.getElementById('btn-validate-sale');
+
+            let cart = [];
+
+            // Filtre de recherche dynamique
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                const items = productsList.getElementsByClassName('product-item');
+
+                Array.from(items).forEach(item => {
+                    const libelle = item.getAttribute('data-libelle').toLowerCase();
+                    const reference = item.getAttribute('data-ref').toLowerCase();
+                    if (libelle.includes(query) || reference.includes(query)) {
+                        item.style.setProperty('display', '', 'important');
+                    } else {
+                        item.style.setProperty('display', 'none', 'important');
+                    }
+                });
+            });
+
+            // Ajout au panier au clic
+            productsList.addEventListener('click', function(e) {
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+
+                const itemEl = card.closest('.product-item');
+                const id = itemEl.getAttribute('data-id');
+                const libelle = itemEl.getAttribute('data-libelle');
+                const prix = parseFloat(itemEl.getAttribute('data-prix'));
+
+                const existingItem = cart.find(item => item.id === id);
+                if (existingItem) {
+                    existingItem.quantity++;
+                } else {
+                    cart.push({ id, libelle, prix, quantity: 1 });
+                }
+                renderCart();
+            });
+
+            // Rendu d'affichage du panier
+            function renderCart() {
+                cartTableBody.innerHTML = '';
+
+                if (cart.length === 0) {
+                    cartTableBody.appendChild(emptyCartRow);
+                    btnValidateSale.disabled = true;
+                    updateTotals(0);
+                    return;
+                }
+
+                btnValidateSale.disabled = false;
+                let subtotal = 0;
+
+                cart.forEach((item) => {
+                    const itemTotal = item.prix * item.quantity;
+                    subtotal += itemTotal;
+
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                <td class=\"py-2\">
+                    <span class=\"font-weight-bold d-block text-truncate text-sm\" style=\"max-width: 160px;\">\${item.libelle}</span>
+                </td>
+                <td class=\"py-1\">
+                    <input type=\"number\" class=\"form-control form-control-sm text-center change-qty py-0 px-1\" data-id=\"\${item.id}\" value=\"\${item.quantity}\" min=\"1\" style=\"height: 26px;\">
+                </td>
+                <td class=\"text-right text-sm py-2\">\${item.prix.toLocaleString()}</td>
+                <td class=\"text-right font-weight-bold text-sm py-2\">\${itemTotal.toLocaleString()}</td>
+                <td class=\"text-center py-2\">
+                    <button type=\"button\" class=\"btn btn-xs text-danger remove-item\" data-id=\"\${item.id}\">
+                        <i class=\"fas fa-times-circle\"></i>
+                    </button>
+                </td>
+            `;
+                    cartTableBody.appendChild(tr);
+                });
+
+                updateTotals(subtotal);
+            }
+
+            // Gestion Totaux & Calcul de monnaie
+            function updateTotals(subtotal) {
+                const discount = parseFloat(discountInput.value) || 0;
+                const total = Math.max(0, subtotal - discount);
+
+                subtotalEl.textContent = `\${subtotal.toLocaleString()} FCFA`;
+                totalEl.textContent = `\${total.toLocaleString()} FCFA`;
+
+                calculateChange(total);
+            }
+
+            function calculateChange(totalNet) {
+                const received = parseFloat(amountReceivedInput.value) || 0;
+                const change = received - totalNet;
+
+                if (change >= 0 && totalNet > 0) {
+                    changeToReturnEl.textContent = `\${change.toLocaleString()} FCFA`;
+                    changeToReturnEl.className = \"font-weight-bold text-success m-0\";
+                } else {
+                    changeToReturnEl.textContent = `0 FCFA`;
+                    changeToReturnEl.className = \"font-weight-bold text-danger m-0\";
+                }
+            }
+
+            // Écouteurs d'actions à l'intérieur du panier
+            cartTableBody.addEventListener('input', function(e) {
+                if (e.target.classList.contains('change-qty')) {
+                    const id = e.target.getAttribute('data-id');
+                    const newQty = parseInt(e.target.value) || 1;
+                    const item = cart.find(i => i.id === id);
+                    if (item) {
+                        item.quantity = newQty;
+                        renderCart();
+                    }
+                }
+            });
+
+            cartTableBody.addEventListener('click', function(e) {
+                const btn = e.target.closest('.remove-item');
+                if (!btn) return;
+                const id = btn.getAttribute('data-id');
+                cart = cart.filter(item => item.id !== id);
+                renderCart();
+            });
+
+            discountInput.addEventListener('input', () => renderCart());
+
+            amountReceivedInput.addEventListener('input', () => {
+                const totalNet = parseFloat(totalEl.textContent.replace(/[^0-9]/g, '')) || 0;
+                calculateChange(totalNet);
+            });
+
+            clearCartBtn.addEventListener('click', function() {
+                cart = [];
+                renderCart();
+            });
+
+            // Simulation d'impression de ticket à la validation
+            btnValidateSale.addEventListener('click', function() {
+                alert(\"Succès : Enregistrement de la vente et simulation d'impression du ticket de caisse effectué !\");
+                cart = [];
+                discountInput.value = 0;
+                amountReceivedInput.value = '';
+                renderCart();
+            });
+        });
+    </script>
+{% endblock %}", "vente/index.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/vente/index.html.twig");
+    }
+}

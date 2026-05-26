@@ -14,7 +14,6 @@ class Produit
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
@@ -32,6 +31,12 @@ class Produit
      */
     #[ORM\ManyToMany(targetEntity: Entrepot::class, inversedBy: 'produits')]
     private Collection $entrepots;
+
+    #[ORM\Column]
+    private ?float $prixAchat = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $prixVente = null;
 
     public function __construct()
     {
@@ -111,6 +116,30 @@ class Produit
     public function removeEntrepot(Entrepot $entrepot): static
     {
         $this->entrepots->removeElement($entrepot);
+
+        return $this;
+    }
+
+    public function getPrixAchat(): ?float
+    {
+        return $this->prixAchat;
+    }
+
+    public function setPrixAchat(float $prixAchat): static
+    {
+        $this->prixAchat = $prixAchat;
+
+        return $this;
+    }
+
+    public function getPrixVente(): ?float
+    {
+        return $this->prixVente;
+    }
+
+    public function setPrixVente(?float $prixVente): static
+    {
+        $this->prixVente = $prixVente;
 
         return $this;
     }

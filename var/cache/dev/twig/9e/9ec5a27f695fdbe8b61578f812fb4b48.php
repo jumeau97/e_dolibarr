@@ -33,6 +33,7 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -98,8 +99,7 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         // line 6
-        yield "
-  ";
+        yield "    ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -109,7 +109,7 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
         yield from [];
     }
 
-    // line 11
+    // line 9
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -122,208 +122,243 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 12
-        yield "<div class=\"content-wrapper\">
-    <!-- En-tête de la page -->
-    <div class=\"content-header\">
-        <div class=\"container-fluid\">
-            <div class=\"row mb-2\">
-                <div class=\"col-sm-6\">
-                    <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-plus-circle text-success mr-2\"></i> Nouveau
-                        Produit / Article</h1>
-                    <p class=\"text-muted mb-0\">Remplissez les informations ci-dessous pour ajouter une marchandise au
-                        stock.</p>
-                </div>
-                <div class=\"col-sm-6\">
-                    <ol class=\"breadcrumb float-sm-right\">
-                        <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
-                        <li class=\"breadcrumb-item\"><a href=\"?page=products\">Produits</a></li>
-                        <li class=\"breadcrumb-item active\">Ajouter</li>
-                    </ol>
+        // line 10
+        yield "    <div class=\"content-wrapper\">
+        <!-- En-tête unique de la page -->
+        <div class=\"content-header\">
+            <div class=\"container-fluid\">
+                <div class=\"row mb-2\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold\">
+                            <i class=\"fas fa-plus-circle text-success mr-2\"></i> Nouveau Produit / Article
+                        </h1>
+                        <p class=\"text-muted mb-0\">Remplissez les informations ci-dessous pour ajouter une marchandise au stock.</p>
+                    </div>
+                    <div class=\"col-sm-6\">
+                        <ol class=\"breadcrumb float-sm-right\">
+                            <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+                            <li class=\"breadcrumb-item\"><a href=\"?page=products\">Produits</a></li>
+                            <li class=\"breadcrumb-item active\">Ajouter</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Contenu Principal -->
-    <section class=\"content\">
-        <div class=\"container-fluid\">
+        <!-- Zone de Contenu Principal (Une seule section) -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
 
-            ";
-        // line 38
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 38, $this->source); })()), 'form_start');
+                ";
+        // line 36
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 36, $this->source); })()), 'form_start');
         yield "
-            <div class=\"content-wrapper\">
-                <div class=\"content-header\">
-                    <div class=\"container-fluid\">
-                        <div class=\"row mb-2\">
-                            <div class=\"col-sm-6\">
-                                <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-plus-circle text-success mr-2\"></i>
-                                    Ajouter une marchandise</h1>
+
+                <div class=\"row\">
+                    <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
+                    <div class=\"col-md-8\">
+                        <div class=\"card card-outline card-success shadow-sm\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"fas fa-info-circle text-success mr-2\"></i> Fiche Produit
+                                </h3>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                            <div class=\"card-body\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 49
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 49, $this->source); })()), "libelle", [], "any", false, false, false, 49), 'label');
+        yield "
+                                    ";
+        // line 50
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 50, $this->source); })()), "libelle", [], "any", false, false, false, 50), 'widget');
+        yield "
+                                    ";
+        // line 51
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 51, $this->source); })()), "libelle", [], "any", false, false, false, 51), 'errors');
+        yield "
+                                </div>
 
-                <section class=\"content\">
-                    <div class=\"container-fluid\">
-                        <div class=\"row\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 55
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 55, $this->source); })()), "reference", [], "any", false, false, false, 55), 'label');
+        yield "
+                                    ";
+        // line 56
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 56, $this->source); })()), "reference", [], "any", false, false, false, 56), 'widget');
+        yield "
+                                    ";
+        // line 57
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 57, $this->source); })()), "reference", [], "any", false, false, false, 57), 'errors');
+        yield "
+                                </div>
 
-                            <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
-                            <div class=\"col-md-8\">
-                                <div class=\"card card-outline card-success shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold\"><i
-                                                    class=\"fas fa-info-circle text-success mr-2\"></i> Fiche Produit</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        <div class=\"form-group\">
+                                <!-- SOUS-SECTION DES PRIX -->
+                                <div class=\"row bg-light p-3 rounded border my-3 mx-0\">
+                                    <div class=\"col-md-6\">
+                                        <div class=\"form-group mb-0\">
                                             ";
         // line 64
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 64, $this->source); })()), "libelle", [], "any", false, false, false, 64), 'label');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 64, $this->source); })()), "prixAchat", [], "any", false, false, false, 64), 'label');
         yield "
                                             ";
         // line 65
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 65, $this->source); })()), "libelle", [], "any", false, false, false, 65), 'widget');
-        yield "
-                                        </div>
-
-                                        <div class=\"form-group\">
-                                            ";
-        // line 69
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 69, $this->source); })()), "reference", [], "any", false, false, false, 69), 'label');
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 65, $this->source); })()), "prixAchat", [], "any", false, false, false, 65), 'widget');
         yield "
                                             ";
-        // line 70
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 70, $this->source); })()), "reference", [], "any", false, false, false, 70), 'widget');
+        // line 66
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 66, $this->source); })()), "prixAchat", [], "any", false, false, false, 66), 'errors');
         yield "
-                                        </div>
-
-                                        <!-- SOUS-SECTION DES PRIX -->
-                                        <div class=\"row bg-light p-3 rounded border my-3 mx-0\">
-                                            <div class=\"col-md-6\">
-                                                <div class=\"form-group mb-0\">
-                                                    ";
-        // line 77
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 77, $this->source); })()), "prixAchat", [], "any", false, false, false, 77), 'label');
-        yield "
-                                                    ";
-        // line 78
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 78, $this->source); })()), "prixAchat", [], "any", false, false, false, 78), 'widget');
-        yield "
-                                                </div>
-                                            </div>
-                                            <div class=\"col-md-6\">
-                                                <div class=\"form-group mb-0\">
-                                                    ";
-        // line 83
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 83, $this->source); })()), "prixVente", [], "any", false, false, false, 83), 'label');
-        yield "
-                                                    ";
-        // line 84
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 84, $this->source); })()), "prixVente", [], "any", false, false, false, 84), 'widget');
-        yield "
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
-                            <div class=\"col-md-4\">
-                                <!-- Seuils d'alertes -->
-                                <div class=\"card card-default shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold text-secondary\"><i
-                                                    class=\"fas fa-sliders-h mr-2\"></i> Seuils de Stock</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        <div class=\"form-group\">
-                                            ";
-        // line 102
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 102, $this->source); })()), "limitStock", [], "any", false, false, false, 102), 'label');
-        yield "
-                                            ";
-        // line 103
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 103, $this->source); })()), "limitStock", [], "any", false, false, false, 103), 'widget');
-        yield "
-                                        </div>
+                                    <div class=\"col-md-6\">
                                         <div class=\"form-group mb-0\">
                                             ";
-        // line 106
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 106, $this->source); })()), "stockOptimal", [], "any", false, false, false, 106), 'label');
+        // line 71
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 71, $this->source); })()), "prixVente", [], "any", false, false, false, 71), 'label');
         yield "
                                             ";
-        // line 107
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 107, $this->source); })()), "stockOptimal", [], "any", false, false, false, 107), 'widget');
+        // line 72
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 72, $this->source); })()), "prixVente", [], "any", false, false, false, 72), 'widget');
+        yield "
+                                            ";
+        // line 73
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 73, $this->source); })()), "prixVente", [], "any", false, false, false, 73), 'errors');
         yield "
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Emplacement Logistique -->
-                                <div class=\"card card-outline card-warning shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold text-dark\"><i
-                                                    class=\"fas fa-warehouse text-warning mr-2\"></i> Emplacement</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        ";
-        // line 119
-        if ((($tmp = (isset($context["estResponsable"]) || array_key_exists("estResponsable", $context) ? $context["estResponsable"] : (function () { throw new RuntimeError('Variable "estResponsable" does not exist.', 119, $this->source); })())) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 120
-            yield "                                        <div class=\"alert alert-info border-0 shadow-sm p-2 mb-3\">
-                                            <i class=\"fas fa-user-shield mr-1\"></i> <b>Logistique simplifiée :</b> En
-                                            tant que responsable, cet article est rattaché directement à votre zone de
-                                            dépôt.
-                                        </div>
-                                        ";
-        }
-        // line 126
-        yield "
-                                        <div class=\"form-group mb-0\">
-                                            ";
-        // line 128
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 128, $this->source); })()), "entrepots", [], "any", false, false, false, 128), 'label');
-        yield "
-                                            ";
-        // line 129
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 129, $this->source); })()), "entrepots", [], "any", false, false, false, 129), 'widget');
-        yield "
-                                            ";
-        // line 130
-        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 130, $this->source); })()), "entrepots", [], "any", false, false, false, 130), 'help');
-        yield "
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Boutons de validation -->
-                        <div class=\"row mb-5\">
-                            <div class=\"col-12 text-right\">
-                                <hr class=\"bg-white\">
-                                <button type=\"submit\" class=\"btn btn-success btn-lg px-5 font-weight-bold shadow\">
-                                    <i class=\"fas fa-check-circle mr-2\"></i> Confirmer et Créer l'article
-                                </button>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
-            ";
-        // line 150
-        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 150, $this->source); })()), 'form_end');
+
+                    <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
+                    <div class=\"col-md-4\">
+                        <!-- Seuils d'alertes -->
+                        <div class=\"card card-default shadow-sm\" id=\"manual_threshold_container\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold text-secondary\">
+                                    <i class=\"fas fa-sliders-h mr-2\"></i> Seuils de Stock
+                                </h3>
+                            </div>
+                            <div class=\"card-body\">
+                                <div class=\"form-group\">
+                                    ";
+        // line 92
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 92, $this->source); })()), "limitStock", [], "any", false, false, false, 92), 'label');
+        yield "
+                                    ";
+        // line 93
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 93, $this->source); })()), "limitStock", [], "any", false, false, false, 93), 'widget');
+        yield "
+                                    ";
+        // line 94
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 94, $this->source); })()), "limitStock", [], "any", false, false, false, 94), 'errors');
+        yield "
+                                </div>
+                                <div class=\"form-group mb-0\">
+                                    ";
+        // line 97
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 97, $this->source); })()), "stockOptimal", [], "any", false, false, false, 97), 'label');
+        yield "
+                                    ";
+        // line 98
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 98, $this->source); })()), "stockOptimal", [], "any", false, false, false, 98), 'widget');
+        yield "
+                                    ";
+        // line 99
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 99, $this->source); })()), "stockOptimal", [], "any", false, false, false, 99), 'errors');
+        yield "
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emplacement Logistique -->
+                        <div class=\"card card-outline card-warning shadow-sm\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold text-dark\">
+                                    <i class=\"fas fa-warehouse text-warning mr-2\"></i> Emplacement
+                                </h3>
+                            </div>
+                            <div class=\"card-body\">
+                                ";
+        // line 112
+        if ((($tmp = (isset($context["estResponsable"]) || array_key_exists("estResponsable", $context) ? $context["estResponsable"] : (function () { throw new RuntimeError('Variable "estResponsable" does not exist.', 112, $this->source); })())) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+            // line 113
+            yield "                                    <div class=\"alert alert-info border-0 shadow-sm p-2 mb-3\">
+                                        <i class=\"fas fa-user-shield mr-1\"></i> <b>Logistique simplifiée :</b> En tant que responsable, cet article est rattaché directement à votre zone de dépôt.
+                                    </div>
+                                ";
+        }
+        // line 117
+        yield "
+                                <div class=\"form-group mb-0\">
+                                    ";
+        // line 119
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 119, $this->source); })()), "entrepots", [], "any", false, false, false, 119), 'label');
+        yield "
+                                    ";
+        // line 120
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 120, $this->source); })()), "entrepots", [], "any", false, false, false, 120), 'widget');
+        yield "
+                                    ";
+        // line 121
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 121, $this->source); })()), "entrepots", [], "any", false, false, false, 121), 'help');
+        yield "
+                                    ";
+        // line 122
+        yield $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(CoreExtension::getAttribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 122, $this->source); })()), "entrepots", [], "any", false, false, false, 122), 'errors');
+        yield "
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de validation -->
+                <div class=\"row mb-5\">
+                    <div class=\"col-12 text-right\">
+                        <hr class=\"bg-white\">
+                        <button type=\"submit\" class=\"btn btn-success btn-lg font-weight-bold shadow\">
+                            <i class=\"fas fa-check-circle mr-2\"></i> Confirmer et Créer l'article
+                        </button>
+                    </div>
+                </div>
+
+                ";
+        // line 139
+        yield         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 139, $this->source); })()), 'form_end');
         yield "
 
-        </div>
-    </section>
-</div>
+            </div>
+        </section>
+    </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
-    <!-- PETIT SCRIPT UX POUR INTERAGIR AVEC LES RADIOS (Totalement autonome) -->
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 146
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_javascripts(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 147
+        yield "    <!-- SCRIPT UX POUR LES RADIOS ALERTE IA / MANUELLE -->
     <script>
         document.addEventListener(\"DOMContentLoaded\", function () {
             var radioIa = document.getElementById('alert_ia');
@@ -331,6 +366,10 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
             var manualContainer = document.getElementById('manual_threshold_container');
 
             if (radioIa && radioManual && manualContainer) {
+                // Initialisation au chargement de la page
+                if (radioIa.checked) manualContainer.classList.add('d-none');
+
+                // Écouteurs de changement
                 radioIa.addEventListener('change', function () {
                     if (this.checked) manualContainer.classList.add('d-none');
                 });
@@ -340,7 +379,6 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
             }
         });
     </script>
-
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -372,7 +410,7 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  319 => 150,  296 => 130,  292 => 129,  288 => 128,  284 => 126,  276 => 120,  274 => 119,  259 => 107,  255 => 106,  249 => 103,  245 => 102,  224 => 84,  220 => 83,  212 => 78,  208 => 77,  198 => 70,  194 => 69,  187 => 65,  183 => 64,  154 => 38,  126 => 12,  113 => 11,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  361 => 147,  348 => 146,  331 => 139,  311 => 122,  307 => 121,  303 => 120,  299 => 119,  295 => 117,  289 => 113,  287 => 112,  271 => 99,  267 => 98,  263 => 97,  257 => 94,  253 => 93,  249 => 92,  227 => 73,  223 => 72,  219 => 71,  211 => 66,  207 => 65,  203 => 64,  193 => 57,  189 => 56,  185 => 55,  178 => 51,  174 => 50,  170 => 49,  154 => 36,  126 => 10,  113 => 9,  102 => 6,  89 => 5,  66 => 3,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -381,158 +419,149 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
 
 {% block title %}Nos produits{% endblock %}
 
-  {% block stylesheets %}
-
-  {% endblock %}
-
-
+{% block stylesheets %}
+    {# Ajoute ici tes CSS spécifiques si nécessaire (ex: select2) #}
+{% endblock %}
 
 {% block body %}
-<div class=\"content-wrapper\">
-    <!-- En-tête de la page -->
-    <div class=\"content-header\">
-        <div class=\"container-fluid\">
-            <div class=\"row mb-2\">
-                <div class=\"col-sm-6\">
-                    <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-plus-circle text-success mr-2\"></i> Nouveau
-                        Produit / Article</h1>
-                    <p class=\"text-muted mb-0\">Remplissez les informations ci-dessous pour ajouter une marchandise au
-                        stock.</p>
-                </div>
-                <div class=\"col-sm-6\">
-                    <ol class=\"breadcrumb float-sm-right\">
-                        <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
-                        <li class=\"breadcrumb-item\"><a href=\"?page=products\">Produits</a></li>
-                        <li class=\"breadcrumb-item active\">Ajouter</li>
-                    </ol>
+    <div class=\"content-wrapper\">
+        <!-- En-tête unique de la page -->
+        <div class=\"content-header\">
+            <div class=\"container-fluid\">
+                <div class=\"row mb-2\">
+                    <div class=\"col-sm-6\">
+                        <h1 class=\"m-0 font-weight-bold\">
+                            <i class=\"fas fa-plus-circle text-success mr-2\"></i> Nouveau Produit / Article
+                        </h1>
+                        <p class=\"text-muted mb-0\">Remplissez les informations ci-dessous pour ajouter une marchandise au stock.</p>
+                    </div>
+                    <div class=\"col-sm-6\">
+                        <ol class=\"breadcrumb float-sm-right\">
+                            <li class=\"breadcrumb-item\"><a href=\"?page=dashboard\">Logiciel</a></li>
+                            <li class=\"breadcrumb-item\"><a href=\"?page=products\">Produits</a></li>
+                            <li class=\"breadcrumb-item active\">Ajouter</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Zone de Contenu Principal (Une seule section) -->
+        <section class=\"content\">
+            <div class=\"container-fluid\">
+
+                {{ form_start(form) }}
+
+                <div class=\"row\">
+                    <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
+                    <div class=\"col-md-8\">
+                        <div class=\"card card-outline card-success shadow-sm\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold\">
+                                    <i class=\"fas fa-info-circle text-success mr-2\"></i> Fiche Produit
+                                </h3>
+                            </div>
+                            <div class=\"card-body\">
+                                <div class=\"form-group\">
+                                    {{ form_label(form.libelle) }}
+                                    {{ form_widget(form.libelle) }}
+                                    {{ form_errors(form.libelle) }}
+                                </div>
+
+                                <div class=\"form-group\">
+                                    {{ form_label(form.reference) }}
+                                    {{ form_widget(form.reference) }}
+                                    {{ form_errors(form.reference) }}
+                                </div>
+
+                                <!-- SOUS-SECTION DES PRIX -->
+                                <div class=\"row bg-light p-3 rounded border my-3 mx-0\">
+                                    <div class=\"col-md-6\">
+                                        <div class=\"form-group mb-0\">
+                                            {{ form_label(form.prixAchat) }}
+                                            {{ form_widget(form.prixAchat) }}
+                                            {{ form_errors(form.prixAchat) }}
+                                        </div>
+                                    </div>
+                                    <div class=\"col-md-6\">
+                                        <div class=\"form-group mb-0\">
+                                            {{ form_label(form.prixVente) }}
+                                            {{ form_widget(form.prixVente) }}
+                                            {{ form_errors(form.prixVente) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
+                    <div class=\"col-md-4\">
+                        <!-- Seuils d'alertes -->
+                        <div class=\"card card-default shadow-sm\" id=\"manual_threshold_container\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold text-secondary\">
+                                    <i class=\"fas fa-sliders-h mr-2\"></i> Seuils de Stock
+                                </h3>
+                            </div>
+                            <div class=\"card-body\">
+                                <div class=\"form-group\">
+                                    {{ form_label(form.limitStock) }}
+                                    {{ form_widget(form.limitStock) }}
+                                    {{ form_errors(form.limitStock) }}
+                                </div>
+                                <div class=\"form-group mb-0\">
+                                    {{ form_label(form.stockOptimal) }}
+                                    {{ form_widget(form.stockOptimal) }}
+                                    {{ form_errors(form.stockOptimal) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emplacement Logistique -->
+                        <div class=\"card card-outline card-warning shadow-sm\">
+                            <div class=\"card-header bg-white\">
+                                <h3 class=\"card-title font-weight-bold text-dark\">
+                                    <i class=\"fas fa-warehouse text-warning mr-2\"></i> Emplacement
+                                </h3>
+                            </div>
+                            <div class=\"card-body\">
+                                {% if estResponsable %}
+                                    <div class=\"alert alert-info border-0 shadow-sm p-2 mb-3\">
+                                        <i class=\"fas fa-user-shield mr-1\"></i> <b>Logistique simplifiée :</b> En tant que responsable, cet article est rattaché directement à votre zone de dépôt.
+                                    </div>
+                                {% endif %}
+
+                                <div class=\"form-group mb-0\">
+                                    {{ form_label(form.entrepots) }}
+                                    {{ form_widget(form.entrepots) }}
+                                    {{ form_help(form.entrepots) }}
+                                    {{ form_errors(form.entrepots) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de validation -->
+                <div class=\"row mb-5\">
+                    <div class=\"col-12 text-right\">
+                        <hr class=\"bg-white\">
+                        <button type=\"submit\" class=\"btn btn-success btn-lg font-weight-bold shadow\">
+                            <i class=\"fas fa-check-circle mr-2\"></i> Confirmer et Créer l'article
+                        </button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </section>
     </div>
+{% endblock %}
 
-    <!-- Contenu Principal -->
-    <section class=\"content\">
-        <div class=\"container-fluid\">
-
-            {{ form_start(form) }}
-            <div class=\"content-wrapper\">
-                <div class=\"content-header\">
-                    <div class=\"container-fluid\">
-                        <div class=\"row mb-2\">
-                            <div class=\"col-sm-6\">
-                                <h1 class=\"m-0 font-weight-bold\"><i class=\"fas fa-plus-circle text-success mr-2\"></i>
-                                    Ajouter une marchandise</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <section class=\"content\">
-                    <div class=\"container-fluid\">
-                        <div class=\"row\">
-
-                            <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
-                            <div class=\"col-md-8\">
-                                <div class=\"card card-outline card-success shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold\"><i
-                                                    class=\"fas fa-info-circle text-success mr-2\"></i> Fiche Produit</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        <div class=\"form-group\">
-                                            {{ form_label(form.libelle) }}
-                                            {{ form_widget(form.libelle) }}
-                                        </div>
-
-                                        <div class=\"form-group\">
-                                            {{ form_label(form.reference) }}
-                                            {{ form_widget(form.reference) }}
-                                        </div>
-
-                                        <!-- SOUS-SECTION DES PRIX -->
-                                        <div class=\"row bg-light p-3 rounded border my-3 mx-0\">
-                                            <div class=\"col-md-6\">
-                                                <div class=\"form-group mb-0\">
-                                                    {{ form_label(form.prixAchat) }}
-                                                    {{ form_widget(form.prixAchat) }}
-                                                </div>
-                                            </div>
-                                            <div class=\"col-md-6\">
-                                                <div class=\"form-group mb-0\">
-                                                    {{ form_label(form.prixVente) }}
-                                                    {{ form_widget(form.prixVente) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
-                            <div class=\"col-md-4\">
-                                <!-- Seuils d'alertes -->
-                                <div class=\"card card-default shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold text-secondary\"><i
-                                                    class=\"fas fa-sliders-h mr-2\"></i> Seuils de Stock</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        <div class=\"form-group\">
-                                            {{ form_label(form.limitStock) }}
-                                            {{ form_widget(form.limitStock) }}
-                                        </div>
-                                        <div class=\"form-group mb-0\">
-                                            {{ form_label(form.stockOptimal) }}
-                                            {{ form_widget(form.stockOptimal) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Emplacement Logistique -->
-                                <div class=\"card card-outline card-warning shadow-sm\">
-                                    <div class=\"card-header bg-white\">
-                                        <h3 class=\"card-title font-weight-bold text-dark\"><i
-                                                    class=\"fas fa-warehouse text-warning mr-2\"></i> Emplacement</h3>
-                                    </div>
-                                    <div class=\"card-body\">
-                                        {% if estResponsable %}
-                                        <div class=\"alert alert-info border-0 shadow-sm p-2 mb-3\">
-                                            <i class=\"fas fa-user-shield mr-1\"></i> <b>Logistique simplifiée :</b> En
-                                            tant que responsable, cet article est rattaché directement à votre zone de
-                                            dépôt.
-                                        </div>
-                                        {% endif %}
-
-                                        <div class=\"form-group mb-0\">
-                                            {{ form_label(form.entrepots) }}
-                                            {{ form_widget(form.entrepots) }}
-                                            {{ form_help(form.entrepots) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Boutons de validation -->
-                        <div class=\"row mb-5\">
-                            <div class=\"col-12 text-right\">
-                                <hr class=\"bg-white\">
-                                <button type=\"submit\" class=\"btn btn-success btn-lg px-5 font-weight-bold shadow\">
-                                    <i class=\"fas fa-check-circle mr-2\"></i> Confirmer et Créer l'article
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            {{ form_end(form) }}
-
-        </div>
-    </section>
-</div>
-
-    <!-- PETIT SCRIPT UX POUR INTERAGIR AVEC LES RADIOS (Totalement autonome) -->
+{% block javascripts %}
+    <!-- SCRIPT UX POUR LES RADIOS ALERTE IA / MANUELLE -->
     <script>
         document.addEventListener(\"DOMContentLoaded\", function () {
             var radioIa = document.getElementById('alert_ia');
@@ -540,6 +569,10 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
             var manualContainer = document.getElementById('manual_threshold_container');
 
             if (radioIa && radioManual && manualContainer) {
+                // Initialisation au chargement de la page
+                if (radioIa.checked) manualContainer.classList.add('d-none');
+
+                // Écouteurs de changement
                 radioIa.addEventListener('change', function () {
                     if (this.checked) manualContainer.classList.add('d-none');
                 });
@@ -549,9 +582,6 @@ class __TwigTemplate_7528b68602878c6477d711a9a646e5e9 extends Template
             }
         });
     </script>
-
-{% endblock %}
-
-", "produit_article/add-product.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/produit_article/add-product.html.twig");
+{% endblock %}", "produit_article/add-product.html.twig", "/Users/alassanesanogo/Mes_projets/groupe_salen/e_dolibarr/templates/produit_article/add-product.html.twig");
     }
 }

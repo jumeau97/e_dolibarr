@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Controller;
-namespace App\Entity;
 
+use App\Entity\Produit;
+use App\Form\ProductTypeFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route("/product")]
 final class ProduitArticleController extends AbstractController
 {
 
@@ -18,7 +20,7 @@ final class ProduitArticleController extends AbstractController
     {
     }
 
-    #[Route('/produit/article', name: 'app_produit_article')]
+    #[Route('', name: 'app_produit_article')]
     public function index(): Response
     {
         return $this->render('produit_article/index.html.twig', [
@@ -26,7 +28,7 @@ final class ProduitArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/produit/add', name: 'add_product')]
+    #[Route('/add', name: 'add_product')]
     public function addProduct(Request $request): Response
     {
         $produit = new Produit();
@@ -41,7 +43,7 @@ final class ProduitArticleController extends AbstractController
 //        }
 
         // 3. Création du formulaire en passant l'entrepôt ciblé
-        $form = $this->createForm(ProductFormType::class, $produit, [
+        $form = $this->createForm(ProductTypeFormType::class, $produit, [
             'entrepot_responsable' => $entrepotAuto
         ]);
 
@@ -51,6 +53,7 @@ final class ProduitArticleController extends AbstractController
             if ($entrepotAuto) {
                 $produit->addEntrepot($entrepotAuto);
             }
+            dd($form->getData());
 
 //            $entityManager->persist($produit);
 //            $entityManager->flush();
@@ -59,7 +62,7 @@ final class ProduitArticleController extends AbstractController
 //            return $this->redirectToRoute('app_produit_index');
         }
 
-        return $this->render('produit/add.html.twig', [
+        return $this->render('produit_article/add-product.html.twig', [
             'form' => $form->createView(),
             'estResponsable' => ($entrepotAuto !== null)
         ]);

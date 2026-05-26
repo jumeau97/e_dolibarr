@@ -31,7 +31,7 @@ class ProductTypeFormType extends AbstractType
                 'label' => 'Nom du produit ou article',
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control form-control-lg',
+                    'class' => 'form-control',
                     'placeholder' => 'Ex: Sac de Ciment 50kg'
                 ]
             ])
@@ -39,10 +39,10 @@ class ProductTypeFormType extends AbstractType
             // --- SECTION PRIX ---
             ->add('prixAchat', MoneyType::class, [
                 'label' => 'Prix d\'Achat (Coût)',
-                'currency' => 'XOF', // Code pour le FCFA
+                'currency' => 'XOF', 
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control form-control-lg text-danger font-weight-bold',
+                    'class' => 'form-control text-danger font-weight-bold',
                     'placeholder' => '0'
                 ]
             ])
@@ -51,7 +51,7 @@ class ProductTypeFormType extends AbstractType
                 'currency' => 'XOF',
                 'required' => true,
                 'attr' => [
-                    'class' => 'form-control form-control-lg text-success font-weight-bold',
+                    'class' => 'form-control text-success font-weight-bold',
                     'placeholder' => '0'
                 ]
             ])
@@ -86,7 +86,6 @@ class ProductTypeFormType extends AbstractType
                     'class' => 'form-control select2',
                     'style' => 'width: 100%;'
                 ],
-                // Si l'utilisateur est responsable d'un entrepôt, on peut désactiver ou masquer la modification pour verrouiller l'affectation automatique
                 'disabled' => $entrepotResponsable !== null,
                 'help' => $entrepotResponsable ? 'Affectation automatique à votre entrepôt de responsabilité.' : 'Maintenez Ctrl enfoncé pour en choisir plusieurs.'
             ])

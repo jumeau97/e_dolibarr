@@ -2,158 +2,149 @@
 
 {% block title %}Nos produits{% endblock %}
 
-  {% block stylesheets %}
-
-  {% endblock %}
-
-
+{% block stylesheets %}
+    {# Ajoute ici tes CSS spécifiques si nécessaire (ex: select2) #}
+{% endblock %}
 
 {% block body %}
-<div class="content-wrapper">
-    <!-- En-tête de la page -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 font-weight-bold"><i class="fas fa-plus-circle text-success mr-2"></i> Nouveau
-                        Produit / Article</h1>
-                    <p class="text-muted mb-0">Remplissez les informations ci-dessous pour ajouter une marchandise au
-                        stock.</p>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="?page=dashboard">Logiciel</a></li>
-                        <li class="breadcrumb-item"><a href="?page=products">Produits</a></li>
-                        <li class="breadcrumb-item active">Ajouter</li>
-                    </ol>
+    <div class="content-wrapper">
+        <!-- En-tête unique de la page -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold">
+                            <i class="fas fa-plus-circle text-success mr-2"></i> Nouveau Produit / Article
+                        </h1>
+                        <p class="text-muted mb-0">Remplissez les informations ci-dessous pour ajouter une marchandise au stock.</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="?page=dashboard">Logiciel</a></li>
+                            <li class="breadcrumb-item"><a href="?page=products">Produits</a></li>
+                            <li class="breadcrumb-item active">Ajouter</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Zone de Contenu Principal (Une seule section) -->
+        <section class="content">
+            <div class="container-fluid">
+
+                {{ form_start(form) }}
+
+                <div class="row">
+                    <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
+                    <div class="col-md-8">
+                        <div class="card card-outline card-success shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold">
+                                    <i class="fas fa-info-circle text-success mr-2"></i> Fiche Produit
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(form.libelle) }}
+                                    {{ form_widget(form.libelle) }}
+                                    {{ form_errors(form.libelle) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_label(form.reference) }}
+                                    {{ form_widget(form.reference) }}
+                                    {{ form_errors(form.reference) }}
+                                </div>
+
+                                <!-- SOUS-SECTION DES PRIX -->
+                                <div class="row bg-light p-3 rounded border my-3 mx-0">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            {{ form_label(form.prixAchat) }}
+                                            {{ form_widget(form.prixAchat) }}
+                                            {{ form_errors(form.prixAchat) }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            {{ form_label(form.prixVente) }}
+                                            {{ form_widget(form.prixVente) }}
+                                            {{ form_errors(form.prixVente) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
+                    <div class="col-md-4">
+                        <!-- Seuils d'alertes -->
+                        <div class="card card-default shadow-sm" id="manual_threshold_container">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-secondary">
+                                    <i class="fas fa-sliders-h mr-2"></i> Seuils de Stock
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(form.limitStock) }}
+                                    {{ form_widget(form.limitStock) }}
+                                    {{ form_errors(form.limitStock) }}
+                                </div>
+                                <div class="form-group mb-0">
+                                    {{ form_label(form.stockOptimal) }}
+                                    {{ form_widget(form.stockOptimal) }}
+                                    {{ form_errors(form.stockOptimal) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emplacement Logistique -->
+                        <div class="card card-outline card-warning shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-warehouse text-warning mr-2"></i> Emplacement
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                {% if estResponsable %}
+                                    <div class="alert alert-info border-0 shadow-sm p-2 mb-3">
+                                        <i class="fas fa-user-shield mr-1"></i> <b>Logistique simplifiée :</b> En tant que responsable, cet article est rattaché directement à votre zone de dépôt.
+                                    </div>
+                                {% endif %}
+
+                                <div class="form-group mb-0">
+                                    {{ form_label(form.entrepots) }}
+                                    {{ form_widget(form.entrepots) }}
+                                    {{ form_help(form.entrepots) }}
+                                    {{ form_errors(form.entrepots) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de validation -->
+                <div class="row mb-5">
+                    <div class="col-12 text-right">
+                        <hr class="bg-white">
+                        <button type="submit" class="btn btn-success btn-lg font-weight-bold shadow">
+                            <i class="fas fa-check-circle mr-2"></i> Confirmer et Créer l'article
+                        </button>
+                    </div>
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </section>
     </div>
+{% endblock %}
 
-    <!-- Contenu Principal -->
-    <section class="content">
-        <div class="container-fluid">
-
-            {{ form_start(form) }}
-            <div class="content-wrapper">
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0 font-weight-bold"><i class="fas fa-plus-circle text-success mr-2"></i>
-                                    Ajouter une marchandise</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="row">
-
-                            <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
-                            <div class="col-md-8">
-                                <div class="card card-outline card-success shadow-sm">
-                                    <div class="card-header bg-white">
-                                        <h3 class="card-title font-weight-bold"><i
-                                                    class="fas fa-info-circle text-success mr-2"></i> Fiche Produit</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            {{ form_label(form.libelle) }}
-                                            {{ form_widget(form.libelle) }}
-                                        </div>
-
-                                        <div class="form-group">
-                                            {{ form_label(form.reference) }}
-                                            {{ form_widget(form.reference) }}
-                                        </div>
-
-                                        <!-- SOUS-SECTION DES PRIX -->
-                                        <div class="row bg-light p-3 rounded border my-3 mx-0">
-                                            <div class="col-md-6">
-                                                <div class="form-group mb-0">
-                                                    {{ form_label(form.prixAchat) }}
-                                                    {{ form_widget(form.prixAchat) }}
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group mb-0">
-                                                    {{ form_label(form.prixVente) }}
-                                                    {{ form_widget(form.prixVente) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
-                            <div class="col-md-4">
-                                <!-- Seuils d'alertes -->
-                                <div class="card card-default shadow-sm">
-                                    <div class="card-header bg-white">
-                                        <h3 class="card-title font-weight-bold text-secondary"><i
-                                                    class="fas fa-sliders-h mr-2"></i> Seuils de Stock</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="form-group">
-                                            {{ form_label(form.limitStock) }}
-                                            {{ form_widget(form.limitStock) }}
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            {{ form_label(form.stockOptimal) }}
-                                            {{ form_widget(form.stockOptimal) }}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Emplacement Logistique -->
-                                <div class="card card-outline card-warning shadow-sm">
-                                    <div class="card-header bg-white">
-                                        <h3 class="card-title font-weight-bold text-dark"><i
-                                                    class="fas fa-warehouse text-warning mr-2"></i> Emplacement</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        {% if estResponsable %}
-                                        <div class="alert alert-info border-0 shadow-sm p-2 mb-3">
-                                            <i class="fas fa-user-shield mr-1"></i> <b>Logistique simplifiée :</b> En
-                                            tant que responsable, cet article est rattaché directement à votre zone de
-                                            dépôt.
-                                        </div>
-                                        {% endif %}
-
-                                        <div class="form-group mb-0">
-                                            {{ form_label(form.entrepots) }}
-                                            {{ form_widget(form.entrepots) }}
-                                            {{ form_help(form.entrepots) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Boutons de validation -->
-                        <div class="row mb-5">
-                            <div class="col-12 text-right">
-                                <hr class="bg-white">
-                                <button type="submit" class="btn btn-success btn-lg px-5 font-weight-bold shadow">
-                                    <i class="fas fa-check-circle mr-2"></i> Confirmer et Créer l'article
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            {{ form_end(form) }}
-
-        </div>
-    </section>
-</div>
-
-    <!-- PETIT SCRIPT UX POUR INTERAGIR AVEC LES RADIOS (Totalement autonome) -->
+{% block javascripts %}
+    <!-- SCRIPT UX POUR LES RADIOS ALERTE IA / MANUELLE -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var radioIa = document.getElementById('alert_ia');
@@ -161,6 +152,10 @@
             var manualContainer = document.getElementById('manual_threshold_container');
 
             if (radioIa && radioManual && manualContainer) {
+                // Initialisation au chargement de la page
+                if (radioIa.checked) manualContainer.classList.add('d-none');
+
+                // Écouteurs de changement
                 radioIa.addEventListener('change', function () {
                     if (this.checked) manualContainer.classList.add('d-none');
                 });
@@ -170,6 +165,4 @@
             }
         });
     </script>
-
 {% endblock %}
-

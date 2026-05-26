@@ -81,7 +81,7 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                     </a>
                 </li>
 
-                <!-- ASSISTANT IA (Ton PFE) -->
+                <!-- ASSISTANT IA -->
                 <li class=\"nav-header text-warning font-weight-bold\">ASSISTANT IA & PRÉVISIONS</li>
                 <li class=\"nav-item\">
                     <a href=\"?page=pred_sales\" class=\"nav-link ";
@@ -105,10 +105,9 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                 <!-- COMPTOIR & VENTES -->
                 <li class=\"nav-header\">VENTES AU QUOTIDIEN</li>
                 <li class=\"nav-item\">
-                    <!-- Le POS devient la Caisse -->
                     <a href=\"?page=sales_pos\" class=\"nav-link ";
-        // line 47
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 47, $this->source); })()), "request", [], "any", false, false, false, 47), "query", [], "any", false, false, false, 47), "get", ["page"], "method", false, false, false, 47) == "sales_pos")) ? ("active") : (""));
+        // line 46
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 46, $this->source); })()), "request", [], "any", false, false, false, 46), "query", [], "any", false, false, false, 46), "get", ["page"], "method", false, false, false, 46) == "sales_pos")) ? ("active") : (""));
         yield " text-info\">
                         <i class=\"nav-icon fas fa-cash-register\"></i>
                         <p><b>Faire une Vente (Caisse)</b></p>
@@ -116,32 +115,52 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                 </li>
                 <li class=\"nav-item\">
                     <a href=\"?page=sales_orders\" class=\"nav-link ";
-        // line 53
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 53, $this->source); })()), "request", [], "any", false, false, false, 53), "query", [], "any", false, false, false, 53), "get", ["page"], "method", false, false, false, 53) == "sales_orders")) ? ("active") : (""));
+        // line 52
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 52, $this->source); })()), "request", [], "any", false, false, false, 52), "query", [], "any", false, false, false, 52), "get", ["page"], "method", false, false, false, 52) == "sales_orders")) ? ("active") : (""));
         yield "\">
                         <i class=\"nav-icon fas fa-file-invoice-dollar\"></i>
                         <p>Factures & Commandes</p>
                     </a>
                 </li>
 
-                <!-- STOCK & ARTICLES -->
-                <li class=\"nav-header\">MON STOCK</li>
+                <!-- STOCKS, MULTI-ENTREPÔTS & LOGISTIQUE -->
+                <li class=\"nav-header\">LOGISTIQUE & ENTREPÔTS</li>
                 <li class=\"nav-item\">
                     <a href=\"?page=products\" class=\"nav-link ";
-        // line 62
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 62, $this->source); })()), "request", [], "any", false, false, false, 62), "query", [], "any", false, false, false, 62), "get", ["page"], "method", false, false, false, 62) == "products")) ? ("active") : (""));
+        // line 61
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 61, $this->source); })()), "request", [], "any", false, false, false, 61), "query", [], "any", false, false, false, 61), "get", ["page"], "method", false, false, false, 61) == "products")) ? ("active") : (""));
         yield "\">
                         <i class=\"nav-icon fas fa-cubes\"></i>
-                        <p>Mes Produits / Articles</p>
+                        <p>Catalogue Articles</p>
+                    </a>
+                </li>
+                <li class=\"nav-item\">
+                    <!-- AJUSTEMENT : Lien direct vers la gestion multi-sites (Dépôt central / Boutique) -->
+                    <a href=\"?page=warehouse_index\" class=\"nav-link ";
+        // line 68
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 68, $this->source); })()), "request", [], "any", false, false, false, 68), "query", [], "any", false, false, false, 68), "get", ["page"], "method", false, false, false, 68) == "warehouse_index")) ? ("active") : (""));
+        yield "\">
+                        <i class=\"nav-icon fas fa-warehouse\"></i>
+                        <p>État des Entrepôts</p>
                     </a>
                 </li>
                 <li class=\"nav-item\">
                     <a href=\"?page=stock_movements\" class=\"nav-link ";
-        // line 68
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 68, $this->source); })()), "request", [], "any", false, false, false, 68), "query", [], "any", false, false, false, 68), "get", ["page"], "method", false, false, false, 68) == "stock_movements")) ? ("active") : (""));
+        // line 74
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 74, $this->source); })()), "request", [], "any", false, false, false, 74), "query", [], "any", false, false, false, 74), "get", ["page"], "method", false, false, false, 74) == "stock_movements")) ? ("active") : (""));
         yield "\">
                         <i class=\"nav-icon fas fa-exchange-alt\"></i>
-                        <p>Mouvements du Stock</p>
+                        <p>Mouvements & Transferts</p>
+                    </a>
+                </li>
+                <li class=\"nav-item\">
+                    <!-- AJUSTEMENT : Utile si tu relies la plateforme à du transport de marchandises (Yiringasso / Raftras) -->
+                    <a href=\"?page=shipping_logs\" class=\"nav-link ";
+        // line 81
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 81, $this->source); })()), "request", [], "any", false, false, false, 81), "query", [], "any", false, false, false, 81), "get", ["page"], "method", false, false, false, 81) == "shipping_logs")) ? ("active") : (""));
+        yield "\">
+                        <i class=\"nav-icon fas fa-truck-loading\"></i>
+                        <p>Suivi des Livraisons</p>
                     </a>
                 </li>
 
@@ -149,8 +168,8 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                 <li class=\"nav-header\">ARGENT & TRÉSORERIE</li>
                 <li class=\"nav-item\">
                     <a href=\"?page=finance_expenses\" class=\"nav-link ";
-        // line 77
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 77, $this->source); })()), "request", [], "any", false, false, false, 77), "query", [], "any", false, false, false, 77), "get", ["page"], "method", false, false, false, 77) == "finance_expenses")) ? ("active") : (""));
+        // line 90
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 90, $this->source); })()), "request", [], "any", false, false, false, 90), "query", [], "any", false, false, false, 90), "get", ["page"], "method", false, false, false, 90) == "finance_expenses")) ? ("active") : (""));
         yield "\">
                         <i class=\"nav-icon fas fa-arrow-circle-down text-danger\"></i>
                         <p>Enregistrer une Dépense</p>
@@ -158,8 +177,8 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                 </li>
                 <li class=\"nav-item\">
                     <a href=\"?page=finance_accounts\" class=\"nav-link ";
-        // line 83
-        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 83, $this->source); })()), "request", [], "any", false, false, false, 83), "query", [], "any", false, false, false, 83), "get", ["page"], "method", false, false, false, 83) == "finance_accounts")) ? ("active") : (""));
+        // line 96
+        yield (((CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 96, $this->source); })()), "request", [], "any", false, false, false, 96), "query", [], "any", false, false, false, 96), "get", ["page"], "method", false, false, false, 96) == "finance_accounts")) ? ("active") : (""));
         yield "\">
                         <i class=\"nav-icon fas fa-wallet\"></i>
                         <p>État de la Caisse / Banque</p>
@@ -208,7 +227,7 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  162 => 83,  153 => 77,  141 => 68,  132 => 62,  120 => 53,  111 => 47,  98 => 37,  89 => 31,  77 => 22,  65 => 13,  59 => 10,  48 => 1,);
+        return array (  181 => 96,  172 => 90,  160 => 81,  150 => 74,  141 => 68,  131 => 61,  119 => 52,  110 => 46,  98 => 37,  89 => 31,  77 => 22,  65 => 13,  59 => 10,  48 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -240,7 +259,7 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                     </a>
                 </li>
 
-                <!-- ASSISTANT IA (Ton PFE) -->
+                <!-- ASSISTANT IA -->
                 <li class=\"nav-header text-warning font-weight-bold\">ASSISTANT IA & PRÉVISIONS</li>
                 <li class=\"nav-item\">
                     <a href=\"?page=pred_sales\" class=\"nav-link {{ app.request.query.get('page') == 'pred_sales' ? 'active' : '' }}\">
@@ -258,7 +277,6 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                 <!-- COMPTOIR & VENTES -->
                 <li class=\"nav-header\">VENTES AU QUOTIDIEN</li>
                 <li class=\"nav-item\">
-                    <!-- Le POS devient la Caisse -->
                     <a href=\"?page=sales_pos\" class=\"nav-link {{ app.request.query.get('page') == 'sales_pos' ? 'active' : '' }} text-info\">
                         <i class=\"nav-icon fas fa-cash-register\"></i>
                         <p><b>Faire une Vente (Caisse)</b></p>
@@ -271,18 +289,32 @@ class __TwigTemplate_fa2ae82413538635921f04defd21f9b7 extends Template
                     </a>
                 </li>
 
-                <!-- STOCK & ARTICLES -->
-                <li class=\"nav-header\">MON STOCK</li>
+                <!-- STOCKS, MULTI-ENTREPÔTS & LOGISTIQUE -->
+                <li class=\"nav-header\">LOGISTIQUE & ENTREPÔTS</li>
                 <li class=\"nav-item\">
                     <a href=\"?page=products\" class=\"nav-link {{ app.request.query.get('page') == 'products' ? 'active' : '' }}\">
                         <i class=\"nav-icon fas fa-cubes\"></i>
-                        <p>Mes Produits / Articles</p>
+                        <p>Catalogue Articles</p>
+                    </a>
+                </li>
+                <li class=\"nav-item\">
+                    <!-- AJUSTEMENT : Lien direct vers la gestion multi-sites (Dépôt central / Boutique) -->
+                    <a href=\"?page=warehouse_index\" class=\"nav-link {{ app.request.query.get('page') == 'warehouse_index' ? 'active' : '' }}\">
+                        <i class=\"nav-icon fas fa-warehouse\"></i>
+                        <p>État des Entrepôts</p>
                     </a>
                 </li>
                 <li class=\"nav-item\">
                     <a href=\"?page=stock_movements\" class=\"nav-link {{ app.request.query.get('page') == 'stock_movements' ? 'active' : '' }}\">
                         <i class=\"nav-icon fas fa-exchange-alt\"></i>
-                        <p>Mouvements du Stock</p>
+                        <p>Mouvements & Transferts</p>
+                    </a>
+                </li>
+                <li class=\"nav-item\">
+                    <!-- AJUSTEMENT : Utile si tu relies la plateforme à du transport de marchandises (Yiringasso / Raftras) -->
+                    <a href=\"?page=shipping_logs\" class=\"nav-link {{ app.request.query.get('page') == 'shipping_logs' ? 'active' : '' }}\">
+                        <i class=\"nav-icon fas fa-truck-loading\"></i>
+                        <p>Suivi des Livraisons</p>
                     </a>
                 </li>
 
