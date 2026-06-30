@@ -1034,11 +1034,11 @@ class FrameworkExtension extends Extension
         $container->getDefinition('profiler_listener')
             ->addArgument($config['collect_parameter']);
 
-        if (!$container->getParameter('kernel.debug') || !class_exists(CliRequest::class) || !$container->has('debug.stopwatch')) {
+        if (!$container->getParameter('kernel.debug') || !$this->hasConsole() || !$container->has('debug.stopwatch') || !class_exists(CliRequest::class)) {
             $container->removeDefinition('console_profiler_listener');
         }
 
-        if (!class_exists(CommandDataCollector::class)) {
+        if (!$this->hasConsole() || !class_exists(CommandDataCollector::class)) {
             $container->removeDefinition('.data_collector.command');
         }
     }
@@ -1086,19 +1086,19 @@ class FrameworkExtension extends Extension
             $transitionCounter = 0;
             foreach ($workflow['transitions'] as $transition) {
                 if ('workflow' === $type) {
-                    $transitionDefinition = new Definition(Workflow\Transition::class, [$transition['name'], $transition['from'], $transition['to']]);
                     $transitionId = \sprintf('.%s.transition.%s', $workflowId, $transitionCounter++);
-                    $container->setDefinition($transitionId, $transitionDefinition);
+                    $container->register($transitionId, Workflow\Transition::class)
+                        ->setArguments([$transition['name'], $transition['from'], $transition['to']]);
                     $transitions[] = new Reference($transitionId);
                     if (isset($transition['guard'])) {
-                        $configuration = new Definition(Workflow\EventListener\GuardExpression::class);
-                        $configuration->addArgument(new Reference($transitionId));
-                        $configuration->addArgument($transition['guard']);
                         $eventName = \sprintf('workflow.%s.guard.%s', $name, $transition['name']);
-                        $guardsConfiguration[$eventName][] = $configuration;
+                        $guardsConfiguration[$eventName][] = new Definition(
+                            Workflow\EventListener\GuardExpression::class,
+                            [new Reference($transitionId), $transition['guard']]
+                        );
                     }
                     if ($transition['metadata']) {
-                        $transitionsMetadataDefinition->addMethodCall('attach', [
+                        $transitionsMetadataDefinition->addMethodCall('offsetSet', [
                             new Reference($transitionId),
                             $transition['metadata'],
                         ]);
@@ -1106,19 +1106,19 @@ class FrameworkExtension extends Extension
                 } elseif ('state_machine' === $type) {
                     foreach ($transition['from'] as $from) {
                         foreach ($transition['to'] as $to) {
-                            $transitionDefinition = new Definition(Workflow\Transition::class, [$transition['name'], $from, $to]);
                             $transitionId = \sprintf('.%s.transition.%s', $workflowId, $transitionCounter++);
-                            $container->setDefinition($transitionId, $transitionDefinition);
+                            $container->register($transitionId, Workflow\Transition::class)
+                                ->setArguments([$transition['name'], $from, $to]);
                             $transitions[] = new Reference($transitionId);
                             if (isset($transition['guard'])) {
-                                $configuration = new Definition(Workflow\EventListener\GuardExpression::class);
-                                $configuration->addArgument(new Reference($transitionId));
-                                $configuration->addArgument($transition['guard']);
                                 $eventName = \sprintf('workflow.%s.guard.%s', $name, $transition['name']);
-                                $guardsConfiguration[$eventName][] = $configuration;
+                                $guardsConfiguration[$eventName][] = new Definition(
+                                    Workflow\EventListener\GuardExpression::class,
+                                    [new Reference($transitionId), $transition['guard']]
+                                );
                             }
                             if ($transition['metadata']) {
-                                $transitionsMetadataDefinition->addMethodCall('attach', [
+                                $transitionsMetadataDefinition->addMethodCall('offsetSet', [
                                     new Reference($transitionId),
                                     $transition['metadata'],
                                 ]);
@@ -1739,11 +1739,11 @@ class FrameworkExtension extends Extension
 
         foreach ($config['providers'] as $provider) {
             if ($provider['locales']) {
-                $locales += $provider['locales'];
+                $locales = array_merge($locales, $provider['locales']);
             }
         }
 
-        $locales = array_unique($locales);
+        $locales = array_values(array_unique($locales));
 
         $container->getDefinition('console.command.translation_pull')
             ->replaceArgument(4, array_merge($transPaths, [$config['default_path']]))
@@ -2150,7 +2150,7 @@ class FrameworkExtension extends Extension
             $definition->addTag('property_info.constructor_extractor', ['priority' => -1000]);
         }
 
-        if (ContainerBuilder::willBeAvailable('phpdocumentor/reflection-docblock', DocBlockFactoryInterface::class, ['symfony/framework-bundle', 'symfony/property-info'], true)) {
+        if (ContainerBuilder::willBeAvailable('phpdocumentor/reflection-docblock', DocBlockFactoryInterface::class, ['symfony/framework-bundle', 'symfony/property-info'])) {
             $definition = $container->register('property_info.php_doc_extractor', PhpDocExtractor::class);
             $definition->addTag('property_info.description_extractor', ['priority' => -1000]);
             $definition->addTag('property_info.type_extractor', ['priority' => -1001]);
@@ -2207,6 +2207,7 @@ class FrameworkExtension extends Extension
                     $resourceStore = 'null';
                 }
 
+                $usedEnvs = [];
                 $storeDsn = $container->resolveEnvPlaceholders($resourceStore, null, $usedEnvs);
                 if (!$usedEnvs && !str_contains($resourceStore, ':') && !\in_array($resourceStore, ['flock', 'semaphore', 'in-memory', 'null'], true)) {
                     $resourceStore = new Reference($resourceStore);

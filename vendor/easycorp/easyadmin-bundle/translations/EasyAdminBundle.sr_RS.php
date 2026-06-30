@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Napravi i nastavi sa izmenama',
         'save' => 'Sačuvaj izmene',
         'save_and_continue' => 'Sačuvaj i nastavi sa izmenama',
+        'toggle_dropdown' => 'Пребаци падајући мени',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Da li sigurno želite da obrišete ovaj zapis?',
         'content' => 'Ova operacija je nepovratna.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Da li ste sigurni da želite da %action_name%?',
+        'action' => 'Potvrdi',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'je manje ili jednako',
         'label.is_between' => 'je između',
         'label.contains' => 'sadrži',
+        'label.contains_all' => 'sadrži sve',
         'label.not_contains' => 'ne sadrži',
         'label.starts_with' => 'počinje sa',
         'label.ends_with' => 'završava se se',
@@ -123,6 +130,10 @@ return [
         'entity_remove' => 'Ovaj zapis ne može biti izbrisan zato što su drugi zapisi vezani za njega.',
         'forbidden_action' => 'Ova akcija ne može biti primenjena na ovaj zapis.',
         'insufficient_entity_permission' => 'Nemate dovoljne privilegije da vidite ovaj zapis.',
+        'general' => 'An error occurred while processing your request.',
+        'general_403' => 'You don\'t have permission to perform this action.',
+        'general_404' => 'The requested page could not be found.',
+        'general_500' => 'An internal error occurred while processing your request.',
     ],
 
     'autocomplete' => [

@@ -35,6 +35,7 @@ use Doctrine\ORM\Internal\UnitOfWork\InsertBatch;
 use Doctrine\ORM\Mapping\AssociationMapping;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Mapping\MappingException;
+use Doctrine\ORM\Mapping\PropertyAccessors\ReadonlyAccessor;
 use Doctrine\ORM\Mapping\ToManyInverseSideMapping;
 use Doctrine\ORM\Persisters\Collection\CollectionPersister;
 use Doctrine\ORM\Persisters\Collection\ManyToManyPersister;
@@ -62,6 +63,7 @@ use function array_map;
 use function array_sum;
 use function array_values;
 use function assert;
+use function count;
 use function current;
 use function get_debug_type;
 use function implode;
@@ -1175,7 +1177,10 @@ class UnitOfWork implements PropertyChangedListener
             // Entity with this $oid after deletion treated as NEW, even if the $oid
             // is obtained by a new entity because the old one went out of scope.
             //$this->entityStates[$oid] = self::STATE_NEW;
-            if (! $class->isIdentifierNatural()) {
+            if (
+                ! $class->isIdentifierNatural() &&
+                ! $class->propertyAccessors[$class->identifier[0]] instanceof ReadonlyAccessor
+            ) {
                 $class->propertyAccessors[$class->identifier[0]]->setValue($entity, null);
             }
 
@@ -2594,8 +2599,14 @@ class UnitOfWork implements PropertyChangedListener
                     $reflField->setValue($entity, $pColl);
 
                     if ($hints['fetchMode'][$class->name][$field] === ClassMetadata::FETCH_EAGER) {
-                        $isIteration = isset($hints[Query::HINT_INTERNAL_ITERATION]) && $hints[Query::HINT_INTERNAL_ITERATION];
-                        if (! $isIteration && $assoc->isOneToMany() && ! $targetClass->isIdentifierComposite && ! $assoc->isIndexed()) {
+                        if (
+                            $assoc->isOneToMany()
+                            // is iteration
+                            && ! (isset($hints[Query::HINT_INTERNAL_ITERATION]) && $hints[Query::HINT_INTERNAL_ITERATION])
+                            // is foreign key composite
+                            && ! ($targetClass->hasAssociation($assoc->mappedBy) && count($targetClass->getAssociationMapping($assoc->mappedBy)->joinColumns) > 1)
+                            && ! $assoc->isIndexed()
+                        ) {
                             $this->scheduleCollectionForBatchLoading($pColl, $class);
                         } else {
                             $this->loadCollection($pColl);

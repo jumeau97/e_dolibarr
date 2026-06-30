@@ -11,29 +11,30 @@ use EasyCorp\Bundle\EasyAdminBundle\Dto\PaginatorDto;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\EntityFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Twig\Environment;
+use Twig\Error\Error;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 final class EntityPaginator implements EntityPaginatorInterface
 {
-    private AdminUrlGeneratorInterface $adminUrlGenerator;
-    private EntityFactory $entityFactory;
-    private RequestStack $requestStack;
     private ?int $currentPage = null;
     private ?int $pageSize = null;
     private ?int $rangeSize = null;
     private ?int $rangeEdgeSize = null;
+    /** @var iterable<mixed>|null */
     private ?iterable $results = null;
     private ?int $numResults = null;
     private ?int $rangeFirstResultNumber = null;
     private ?int $rangeLastResultNumber = null;
 
-    public function __construct(AdminUrlGeneratorInterface $adminUrlGenerator, EntityFactory $entityFactory, RequestStack $requestStack)
-    {
-        $this->adminUrlGenerator = $adminUrlGenerator;
-        $this->entityFactory = $entityFactory;
-        $this->requestStack = $requestStack;
+    public function __construct(
+        private readonly AdminUrlGeneratorInterface $adminUrlGenerator,
+        private readonly EntityFactory $entityFactory,
+        private readonly RequestStack $requestStack,
+        private readonly Environment $twig,
+    ) {
     }
 
     public function paginate(PaginatorDto $paginatorDto, QueryBuilder $queryBuilder): EntityPaginatorInterface
@@ -96,7 +97,7 @@ final class EntityPaginator implements EntityPaginatorInterface
 
     public function getLastPage(): int
     {
-        return (int) ceil($this->numResults / $this->pageSize);
+        return max(1, (int) ceil($this->numResults / $this->pageSize));
     }
 
     /**
@@ -209,15 +210,40 @@ final class EntityPaginator implements EntityPaginatorInterface
         return $this->rangeLastResultNumber;
     }
 
-    public function getResultsAsJson(): string
+    public function getResultsAsJson(?callable $callback = null, ?string $twigTemplate = null, bool $renderAsHtml = false): string
     {
-        $jsonResult = [];
+        $jsonResult = ['results' => []];
         foreach ($this->getResults() ?? [] as $entityInstance) {
             $entityDto = $this->entityFactory->createForEntityInstance($entityInstance);
 
+            if (null !== $twigTemplate) {
+                try {
+                    $entityAsString = $this->twig->render($twigTemplate, ['entity' => $entityInstance]);
+                } catch (Error $e) {
+                    throw new \RuntimeException(sprintf(
+                        'Error rendering autocomplete template "%s" for entity "%s": %s',
+                        $twigTemplate,
+                        $entityInstance::class,
+                        $e->getMessage()
+                    ), 0, $e);
+                }
+
+                if (!$renderAsHtml) {
+                    $entityAsString = htmlspecialchars($entityAsString, \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8');
+                }
+            } elseif (null !== $callback) {
+                $entityAsString = (string) $callback($entityInstance);
+
+                if (!$renderAsHtml) {
+                    $entityAsString = htmlspecialchars($entityAsString, \ENT_QUOTES | \ENT_SUBSTITUTE, 'UTF-8');
+                }
+            } else {
+                $entityAsString = (string) $entityDto;
+            }
+
             $jsonResult['results'][] = [
                 EA::ENTITY_ID => $entityDto->getPrimaryKeyValueAsString(),
-                'entityAsString' => $entityDto->toString(),
+                'entityAsString' => $entityAsString,
             ];
         }
 

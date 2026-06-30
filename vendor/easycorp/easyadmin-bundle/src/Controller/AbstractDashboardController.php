@@ -12,13 +12,22 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\UserMenu;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGeneratorInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Logout\LogoutUrlGenerator;
 use function Symfony\Component\Translation\t;
+
+// needed for Symfony 5.4 - 8.0 compatibility (Attribute doesn't exist in 5.4 and
+// Annotation doesn't exist in 8.0; both exist in the other versions)
+if (class_exists('Symfony\Component\Routing\Annotation\Route') && !class_exists('Symfony\Component\Routing\Attribute\Route')) {
+    // @phpstan-ignore-next-line class.notFound
+    class_alias(\Symfony\Component\Routing\Annotation\Route::class, 'Symfony\Component\Routing\Attribute\Route');
+}
+
+use Symfony\Component\Routing\Attribute\Route;
 
 /**
  * This class is useful to extend your dashboard from it instead of implementing
@@ -31,7 +40,9 @@ abstract class AbstractDashboardController extends AbstractController implements
     public static function getSubscribedServices(): array
     {
         return array_merge(parent::getSubscribedServices(), [
-            AdminUrlGenerator::class => '?'.AdminUrlGenerator::class,
+            AdminUrlGeneratorInterface::class => '?'.AdminUrlGeneratorInterface::class,
+            // the following key is kept for BC reasons
+            AdminUrlGenerator::class => '?'.AdminUrlGeneratorInterface::class,
         ]);
     }
 
@@ -70,7 +81,7 @@ abstract class AbstractDashboardController extends AbstractController implements
             $userMenuItems[] = MenuItem::linkToExitImpersonation(t('user.exit_impersonation', domain: 'EasyAdminBundle'), 'internal:user-lock');
         }
 
-        $userName = method_exists($user, '__toString') ? (string) $user : $user->getUserIdentifier();
+        $userName = $user instanceof \Stringable ? (string) $user : $user->getUserIdentifier();
 
         return UserMenu::new()
             ->displayUserName()

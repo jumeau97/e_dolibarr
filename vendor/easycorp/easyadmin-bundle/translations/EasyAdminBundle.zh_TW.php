@@ -59,6 +59,7 @@ return [
         'create_and_continue' => '建立並繼續編輯',
         'save' => '儲存更改',
         'save_and_continue' => '儲存並繼續編輯',
+        'toggle_dropdown' => '切換下拉選單',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => '您確定要刪除此項目嗎？',
         'content' => '此動作無法復原。',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => '您確定要 %action_name% 嗎？',
+        'action' => '確認',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => '小於或等於',
         'label.is_between' => '處於範圍',
         'label.contains' => '包含',
+        'label.contains_all' => '包含所有',
         'label.not_contains' => '不包含',
         'label.starts_with' => '開始於',
         'label.ends_with' => '結尾於',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => '由於其他項目依賴於此項目，因此無法刪除。',
         'forbidden_action' => '無法對此項目執行請求的動作。',
         'insufficient_entity_permission' => '您無權取用此項目。',
+        'general' => '處理請求時發生錯誤。',
+        'general_403' => '您沒有權限執行此操作。',
+        'general_404' => '找不到請求的頁面。',
+        'general_500' => '處理請求時發生內部錯誤。',
     ],
 
     'autocomplete' => [

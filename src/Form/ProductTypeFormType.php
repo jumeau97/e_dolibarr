@@ -39,7 +39,7 @@ class ProductTypeFormType extends AbstractType
             // --- SECTION PRIX ---
             ->add('prixAchat', MoneyType::class, [
                 'label' => 'Prix d\'Achat (Coût)',
-                'currency' => 'XOF', 
+                'currency' => 'XOF',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control text-danger font-weight-bold',
@@ -75,21 +75,22 @@ class ProductTypeFormType extends AbstractType
                     'min' => 0
                 ]
             ])
-
             ->add('entrepots', EntityType::class, [
                 'class' => Entrepot::class,
-                'choice_label' => 'nom',
-                'multiple' => true,
-                'label' => 'Affecter à des entrepôts',
-                'data' => $entrepotResponsable ? [$entrepotResponsable] : [], // Pré-sélection automatique
+                'mapped'=>false,
+                'choice_label' => 'lieu',
+                'multiple' => false,
+                'label' => 'Entrepôt d\'affectation',
+                'data' => $entrepotResponsable,
                 'attr' => [
                     'class' => 'form-control select2',
                     'style' => 'width: 100%;'
                 ],
                 'disabled' => $entrepotResponsable !== null,
-                'help' => $entrepotResponsable ? 'Affectation automatique à votre entrepôt de responsabilité.' : 'Maintenez Ctrl enfoncé pour en choisir plusieurs.'
-            ])
-        ;
+                'help' => $entrepotResponsable
+                    ? 'Affectation automatique à votre entrepôt de responsabilité.'
+                    : 'Sélectionnez le site physique unique où stocker cet article.'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

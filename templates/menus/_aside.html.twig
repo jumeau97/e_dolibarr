@@ -28,7 +28,7 @@
                 <!-- ASSISTANT IA -->
                 <li class="nav-header text-warning font-weight-bold">ASSISTANT IA & PRÉVISIONS</li>
                 <li class="nav-item">
-                    <a href="?page=pred_sales" class="nav-link {{ app.request.query.get('page') == 'pred_sales' ? 'active' : '' }}">
+                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.request.query.get('page') == 'pred_sales' ? 'active' : '' }}">
                         <i class="fas fa-brain nav-icon text-warning"></i>
                         <p>Prédictions des Ventes</p>
                     </a>
@@ -43,7 +43,7 @@
                 <!-- COMPTOIR & VENTES -->
                 <li class="nav-header">VENTES AU QUOTIDIEN</li>
                 <li class="nav-item">
-                    <a href="?page=sales_pos" class="nav-link {{ app.request.query.get('page') == 'sales_pos' ? 'active' : '' }} text-info">
+                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.request.query.get('page') == 'sales_pos' ? 'active' : '' }} text-info">
                         <i class="nav-icon fas fa-cash-register"></i>
                         <p><b>Faire une Vente (Caisse)</b></p>
                     </a>
@@ -58,26 +58,25 @@
                 <!-- STOCKS, MULTI-ENTREPÔTS & LOGISTIQUE -->
                 <li class="nav-header">LOGISTIQUE & ENTREPÔTS</li>
                 <li class="nav-item">
-                    <a href="?page=products" class="nav-link {{ app.request.query.get('page') == 'products' ? 'active' : '' }}">
+                    <a href="{{ path('app_produit_article') }}" class="nav-link {{ app.request.query.get('page') == 'products' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>Catalogue Articles</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <!-- AJUSTEMENT : Lien direct vers la gestion multi-sites (Dépôt central / Boutique) -->
                     <a href="?page=warehouse_index" class="nav-link {{ app.request.query.get('page') == 'warehouse_index' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>État des Entrepôts</p>
                     </a>
                 </li>
                 <li class="nav-item">
+                    <!-- LE MENU UNIQUE POUR TOUS LES MOUVEMENTS ET FLUX DE STOCK -->
                     <a href="?page=stock_movements" class="nav-link {{ app.request.query.get('page') == 'stock_movements' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-exchange-alt"></i>
-                        <p>Mouvements & Transferts</p>
+                        <p>Stock</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <!-- AJUSTEMENT : Utile si tu relies la plateforme à du transport de marchandises (Yiringasso / Raftras) -->
                     <a href="?page=shipping_logs" class="nav-link {{ app.request.query.get('page') == 'shipping_logs' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>Suivi des Livraisons</p>

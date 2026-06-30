@@ -7,7 +7,6 @@
   {% endblock %}
 
 
-
 {% block body %}
     <div class="content-wrapper">
         <!-- En-tête de la page -->
@@ -15,8 +14,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 font-weight-bold"><i class="fas fa-boxes text-primary mr-2"></i> Gestion Logistique Globale</h1>
-                        <p class="text-muted mb-0">Pilotez vos stocks, catégories, entrepôts et mouvements au même endroit.</p>
+                        <h1 class="m-0 font-weight-bold"><i class="fas fa-boxes text-primary mr-2"></i> Gestion
+                            Logistique Globale</h1>
+                        <p class="text-muted mb-0">Pilotez vos stocks, catégories, entrepôts et mouvements au même
+                            endroit.</p>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -31,22 +32,26 @@
         <!-- Contenu Principal -->
         <section class="content">
             <div class="container-fluid">
-
-                <!-- LE MENU PAR ONGLETS -->
                 <div class="card card-primary card-tabs">
                     <div class="card-header p-0 pt-1">
                         <ul class="nav nav-tabs" id="logistiqueTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active font-weight-bold" id="tab-articles-id" data-toggle="pill" href="#tab-articles" role="tab"><i class="fas fa-cubes mr-1"></i> Produits & Services</a>
+                                <a class="nav-link active font-weight-bold" id="tab-articles-id" data-toggle="pill"
+                                   href="#tab-articles" role="tab"><i class="fas fa-cubes mr-1"></i> Produits & Services</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold" id="tab-categories-id" data-toggle="pill" href="#tab-categories" role="tab"><i class="fas fa-tags mr-1"></i> Catégories</a>
+                                <a class="nav-link font-weight-bold" id="tab-categories-id" data-toggle="pill"
+                                   href="#tab-categories" role="tab"><i class="fas fa-tags mr-1"></i> Catégories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold" id="tab-entrepots-id" data-toggle="pill" href="#tab-entrepots" role="tab"><i class="fas fa-warehouse mr-1"></i> Nos Entrepôts / Boutiques</a>
+                                <a class="nav-link font-weight-bold" id="tab-entrepots-id" data-toggle="pill"
+                                   href="#tab-entrepots" role="tab"><i class="fas fa-warehouse mr-1"></i> Nos Entrepôts
+                                    / Boutiques</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link font-weight-bold" id="tab-mouvements-id" data-toggle="pill" href="#tab-mouvements" role="tab"><i class="fas fa-exchange-alt mr-1"></i> Historique des Mouvements</a>
+                                <a class="nav-link font-weight-bold" id="tab-mouvements-id" data-toggle="pill"
+                                   href="#tab-mouvements" role="tab"><i class="fas fa-exchange-alt mr-1"></i> Historique
+                                    des Mouvements</a>
                             </li>
                         </ul>
                     </div>
@@ -58,58 +63,20 @@
                             <div class="tab-pane fade show active" id="tab-articles" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Gestion de vos marchandises et prestations facturables.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold"><i class="fas fa-plus mr-1"></i> Nouveau Produit / Service</button>
+                                    <button class="btn btn-sm btn-success font-weight-bold"><i
+                                                class="fas fa-plus mr-1"></i> Nouveau Produit / Service
+                                    </button>
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-striped mb-0 text-nowrap align-middle">
-                                        <thead class="bg-dark">
-                                        <tr>
-                                            <th>Type</th>
-                                            <th>Nom de l'élément</th>
-                                            <th>Catégorie</th>
-                                            <th>Prix de Vente</th>
-                                            <th class="text-center">Stock Actuel</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><span class="badge badge-primary px-2 py-1">📦 Produit</span></td>
-                                            <td><b>Sac de Ciment 50kg</b><br><small class="text-muted">Réf: CIM-50</small></td>
-                                            <td>Matériaux</td>
-                                            <td>4 750 FCFA</td>
-                                            <td class="text-center"><span class="badge badge-danger font-weight-bold px-2 py-1">0 sac (Rupture)</span></td>
-                                            <td class="text-right"><button class="btn btn-xs btn-outline-secondary"><i class="fas fa-pencil-alt"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><span class="badge badge-info px-2 py-1">🛠️ Service</span></td>
-                                            <td><b>Livraison Chantier (Par camion)</b><br><small class="text-muted">Réf: SRV-LIV</small></td>
-                                            <td>Prestations</td>
-                                            <td>25 000 FCFA</td>
-                                            <td class="text-center"><span class="text-muted"><i>Non applicable</i></span></td>
-                                            <td class="text-right"><button class="btn btn-xs btn-outline-secondary"><i class="fas fa-pencil-alt"></i></button></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- PAGINATION PRODUITS -->
-                                <div class="card-footer clearfix bg-white border-top">
-                                    <ul class="pagination pagination-sm m-0 float-right">
-                                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                    </ul>
-                                    <span class="text-muted text-sm float-left mt-1">Affichage de 1 à 2 sur 24 articles</span>
-                                </div>
+                                {{ component('ProductListComponent') }}
                             </div>
 
                             <!-- ================= ONGLET 2 : CATÉGORIES ================= -->
                             <div class="tab-pane fade" id="tab-categories" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Classez vos produits pour simplifier la recherche à la caisse.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold"><i class="fas fa-plus mr-1"></i> Nouvelle Catégorie</button>
+                                    <button class="btn btn-sm btn-success font-weight-bold"><i
+                                                class="fas fa-plus mr-1"></i> Nouvelle Catégorie
+                                    </button>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-hover table-striped mb-0 text-nowrap">
@@ -124,12 +91,18 @@
                                         <tr>
                                             <td><b>🧱 Matériaux de construction</b></td>
                                             <td>24 articles</td>
-                                            <td class="text-right"><button class="btn btn-xs btn-outline-secondary"><i class="fas fa-pencil-alt"></i></button></td>
+                                            <td class="text-right">
+                                                <button class="btn btn-xs btn-outline-secondary"><i
+                                                            class="fas fa-pencil-alt"></i></button>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><b>🛠️ Prestations & Services</b></td>
                                             <td>5 services</td>
-                                            <td class="text-right"><button class="btn btn-xs btn-outline-secondary"><i class="fas fa-pencil-alt"></i></button></td>
+                                            <td class="text-right">
+                                                <button class="btn btn-xs btn-outline-secondary"><i
+                                                            class="fas fa-pencil-alt"></i></button>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -149,42 +122,13 @@
                             <div class="tab-pane fade" id="tab-entrepots" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Lieux physiques de stockage ou de vente.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold"><i class="fas fa-plus mr-1"></i> Ajouter un Emplacement</button>
+                                    <button class="btn btn-sm btn-success font-weight-bold" data-toggle="modal" data-target="#modal-add-warehouse"><i
+                                                class="fas fa-plus mr-1"></i> Ajouter un Emplacement
+                                    </button>
                                 </div>
+
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped mb-0 text-nowrap">
-                                        <thead class="bg-dark">
-                                        <tr>
-                                            <th>Nom du dépôt / Boutique</th>
-                                            <th>Localisation</th>
-                                            <th>Volume d'articles stockés</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><b>🏢 Entrepôt Principal</b></td>
-                                            <td>Zone Industrielle</td>
-                                            <td>1 450 articles</td>
-                                            <td class="text-right"><button class="btn btn-xs btn-info"><i class="fas fa-eye mr-1"></i> Voir le stock</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>🏪 Boutique Centre-Ville</b></td>
-                                            <td>Grand Marché</td>
-                                            <td>320 articles</td>
-                                            <td class="text-right"><button class="btn btn-xs btn-info"><i class="fas fa-eye mr-1"></i> Voir le stock</button></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- PAGINATION ENTREPÔTS -->
-                                <div class="card-footer clearfix bg-white border-top">
-                                    <ul class="pagination pagination-sm m-0 float-right">
-                                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                    </ul>
-                                    <span class="text-muted text-sm float-left mt-1">Affichage de 1 à 2 sur 2 emplacements</span>
+                                    {{ component('EntrepotComponent') }}
                                 </div>
                             </div>
 
@@ -193,8 +137,12 @@
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Le cahier d'historique de toutes les entrées, sorties et transferts.</span>
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-danger font-weight-bold"><i class="fas fa-minus-circle mr-1"></i> Signaler Perte/Casse</button>
-                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1"><i class="fas fa-exchange-alt mr-1"></i> Transférer du stock</button>
+                                        <button class="btn btn-sm btn-danger font-weight-bold"><i
+                                                    class="fas fa-minus-circle mr-1"></i> Signaler Perte/Casse
+                                        </button>
+                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1"><i
+                                                    class="fas fa-exchange-alt mr-1"></i> Transférer du stock
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
@@ -213,7 +161,8 @@
                                         <tr>
                                             <td>21/05/2026 à 14:20</td>
                                             <td><b>Sac de Ciment 50kg</b></td>
-                                            <td><span class="badge badge-success"><i class="fas fa-plus mr-1"></i> Entrée (Achat)</span></td>
+                                            <td><span class="badge badge-success"><i class="fas fa-plus mr-1"></i> Entrée (Achat)</span>
+                                            </td>
                                             <td class="font-weight-bold text-success">+ 100 sacs</td>
                                             <td>Fournisseur ➡️ Entrepôt Principal</td>
                                             <td>Alassane</td>
@@ -221,7 +170,9 @@
                                         <tr>
                                             <td>21/05/2026 à 11:05</td>
                                             <td><b>Fer à béton 12</b></td>
-                                            <td><span class="badge badge-warning text-dark"><i class="fas fa-arrow-right mr-1"></i> Transfert Interne</span></td>
+                                            <td><span class="badge badge-warning text-dark"><i
+                                                            class="fas fa-arrow-right mr-1"></i> Transfert Interne</span>
+                                            </td>
                                             <td class="font-weight-bold text-warning">20 barres</td>
                                             <td>Entrepôt Principal ➡️ Boutique</td>
                                             <td>Seydou KONE</td>
@@ -229,7 +180,9 @@
                                         <tr>
                                             <td>21/05/2026 à 09:15</td>
                                             <td><b>Sac de Ciment 50kg</b></td>
-                                            <td><span class="badge badge-danger"><i class="fas fa-shopping-cart mr-1"></i> Sortie (Vente)</span></td>
+                                            <td><span class="badge badge-danger"><i
+                                                            class="fas fa-shopping-cart mr-1"></i> Sortie (Vente)</span>
+                                            </td>
                                             <td class="font-weight-bold text-danger">- 5 sacs</td>
                                             <td>Boutique ➡️ Client Comptoir</td>
                                             <td>Caissier</td>
@@ -254,9 +207,217 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
+
+        <div {{ stimulus_controller('product') }}>
+
+            <div class="modal fade" id="modal-transfert" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content card card-outline card-primary shadow">
+
+                        <div class="modal-header bg-white py-3">
+                            <h5 class="modal-title font-weight-bold text-dark">
+                                <i class="fas fa-truck text-primary mr-2"></i> Bon de Transfert Inter-Entrepôts
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        {{ form_start(formTransfert) }}
+                        <div class="modal-body bg-light">
+
+                            <div class="alert alert-info border-0 shadow-sm mb-3 py-2">
+                                <small class="text-uppercase font-weight-bold d-block text-xs mb-1">Article à
+                                    transférer :</small>
+                                <i class="fas fa-box mr-2"></i>
+                                <span id="transfert-produit-nom" class="font-weight-bold">Chargement...</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="d-none">
+                                    {{ form_widget(formTransfert.product, {'attr': {'id': 'transfert-product-id'}}) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formTransfert.entrepotSource) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formTransfert.entrepotDestination) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formTransfert.quantite) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formTransfert.motif) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer bg-white py-2 justify-content-between">
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Annuler
+                            </button>
+                            <button type="submit" class="btn btn-primary btn-sm">Valider le transfert</button>
+                        </div>
+                        {{ form_end(formTransfert) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal fade" id="modal-correction" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content card card-outline card-danger shadow">
+
+                        <div class="modal-header bg-white py-3">
+                            <h5 class="modal-title font-weight-bold text-dark">
+                                <i class="fas fa-tools text-danger mr-2"></i> Correction / Ajustement d'Inventaire
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        {{ form_start(formCorrection) }}
+                        <div class="modal-body bg-light">
+
+                            <div class="alert alert-warning border-0 shadow-sm mb-3 py-2 text-dark">
+                                <small class="text-uppercase font-weight-bold d-block text-xs mb-1">Article à corriger
+                                    :</small>
+                                <i class="fas fa-box mr-2"></i>
+                                <span id="correct-produit-nom" class="font-weight-bold">Chargement...</span>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="d-none">
+                                    {{ form_widget(formCorrection.product, {'attr': {'id': 'correct-product-id'}}) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formCorrection.entrepot) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formCorrection.typeAjustement) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formCorrection.quantite) }}
+                                </div>
+                                <div class="col-md-12">
+                                    {{ form_row(formCorrection.motif) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer bg-white py-2 justify-content-between">
+                            <button type="button" class="btn btn-default btn-sm shadow-sm" data-dismiss="modal">
+                                Annuler
+                            </button>
+                            <button type="submit" class="btn btn-danger btn-sm shadow-sm">
+                                <i class="fas fa-check mr-1"></i> Appliquer la correction
+                            </button>
+                        </div>
+
+                        {{ form_end(formCorrection) }}
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-add-warehouse" tabindex="-1" role="dialog" aria-labelledby="modalAddWarehouseLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <!-- En-tête de la Modal -->
+                        <div class="modal-header bg-dark text-white py-3">
+                            <h5 class="modal-title font-weight-bold" id="modalAddWarehouseLabel">
+                                <i class="fas fa-warehouse text-warning mr-2"></i> Enregistrer une Nouvelle Infrastructure
+                            </h5>
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {# Initialisation du formulaire avec l'action souhaitée (optionnelle si c'est la page courante) #}
+                        {{ form_start(formEntrepot, {'attr': {'id': 'form-add-warehouse'}}) }}
+                        <div class="modal-body bg-light">
+
+                            <div class="row">
+                                {# Champ Lieu / Nom #}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                            {{ form_label(formEntrepot.lieu) }} <span class="text-danger">*</span>
+                                        </label>
+                                        {{ form_widget(formEntrepot.lieu, {'attr': {'class': 'form-control font-weight-bold', 'placeholder': 'Ex: Dépôt Central'}}) }}
+                                        {{ form_errors(formEntrepot.lieu) }}
+                                    </div>
+                                </div>
+                                {# Champ Description #}
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                            {{ form_label(formEntrepot.description) }}
+                                        </label>
+                                        {{ form_widget(formEntrepot.description, {'attr': {'class': 'form-control', 'rows': '1', 'placeholder': 'Zone de stockage principale...'}}) }}
+                                        {{ form_errors(formEntrepot.description) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                {# Champ Ville #}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                            {{ form_label(formEntrepot.town) }} <span class="text-danger">*</span>
+                                        </label>
+                                        {{ form_widget(formEntrepot.town, {'attr': {'class': 'form-control', 'placeholder': 'Ex: Bamako'}}) }}
+                                        {{ form_errors(formEntrepot.town) }}
+                                    </div>
+                                </div>
+                                {# Champ Contact Téléphonique #}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                            {{ form_label(formEntrepot.phone) }}
+                                        </label>
+                                        {{ form_widget(formEntrepot.phone, {'attr': {'class': 'form-control', 'placeholder': 'Ex: +223 70 00 00 00'}}) }}
+                                        {{ form_errors(formEntrepot.phone) }}
+                                    </div>
+                                </div>
+                                {# Champ Statut #}
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                            {{ form_label(formEntrepot.status) }}
+                                        </label>
+                                        {{ form_widget(formEntrepot.status, {'attr': {'class': 'form-control custom-select'}}) }}
+                                        {{ form_errors(formEntrepot.status) }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# Champ Adresse complète #}
+                            <div class="form-group mt-2">
+                                <label class="text-xs text-uppercase font-weight-bold text-muted">
+                                    {{ form_label(formEntrepot.address) }} <span class="text-danger">*</span>
+                                </label>
+                                {{ form_widget(formEntrepot.address, {'attr': {'class': 'form-control', 'rows': '2', 'placeholder': 'Quartier, rue, repères précis...'}}) }}
+                                {{ form_errors(formEntrepot.address) }}
+                            </div>
+
+                        </div>
+
+                        {# Actions du Formulaire #}
+                        <div class="modal-footer bg-white py-2">
+                            <button type="button" class="btn btn-default btn-sm text-sm" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-indigo btn-sm text-sm font-weight-bold">
+                                <i class="fas fa-save mr-1"></i> Enregistrer le site
+                            </button>
+                        </div>
+                        {{ form_end(formEntrepot) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}

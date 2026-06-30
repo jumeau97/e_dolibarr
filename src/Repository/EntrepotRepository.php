@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Entrepot;
+use App\Request\Search\SearchEntrepot;
+use App\Request\Search\SearchUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,6 +17,16 @@ class EntrepotRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Entrepot::class);
     }
+
+    public function findAllByCriteria(SearchEntrepot $data, $pageNumber, $limit)
+    {
+        $qb = $this->createQueryBuilder('e');
+
+
+        $qb->setFirstResult($pageNumber - 1)->setMaxResults($limit);
+        return $qb;
+    }
+
 
     //    /**
     //     * @return Entrepot[] Returns an array of Entrepot objects

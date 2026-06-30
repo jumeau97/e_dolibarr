@@ -59,6 +59,7 @@ return [
         // 'create_and_continue' => '',
         // 'save' => '',
         // 'save_and_continue' => '',
+        'toggle_dropdown' => 'Växla rullgardinsmeny',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Vill du verkligen ta bort detta?',
         'content' => 'Du kan inte ångra det här.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Är du säker på att du vill %action_name%?',
+        'action' => 'Bekräfta',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         // 'label.is_less_than_or_equal_to' => '',
         // 'label.is_between' => '',
         // 'label.contains' => '',
+        // 'label.contains_all' => '',
         // 'label.not_contains' => '',
         // 'label.starts_with' => '',
         // 'label.ends_with' => '',
@@ -123,6 +130,10 @@ return [
         'entity_remove' => 'Detta object kan inte tas bort för att andra objekt har ett beroende på det.',
         'forbidden_action' => 'Den åtgärd du försökte göra kan inte utföras på detta objekt.',
         // 'insufficient_entity_permission' => 'You don't have permission to access this item.',
+        'general' => 'Ett fel uppstod vid behandlingen av din begäran.',
+        'general_403' => 'Du har inte behörighet att utföra denna åtgärd.',
+        'general_404' => 'Den begärda sidan kunde inte hittas.',
+        'general_500' => 'Ett internt fel uppstod vid behandlingen av din begäran.',
     ],
 
     'autocomplete' => [

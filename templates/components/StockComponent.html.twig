@@ -1,0 +1,114 @@
+<div{{ attributes }}>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-outline card-indigo shadow-sm mt-3">
+
+                <!-- ENTÊTE AVEC FILTRE RECHERCHE LIVE -->
+                <div class="card-header bg-white py-3">
+                    <h3 class="card-title font-weight-bold text-dark mt-1">
+                        <i class="fas fa-cubes text-muted mr-2"></i> Vue Instantanée du Stock
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 250px;">
+                            <input type="text"
+                                   data-model="searchQuery"
+                                   class="form-control float-right"
+                                   placeholder="Filtrer par réf, libellé...">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-default">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CORPS DU TABLEAU DYNAMIQUE -->
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0 text-center align-middle">
+                            <thead class="bg-light text-sm text-dark">
+                            <tr>
+                                <th class="text-left">Réf.</th>
+                                <th class="text-left">Libellé</th>
+                                <th>Limite stock pour alerte</th>
+                                <th>Stock désiré optimal</th>
+                                <th class="text-indigo font-weight-bold">Stock physique</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for product in this.StockList.items %}
+                                <tr>
+                                    <!-- Réf. -->
+                                    <td class="text-left font-mono text-sm">
+                                        {{ product.reference }}
+                                    </td>
+
+                                    <!-- Libellé -->
+                                    <td class="text-left text-dark">
+                                        {{ product.libelle }}
+                                    </td>
+
+                                    <!-- Limite stock pour alerte -->
+                                    <td>
+                                        <span class="badge badge-warning-light text-warning px-2 py-1">
+                                            {{ product.stockAlerte|default(0) }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Stock désiré optimal -->
+                                    <td>
+                                        <span class="text-muted">{{ product.stockOptimal|default(0) }}</span>
+                                    </td>
+
+                                    <!-- Stock physique -->
+                                    <td class="font-weight-bold {% if product.stockPhysique|default(0) <= product.stockAlerte|default(0) %}text-danger{% else %}text-indigo{% endif %}">
+                                        {{ product.stockPhysique|default(0) }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center py-5 text-muted">
+                                        <i class="fas fa-boxes fa-2x mb-2 text-gray-300"></i>
+                                        <p class="mb-0">Aucun produit trouvé dans le catalogue de stock.</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FOOTER AVEC PAGINATION REACTIVE -->
+                {% if this.StockList.totalItemCount > 0 %}
+                    <div class="card-footer clearfix bg-white border-top py-2">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            {# Bouton Précédent #}
+                            <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
+                                <button class="page-link" data-action="live#update" data-model="currentPage" data-value="{{ currentPage - 1 }}" {{ currentPage <= 1 ? 'disabled' }}>&laquo;</button>
+                            </li>
+
+                            {# Boucle des Pages #}
+                            {% for i in 1..this.StockList.totalPage %}
+                                <li class="page-item {{ i == currentPage ? 'active' }}">
+                                    <button class="page-link {{ i == currentPage ? 'bg-indigo border-indigo' }}" data-action="live#update" data-model="currentPage" data-value="{{ i }}">{{ i }}</button>
+                                </li>
+                            {% endfor %}
+
+                            {# Bouton Suivant #}
+                            <li class="page-item {{ currentPage >= this.StockList.totalPage ? 'disabled' }}">
+                                <button class="page-link" data-action="live#update" data-model="currentPage" data-value="{{ currentPage + 1 }}" {{ currentPage >= this.StockList.totalPage ? 'disabled' }}>&raquo;</button>
+                            </li>
+                        </ul>
+
+                        {# Indicateur de lignes #}
+                        <span class="text-muted text-xs float-left mt-2">
+                            Total : <b>{{ this.StockList.totalItemCount }}</b> référence(s) en stock
+                        </span>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+</div>

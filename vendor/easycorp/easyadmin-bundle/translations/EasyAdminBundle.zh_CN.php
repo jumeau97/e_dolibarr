@@ -59,6 +59,7 @@ return [
         'create_and_continue' => '添加并继续',
         'save' => '保存',
         'save_and_continue' => '保存并继续',
+        'toggle_dropdown' => '切换下拉菜单',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => '是否删除',
         'content' => '是否删除，该操作不可恢复',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => '您确定要 %action_name% 吗？',
+        'action' => '确认',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => '小于或等于',
         'label.is_between' => '之间',
         'label.contains' => '包含',
+        'label.contains_all' => '包含所有',
         'label.not_contains' => '不包含',
         'label.starts_with' => '起始于',
         'label.ends_with' => '结束于',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => '该条记录不可删除，因为有其他记录依赖该条记录。',
         'forbidden_action' => '无权执行该操作',
         'insufficient_entity_permission' => '你没有权限访问该条记录',
+        'general' => '处理请求时发生错误。',
+        'general_403' => '你没有权限执行此操作。',
+        'general_404' => '未找到请求的页面。',
+        'general_500' => '处理请求时发生内部错误。',
     ],
 
     'autocomplete' => [

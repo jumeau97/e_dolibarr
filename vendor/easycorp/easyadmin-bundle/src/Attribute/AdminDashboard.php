@@ -12,19 +12,19 @@ class AdminDashboard
         /**
          * @var string|null $routePath The path of the Symfony route that will be created for the dashboard (e.g. '/admin)
          */
-        public /* ?string */ $routePath = null,
+        /* ?string */ public $routePath = null,
         /**
          * @var string|null $routeName The name of the Symfony route that will be created for the dashboard (e.g. 'admin')
          */
-        public /* ?string */ $routeName = null,
+        /* ?string */ public $routeName = null,
         /**
          * @var array{
-         *     requirements?: array,
-         *     options?: array,
-         *     defaults?: array,
+         *     requirements?: array<string, string>,
+         *     options?: array<string, mixed>,
+         *     defaults?: array<string, mixed>,
          *     host?: string,
-         *     methods?: array|string,
-         *     schemes?: array|string,
+         *     methods?: array<string>|string,
+         *     schemes?: array<string>|string,
          *     condition?: string,
          *     locale?: string,
          *     format?: string,

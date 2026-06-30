@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Sortu eta jarraitu',
         'save' => 'Gorde',
         'save_and_continue' => 'Gorde eta jarraitu',
+        'toggle_dropdown' => 'Txandakatu goitibeherako menua',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Ziur zaude elementu hau ezabatu nahi duzula?',
         'content' => 'Ekintza hau ezin da desegin.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Ziur zaude %action_name% nahi duzula?',
+        'action' => 'Berretsi',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'txikiagoa edo berdina da',
         'label.is_between' => 'tartean dago',
         'label.contains' => 'dauka',
+        'label.contains_all' => 'dauka guztiak',
         'label.not_contains' => 'ez dauka',
         'label.starts_with' => 'honela hasten da',
         'label.ends_with' => 'honela amaitzen da',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => 'Artikulu hau ezin da ezabatu, beste elementu batzuk haren mende daudelako.',
         'forbidden_action' => 'Elementu honetan ezin da eskatutako ekintza burutu',
         'insufficient_entity_permission' => 'Artikulu hau eskuratzeko ez duzu baimenik.',
+        'general' => 'An error occurred while processing your request.',
+        'general_403' => 'You don\'t have permission to perform this action.',
+        'general_404' => 'The requested page could not be found.',
+        'general_500' => 'An internal error occurred while processing your request.',
     ],
 
     'autocomplete' => [

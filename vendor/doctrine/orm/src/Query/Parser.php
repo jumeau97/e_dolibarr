@@ -149,6 +149,11 @@ final class Parser
     private int $nestingLevel = 0;
 
     /**
+     * Keeps the nesting level of subqueries in JOIN WITH conditions.
+     */
+    private int $withJoinConditionNestingLevel = 0;
+
+    /**
      * Any additional custom tree walkers that modify the AST.
      *
      * @var list<class-string<TreeWalker>>
@@ -1147,7 +1152,7 @@ final class Parser
             ];
         }
 
-        return new AST\EntityAsDtoArgumentExpression($expression, $identVariable);
+        return new AST\EntityAsDtoArgumentExpression($expression, $identVariable, $aliasResultVariable);
     }
 
     /**
@@ -1384,7 +1389,7 @@ final class Parser
             $orderByItems[] = $this->OrderByItem();
         }
 
-        return new AST\OrderByClause($orderByItems);
+        return new AST\OrderByClause($orderByItems, $this->withJoinConditionNestingLevel === 0);
     }
 
     /**
@@ -1609,8 +1614,7 @@ final class Parser
 
     /**
      * Join ::= ["LEFT" ["OUTER"] | "INNER"] "JOIN"
-     *          (JoinAssociationDeclaration | RangeVariableDeclaration)
-     *          ["WITH" ConditionalExpression]
+     *          (JoinAssociationDeclaration ["WITH" ConditionalExpression] | RangeVariableDeclaration [("ON" | "WITH") ConditionalExpression])
      */
     public function Join(): AST\Join
     {
@@ -1644,21 +1648,38 @@ final class Parser
 
         $next = $this->lexer->glimpse();
         assert($next !== null);
-        $joinDeclaration = $next->type === TokenType::T_DOT ? $this->JoinAssociationDeclaration() : $this->RangeVariableDeclaration();
-        $adhocConditions = $this->lexer->isNextToken(TokenType::T_WITH);
-        $join            = new AST\Join($joinType, $joinDeclaration);
+        $conditionalExpression = null;
 
-        // Describe non-root join declaration
-        if ($joinDeclaration instanceof AST\RangeVariableDeclaration) {
+        if ($next->type === TokenType::T_DOT) {
+            $joinDeclaration = $this->JoinAssociationDeclaration();
+
+            if ($this->lexer->isNextToken(TokenType::T_WITH)) {
+                $this->match(TokenType::T_WITH);
+
+                try {
+                    $this->withJoinConditionNestingLevel++;
+
+                    $conditionalExpression = $this->ConditionalExpression();
+                } finally {
+                    $this->withJoinConditionNestingLevel--;
+                }
+            }
+        } else {
+            $joinDeclaration         = $this->RangeVariableDeclaration();
             $joinDeclaration->isRoot = false;
+
+            if ($this->lexer->isNextToken(TokenType::T_ON)) {
+                $this->match(TokenType::T_ON);
+                $conditionalExpression = $this->ConditionalExpression();
+            } elseif ($this->lexer->isNextToken(TokenType::T_WITH)) {
+                $this->match(TokenType::T_WITH);
+                $conditionalExpression = $this->ConditionalExpression();
+                Deprecation::trigger('doctrine/orm', 'https://github.com/doctrine/orm/issues/12192', 'Using WITH for the join condition of arbitrary joins is deprecated. Use ON instead.');
+            }
         }
 
-        // Check for ad-hoc Join conditions
-        if ($adhocConditions) {
-            $this->match(TokenType::T_WITH);
-
-            $join->conditionalExpression = $this->ConditionalExpression();
-        }
+        $join                        = new AST\Join($joinType, $joinDeclaration);
+        $join->conditionalExpression = $conditionalExpression;
 
         return $join;
     }
@@ -1895,6 +1916,7 @@ final class Parser
             $expression = $this->NewObjectExpression();
         } elseif ($token->type === TokenType::T_IDENTIFIER && $peek->type !== TokenType::T_DOT && $peek->type !== TokenType::T_OPEN_PARENTHESIS) {
             $expression = $this->EntityAsDtoArgumentExpression();
+            $fieldAlias = $expression->aliasVariable;
         } else {
             $expression = $this->ScalarExpression();
         }
@@ -1927,7 +1949,7 @@ final class Parser
     }
 
     /**
-     * ScalarExpression ::= SimpleArithmeticExpression | StringPrimary | DateTimePrimary |
+     * ScalarExpression ::= SimpleArithmeticExpression | StringPrimary | DatetimePrimary |
      *                      StateFieldPathExpression | BooleanPrimary | CaseExpression |
      *                      InstanceOfExpression
      *
@@ -2001,14 +2023,14 @@ final class Parser
     }
 
     /**
-     * CaseExpression ::= GeneralCaseExpression | SimpleCaseExpression | CoalesceExpression | NullifExpression
+     * CaseExpression ::= GeneralCaseExpression | SimpleCaseExpression | CoalesceExpression | NullIfExpression
      * GeneralCaseExpression ::= "CASE" WhenClause {WhenClause}* "ELSE" ScalarExpression "END"
      * WhenClause ::= "WHEN" ConditionalExpression "THEN" ScalarExpression
      * SimpleCaseExpression ::= "CASE" CaseOperand SimpleWhenClause {SimpleWhenClause}* "ELSE" ScalarExpression "END"
-     * CaseOperand ::= StateFieldPathExpression | TypeDiscriminator
+     * CaseOperand ::= StateFieldPathExpression
      * SimpleWhenClause ::= "WHEN" ScalarExpression "THEN" ScalarExpression
      * CoalesceExpression ::= "COALESCE" "(" ScalarExpression {"," ScalarExpression}* ")"
-     * NullifExpression ::= "NULLIF" "(" ScalarExpression "," ScalarExpression ")"
+     * NullIfExpression ::= "NULLIF" "(" ScalarExpression "," ScalarExpression ")"
      *
      * @return mixed One of the possible expressions or subexpressions.
      */
@@ -2106,7 +2128,7 @@ final class Parser
 
     /**
      * SimpleCaseExpression ::= "CASE" CaseOperand SimpleWhenClause {SimpleWhenClause}* "ELSE" ScalarExpression "END"
-     * CaseOperand ::= StateFieldPathExpression | TypeDiscriminator
+     * CaseOperand ::= StateFieldPathExpression
      */
     public function SimpleCaseExpression(): AST\SimpleCaseExpression
     {
@@ -3425,7 +3447,7 @@ final class Parser
     }
 
     /**
-     * FunctionsReturningDateTime ::=
+     * FunctionsReturningDatetime ::=
      *     "CURRENT_DATE" |
      *     "CURRENT_TIME" |
      *     "CURRENT_TIMESTAMP" |

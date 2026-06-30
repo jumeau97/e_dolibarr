@@ -21,7 +21,6 @@ final class EntrepotController extends AbstractController
 
         $form->handleRequest($request);
 
-        // Traitement de la soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
 
 //            dd($form->getData());
@@ -38,11 +37,13 @@ final class EntrepotController extends AbstractController
         ]);
     }
 
-    #[Route('/details', name: 'details_entrepot')]
-    public function details(): Response
+    #[Route('/details/{id}', name: 'details_entrepot')]
+    public function details(Entrepot $entrepot): Response
     {
+        $produits = $entrepot->getProduits();
         return $this->render('entrepot/details.html.twig', [
-            'controller_name' => 'EntrepotController',
+            'produits' => $produits,
+            'entrepot' => $entrepot
         ]);
     }
 }

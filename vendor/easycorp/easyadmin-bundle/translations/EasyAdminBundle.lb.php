@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Erstellen a weider beaarbechten',
         'save' => 'Späicheren',
         'save_and_continue' => 'Späicheren a weider beaarbechten',
+        'toggle_dropdown' => 'Dropdown-Menü ëmschalten',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Soll dat Element wierklich geläscht ginn?',
         'content' => 'Dës Aktioun kann net réckgängeg gemaach ginn.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Sidd Dir sécher, datt Dir %action_name% wëllt?',
+        'action' => 'Confirméieren',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'ass méi kleng wéi oder gläich',
         'label.is_between' => 'ass tëscht',
         'label.contains' => 'enthält',
+        'label.contains_all' => 'enthält alles',
         'label.not_contains' => 'enthält net',
         'label.starts_with' => 'fänkt u mat',
         'label.ends_with' => 'hält op mat',
@@ -122,8 +129,12 @@ return [
     'exception' => [
         'entity_not_found' => 'Dëst Element ass net méi disponibel.',
         'entity_remove' => 'Dëst Element kann net geläscht ginn, well aner Elementer dovun ofhänken.',
-        'forbidden_action' => 'Déi gewënscht Aktioun ka mat dësem ELement net ausgefouert ginn.',
+        'forbidden_action' => 'Déi gewënscht Aktioun ka mat dësem Element net ausgefouert ginn.',
         'insufficient_entity_permission' => 'Dir hutt keng Berechtegung op dëst Element zouzegräifen.',
+        'general' => 'An error occurred while processing your request.',
+        'general_403' => 'You don\'t have permission to perform this action.',
+        'general_404' => 'The requested page could not be found.',
+        'general_500' => 'An internal error occurred while processing your request.',
     ],
 
     'autocomplete' => [

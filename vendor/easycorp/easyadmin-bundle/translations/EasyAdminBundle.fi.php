@@ -59,6 +59,7 @@ return [
         // 'create_and_continue' => '',
         // 'save' => '',
         // 'save_and_continue' => '',
+        'toggle_dropdown' => 'Vaihda pudotusvalikko',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Oletko varma että haluat poistaa tämän?',
         'content' => 'Toimintoa ei voi peruuttaa.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Haluatko varmasti %action_name%?',
+        'action' => 'Vahvista',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         // 'label.is_less_than_or_equal_to' => '',
         // 'label.is_between' => '',
         // 'label.contains' => '',
+        // 'label.contains_all' => '',
         // 'label.not_contains' => '',
         // 'label.starts_with' => '',
         // 'label.ends_with' => '',
@@ -133,6 +140,10 @@ return [
         // 'entity_remove' => '',
         // 'forbidden_action' => '',
         // 'insufficient_entity_permission' => 'You don't have permission to access this item.',
+        'general' => 'An error occurred while processing your request.',
+        'general_403' => 'You don\'t have permission to perform this action.',
+        'general_404' => 'The requested page could not be found.',
+        'general_500' => 'An internal error occurred while processing your request.',
     ],
 
     'autocomplete' => [

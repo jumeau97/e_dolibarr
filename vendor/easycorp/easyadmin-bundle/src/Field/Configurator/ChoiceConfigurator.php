@@ -12,10 +12,10 @@ use EasyCorp\Bundle\EasyAdminBundle\Translation\TranslatableChoiceMessage;
 use EasyCorp\Bundle\EasyAdminBundle\Translation\TranslatableChoiceMessageCollection;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use function Symfony\Component\String\u;
-use function Symfony\Component\Translation\t;
 use Symfony\Component\Translation\TranslatableMessage;
 use Symfony\Contracts\Translation\TranslatableInterface;
+use function Symfony\Component\String\u;
+use function Symfony\Component\Translation\t;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -77,7 +77,7 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
 
         if ($areChoicesTranslatable && !$choicesSupportTranslatableInterface) {
             $field->setFormTypeOptionIfNotSet('choices', array_keys($choices));
-            $field->setFormTypeOptionIfNotSet('choice_label', fn ($value) => $choices[$value]);
+            $field->setFormTypeOptionIfNotSet('choice_label', static fn ($value) => $choices[$value]);
         } else {
             $field->setFormTypeOptionIfNotSet('choices', $choices);
         }
@@ -94,10 +94,18 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
 
         if (ChoiceField::WIDGET_AUTOCOMPLETE === $field->getCustomOption(ChoiceField::OPTION_WIDGET)) {
             $field->setFormTypeOption('attr.data-ea-widget', 'ea-autocomplete');
+        }
+
+        if ('' === $field->getDefaultColumns()) {
             $field->setDefaultColumns($isMultipleChoice ? 'col-md-8 col-xxl-6' : 'col-md-6 col-xxl-5');
         }
 
         $field->setFormTypeOptionIfNotSet('placeholder', '');
+
+        $preferredChoices = $field->getCustomOption(ChoiceField::OPTION_PREFERRED_CHOICES);
+        if (null !== $preferredChoices) {
+            $field->setFormTypeOptionIfNotSet('preferred_choices', $preferredChoices);
+        }
 
         // the value of this form option must be a string to properly propagate it as an HTML attribute value
         $field->setFormTypeOption('attr.data-ea-autocomplete-render-items-as-html', true === $field->getCustomOption(ChoiceField::OPTION_ESCAPE_HTML_CONTENTS) ? 'false' : 'true');
@@ -151,6 +159,11 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
         $field->setFormattedValue(new TranslatableChoiceMessageCollection($choiceMessages, $isRenderedAsBadge));
     }
 
+    /**
+     * @param array<mixed>|callable|null $choiceGenerator
+     *
+     * @return array<mixed>|null
+     */
     private function getChoices(array|callable|null $choiceGenerator, EntityDto $entity, FieldDto $field): ?array
     {
         if (null === $choiceGenerator) {
@@ -164,6 +177,9 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
         return $choiceGenerator($entity->getInstance(), $field);
     }
 
+    /**
+     * @param array<string>|bool|callable|null $badgeSelector
+     */
     private function getBadgeCssClass(array|bool|callable|null $badgeSelector, mixed $value, FieldDto $field): string
     {
         $commonBadgeCssClass = 'badge';
@@ -185,6 +201,11 @@ final class ChoiceConfigurator implements FieldConfiguratorInterface
         return $commonBadgeCssClass.' '.$badgeTypeCssClass;
     }
 
+    /**
+     * @param array<mixed> $choices
+     *
+     * @return array<mixed>
+     */
     private function flatten(array $choices): array
     {
         $flattened = [];

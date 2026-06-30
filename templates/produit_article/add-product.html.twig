@@ -8,7 +8,6 @@
 
 {% block body %}
     <div class="content-wrapper">
-        <!-- En-tête unique de la page -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -16,7 +15,8 @@
                         <h1 class="m-0 font-weight-bold">
                             <i class="fas fa-plus-circle text-success mr-2"></i> Nouveau Produit / Article
                         </h1>
-                        <p class="text-muted mb-0">Remplissez les informations ci-dessous pour ajouter une marchandise au stock.</p>
+                        <p class="text-muted mb-0">Remplissez les informations ci-dessous pour ajouter une marchandise
+                            au stock.</p>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -29,14 +29,12 @@
             </div>
         </div>
 
-        <!-- Zone de Contenu Principal (Une seule section) -->
         <section class="content">
             <div class="container-fluid">
 
                 {{ form_start(form) }}
 
                 <div class="row">
-                    <!-- BLOC GAUCHE : IDENTIFICATION & FINANCES -->
                     <div class="col-md-8">
                         <div class="card card-outline card-success shadow-sm">
                             <div class="card-header bg-white">
@@ -47,29 +45,28 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     {{ form_label(form.libelle) }}
-                                    {{ form_widget(form.libelle) }}
+                                    {{ form_widget(form.libelle, {'attr': {'class': 'form-control'}}) }}
                                     {{ form_errors(form.libelle) }}
                                 </div>
 
                                 <div class="form-group">
                                     {{ form_label(form.reference) }}
-                                    {{ form_widget(form.reference) }}
+                                    {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
                                     {{ form_errors(form.reference) }}
                                 </div>
 
-                                <!-- SOUS-SECTION DES PRIX -->
                                 <div class="row bg-light p-3 rounded border my-3 mx-0">
                                     <div class="col-md-6">
                                         <div class="form-group mb-0">
                                             {{ form_label(form.prixAchat) }}
-                                            {{ form_widget(form.prixAchat) }}
+                                            {{ form_widget(form.prixAchat, {'attr': {'class': 'form-control'}}) }}
                                             {{ form_errors(form.prixAchat) }}
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-0">
                                             {{ form_label(form.prixVente) }}
-                                            {{ form_widget(form.prixVente) }}
+                                            {{ form_widget(form.prixVente, {'attr': {'class': 'form-control'}}) }}
                                             {{ form_errors(form.prixVente) }}
                                         </div>
                                     </div>
@@ -78,9 +75,7 @@
                         </div>
                     </div>
 
-                    <!-- BLOC DROITE : PARAMÈTRES DE STOCK & LOGISTIQUE -->
                     <div class="col-md-4">
-                        <!-- Seuils d'alertes -->
                         <div class="card card-default shadow-sm" id="manual_threshold_container">
                             <div class="card-header bg-white">
                                 <h3 class="card-title font-weight-bold text-secondary">
@@ -90,35 +85,39 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     {{ form_label(form.limitStock) }}
-                                    {{ form_widget(form.limitStock) }}
+                                    {{ form_widget(form.limitStock, {'attr': {'class': 'form-control'}}) }}
                                     {{ form_errors(form.limitStock) }}
                                 </div>
                                 <div class="form-group mb-0">
                                     {{ form_label(form.stockOptimal) }}
-                                    {{ form_widget(form.stockOptimal) }}
+                                    {{ form_widget(form.stockOptimal, {'attr': {'class': 'form-control'}}) }}
                                     {{ form_errors(form.stockOptimal) }}
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Emplacement Logistique -->
                         <div class="card card-outline card-warning shadow-sm">
                             <div class="card-header bg-white">
                                 <h3 class="card-title font-weight-bold text-dark">
-                                    <i class="fas fa-warehouse text-warning mr-2"></i> Emplacement
+                                    <i class="fas fa-warehouse text-warning mr-2"></i> Emplacement Cible
                                 </h3>
                             </div>
                             <div class="card-body">
                                 {% if estResponsable %}
-                                    <div class="alert alert-info border-0 shadow-sm p-2 mb-3">
-                                        <i class="fas fa-user-shield mr-1"></i> <b>Logistique simplifiée :</b> En tant que responsable, cet article est rattaché directement à votre zone de dépôt.
+                                    <div class="alert alert-info border-0 shadow-sm p-2 mb-3 text-xs">
+                                        <i class="fas fa-user-shield mr-1"></i> <b>Logistique restreinte :</b>
+                                        Sélectionnez le dépôt sous votre responsabilité directe.
                                     </div>
                                 {% endif %}
 
                                 <div class="form-group mb-0">
                                     {{ form_label(form.entrepots) }}
+                                    {# Le widget hérite maintenant du format select unique configuré en PHP #}
                                     {{ form_widget(form.entrepots) }}
-                                    {{ form_help(form.entrepots) }}
+                                    <small class="form-text text-muted mt-2">
+                                        <i class="fas fa-info-circle text-xs mr-1"></i> Cet article ne peut être
+                                        rattaché qu'à un seul site au moment de sa création.
+                                    </small>
                                     {{ form_errors(form.entrepots) }}
                                 </div>
                             </div>
@@ -126,7 +125,6 @@
                     </div>
                 </div>
 
-                <!-- Boutons de validation -->
                 <div class="row mb-5">
                     <div class="col-12 text-right">
                         <hr class="bg-white">
@@ -144,7 +142,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <!-- SCRIPT UX POUR LES RADIOS ALERTE IA / MANUELLE -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var radioIa = document.getElementById('alert_ia');
@@ -152,10 +149,8 @@
             var manualContainer = document.getElementById('manual_threshold_container');
 
             if (radioIa && radioManual && manualContainer) {
-                // Initialisation au chargement de la page
                 if (radioIa.checked) manualContainer.classList.add('d-none');
 
-                // Écouteurs de changement
                 radioIa.addEventListener('change', function () {
                     if (this.checked) manualContainer.classList.add('d-none');
                 });

@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'ایجاد و ادامه ویرایش',
         'save' => 'ذخیره تغییرات',
         'save_and_continue' => 'ذخیره کردن و ادامه ویرایش',
+        'toggle_dropdown' => 'تغییر منوی کشویی',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'واقعا می‌خواهید این آیتم را حذف کنید؟',
         'content' => 'این عملیات غیرقابل بازگشت است.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'آیا مطمئن هستید که می‌خواهید %action_name%؟',
+        'action' => 'تأیید',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'کوچکتر یا مساوی با',
         'label.is_between' => 'در بین',
         'label.contains' => 'شامل',
+        'label.contains_all' => 'شامل همه',
         'label.not_contains' => 'شامل نمی‌شود',
         'label.starts_with' => 'شروع می‌شود با',
         'label.ends_with' => 'پایان می‌یابد با',
@@ -124,6 +131,10 @@ return [
         'entity_remove' => 'این آیتم را نمی توان حذف کرد زیرا آیتم‌های دیگر به آن وابسته هستند.',
         'forbidden_action' => 'عملیات درخواستی در مورد این آیتم قابل انجام نیست.',
         'insufficient_entity_permission' => 'شما اجازه دسترسی به این آیتم را ندارید.',
+        'general' => 'An error occurred while processing your request.',
+        'general_403' => 'You don\'t have permission to perform this action.',
+        'general_404' => 'The requested page could not be found.',
+        'general_500' => 'An internal error occurred while processing your request.',
     ],
 
     'autocomplete' => [

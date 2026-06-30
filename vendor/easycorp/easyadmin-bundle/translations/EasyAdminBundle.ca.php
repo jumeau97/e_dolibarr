@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Crear i continuar editant',
         'save' => 'Desar els canvis',
         'save_and_continue' => 'Desar i continuar editant',
+        'toggle_dropdown' => 'Commuta el menú desplegable',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Realment vols esborrar aquest element?',
         'content' => 'Aquesta acció no es pot desfer.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Estàs segur que vols %action_name%?',
+        'action' => 'Confirmar',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'és menor o igual a',
         'label.is_between' => 'està entre',
         'label.contains' => 'conté',
+        'label.contains_all' => 'conté tot',
         'label.not_contains' => 'no conté',
         'label.starts_with' => 'comença amb',
         'label.ends_with' => 'acaba amb',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => 'Aquest element no es pot suprimir perquè altres elements en depenen.',
         'forbidden_action' => 'L\'acció sol·licitada no es pot dur a terme en aquest element.',
         'insufficient_entity_permission' => 'No tens permís per accedir a aquest element.',
+        'general' => 'S\'ha produït un error en processar la sol·licitud.',
+        'general_403' => 'No tens permís per realitzar aquesta acció.',
+        'general_404' => 'No s\'ha trobat la pàgina sol·licitada.',
+        'general_500' => 'S\'ha produït un error intern en processar la sol·licitud.',
     ],
 
     'autocomplete' => [

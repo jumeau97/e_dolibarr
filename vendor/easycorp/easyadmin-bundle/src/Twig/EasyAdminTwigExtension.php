@@ -3,10 +3,10 @@
 namespace EasyCorp\Bundle\EasyAdminBundle\Twig;
 
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Context\AdminContextInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Provider\AdminContextProviderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\FieldLayoutDto;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\FormLayoutFactory;
-use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGeneratorInterface;
 use Symfony\Component\AssetMapper\ImportMap\ImportMapRenderer;
 use Symfony\Component\DependencyInjection\ServiceLocator;
@@ -45,6 +45,7 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('ea', [$this, 'ea']),
             new TwigFunction('ea_url', [$this, 'getAdminUrlGenerator']),
             new TwigFunction('ea_form_ealabel', null, ['node_class' => 'Symfony\Bridge\Twig\Node\SearchAndRenderBlockNode', 'is_safe' => ['html']]),
             // deprecated functions
@@ -62,6 +63,7 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
             new TwigFilter('ea_flatten_array', [$this, 'flattenArray']),
             new TwigFilter('ea_filesize', [$this, 'fileSize']),
             new TwigFilter('ea_as_string', [$this, 'representAsString']),
+            new TwigFilter('ea_html_attrs', [$this, 'processHtmlAttributes']),
             // deprecated filters
             new TwigFilter('ea_apply_filter_if_exists', [$this, 'applyFilterIfExists'], ['needs_environment' => true, 'deprecation_info' => new DeprecatedCallableInfo('easycorp/easyadmin-bundle', '4.21.0', 'No alternative is provided because it\'s no longer needed thanks to the Twig guard tag.')]),
         ];
@@ -69,8 +71,12 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
 
     public function getGlobals(): array
     {
-        // this is needed to make the admin context available on any Twig template via the short named variable 'ea'
         return ['ea' => $this->adminContextProvider];
+    }
+
+    public function ea(): ?AdminContextInterface
+    {
+        return $this->adminContextProvider->getContext();
     }
 
     /**
@@ -82,8 +88,31 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
      *
      * @return mixed[]
      */
-    public function flattenArray($array, $parentKey = null): array
+    public function flattenArray(/* array */ $array, /* ?string */ $parentKey = null): array
     {
+        if (!\is_array($array)) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.27.0',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$array',
+                __METHOD__,
+                '"array"',
+                \gettype($array)
+            );
+        }
+        if (!\is_string($parentKey) && null !== $parentKey) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.27.0',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$parentKey',
+                __METHOD__,
+                '"string" or "null"',
+                \gettype($parentKey)
+            );
+        }
+
         $flattenedArray = [];
 
         foreach ($array as $flattenedKey => $value) {
@@ -97,6 +126,26 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
         }
 
         return $flattenedArray;
+    }
+
+    /**
+     * Processes an array of HTML attributes, translating any TranslatableInterface values.
+     * This is needed because Twig Components don't accept non-scalar attribute values.
+     *
+     * @param array<string, mixed> $attributes
+     *
+     * @return array<string, mixed>
+     */
+    public function processHtmlAttributes(array $attributes): array
+    {
+        $processed = [];
+        foreach ($attributes as $name => $value) {
+            $processed[$name] = $value instanceof TranslatableInterface
+                ? $value->trans($this->translator)
+                : $value;
+        }
+
+        return $processed;
     }
 
     public function fileSize(int $bytes): string
@@ -138,7 +187,9 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
         }
 
         if (\is_array($callback) && 2 === \count($callback)) {
-            $callback = [$environment->getRuntime(array_shift($callback)), array_pop($callback)];
+            /** @var class-string $runtimeClass */
+            $runtimeClass = array_shift($callback);
+            $callback = [$environment->getRuntime($runtimeClass), array_pop($callback)];
             if (!\is_callable($callback)) {
                 throw new RuntimeError(sprintf('Unable to load runtime for filter: "%s"', $filterName));
             }
@@ -189,7 +240,7 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
                 return $value->trans($this->translator);
             }
 
-            if (method_exists($value, '__toString')) {
+            if ($value instanceof \Stringable) {
                 return (string) $value;
             }
 
@@ -222,12 +273,31 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
             return '';
         }
 
-        return $function->getCallable()(...$functionArguments);
+        $callback = $function->getCallable();
+        if (\is_callable($callback)) {
+            return \call_user_func($callback, ...$functionArguments);
+        }
+
+        if (\is_array($callback) && 2 === \count($callback)) {
+            /** @var class-string $runtimeClass */
+            $runtimeClass = array_shift($callback);
+            $callback = [$environment->getRuntime($runtimeClass), array_pop($callback)];
+            if (!\is_callable($callback)) {
+                throw new RuntimeError(sprintf('Unable to load runtime for function: "%s"', $functionName));
+            }
+
+            return \call_user_func($callback, ...$functionArguments);
+        }
+
+        throw new RuntimeError(sprintf('Invalid callback for function: "%s"', $functionName));
     }
 
+    /**
+     * @param array<string, mixed> $queryParameters
+     */
     public function getAdminUrlGenerator(array $queryParameters = []): AdminUrlGeneratorInterface
     {
-        return $this->serviceLocator->get(AdminUrlGenerator::class)->setAll($queryParameters);
+        return $this->serviceLocator->get(AdminUrlGeneratorInterface::class)->setAll($queryParameters);
     }
 
     /**
@@ -250,6 +320,9 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
     /**
      * We need to recreate the 'importmap()' Twig function from Symfony because calling it
      * via 'ea_call_function_if_exists('importmap', '...')' doesn't work.
+     *
+     * @param string|array<string>       $entryPoint
+     * @param array<string, string|true> $attributes
      */
     public function renderImportmap(string|array $entryPoint = 'app', array $attributes = []): string
     {
@@ -263,6 +336,8 @@ class EasyAdminTwigExtension extends AbstractExtension implements GlobalsInterfa
     /**
      * We need to recreate the 'ux_icon()' Twig function from Symfony because calling it
      * via 'ea_call_function_if_exists('ux_icon', '...')' doesn't work.
+     *
+     * @param array<string, string|bool|int|float> $attributes
      */
     public function renderIcon(string $name, array $attributes = []): string
     {

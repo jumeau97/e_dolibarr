@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Zapisz i kontynuuj',
         'save' => 'Zapisz',
         'save_and_continue' => 'Zapisz i kontynuuj',
+        'toggle_dropdown' => 'Przełącz menu rozwijane',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Czy na pewno chcesz usunąć ten element?',
         'content' => 'Tej operacji nie można cofnąć.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Czy na pewno chcesz wykonać akcję "%action_name%"?',
+        'action' => 'Potwierdź',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'mniejszy lub równy',
         'label.is_between' => 'pomiędzy',
         'label.contains' => 'zawiera',
+        'label.contains_all' => 'zawiera wszystkie',
         'label.not_contains' => 'nie zawiera',
         'label.starts_with' => 'zaczyna się od',
         'label.ends_with' => 'kończy się na',
@@ -134,11 +141,15 @@ return [
         'entity_remove' => 'Ten obiekt nie może być usunięty ponieważ istnieją inne, które są z nim powiązane.',
         'forbidden_action' => 'Na tej pozycji nie można wykonać wybranej akcji.',
         'insufficient_entity_permission' => 'Nie masz uprawnień do tego obiektu.',
+        'general' => 'Wystąpił błąd podczas przetwarzania żądania.',
+        'general_403' => 'Nie masz uprawnień do wykonania tej akcji.',
+        'general_404' => 'Nie znaleziono żądanej strony.',
+        'general_500' => 'Wystąpił wewnętrzny błąd podczas przetwarzania żądania.',
     ],
 
     'autocomplete' => [
         'no-results-found' => 'Brak wyników',
-        // 'no-more-results' => 'No more results',
+        'no-more-results' => 'Brak kolejnych wyników',
         'loading-more-results' => 'Trwa ładowanie…',
     ],
 ];

@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Създай и продължи редакцията',
         'save' => 'Запиши',
         'save_and_continue' => 'Запиши и продължи редакцията',
+        'toggle_dropdown' => 'Превключване на падащото меню',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Наистина ли желаете да изтриете записа?',
         'content' => 'Това действие е необратимо.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Сигурни ли сте, че искате да %action_name%?',
+        'action' => 'Потвърди',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'е по-малко или равно на',
         'label.is_between' => 'е между',
         'label.contains' => 'съдържа',
+        'label.contains_all' => 'съдържа всички',
         'label.not_contains' => 'не съдържа',
         'label.starts_with' => 'започва с',
         'label.ends_with' => 'завършва със',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => 'Този запис не може да бъде изтрит, защото други записи зависят от него.',
         'forbidden_action' => 'Заявеното действие не може да се изпълни за този запис.',
         'insufficient_entity_permission' => 'Нямате разрешение за достъп до този запис.',
+        'general' => 'Възникна грешка при обработката на заявката ви.',
+        'general_403' => 'Нямате разрешение за извършване на това действие.',
+        'general_404' => 'Заявената страница не е намерена.',
+        'general_500' => 'Възникна вътрешна грешка при обработката на заявката ви.',
     ],
 
     'autocomplete' => [

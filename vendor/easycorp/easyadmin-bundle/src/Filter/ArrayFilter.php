@@ -3,6 +3,7 @@
 namespace EasyCorp\Bundle\EasyAdminBundle\Filter;
 
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Query\Expr\Andx;
 use Doctrine\ORM\Query\Expr\Orx;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Filter\FilterInterface;
@@ -34,6 +35,9 @@ final class ArrayFilter implements FilterInterface
             ->setFormTypeOption('translation_domain', 'EasyAdminBundle');
     }
 
+    /**
+     * @param array<mixed> $choices
+     */
     public function setChoices(array $choices): self
     {
         $this->dto->setFormTypeOption('value_type_options.choices', $choices);
@@ -41,10 +45,13 @@ final class ArrayFilter implements FilterInterface
         return $this;
     }
 
+    /**
+     * @param array<string|TranslatableInterface> $choiceGenerator
+     */
     public function setTranslatableChoices(array $choiceGenerator): self
     {
         $this->dto->setFormTypeOption('value_type_options.choices', array_keys($choiceGenerator));
-        $this->dto->setFormTypeOption('value_type_options.choice_label', fn ($value) => $choiceGenerator[$value]);
+        $this->dto->setFormTypeOption('value_type_options.choice_label', static fn ($value) => $choiceGenerator[$value]);
 
         return $this;
     }
@@ -69,16 +76,17 @@ final class ArrayFilter implements FilterInterface
         if (null === $value || [] === $value) {
             $queryBuilder->andWhere(sprintf('%s.%s %s', $alias, $property, $comparison));
         } else {
-            $orX = new Orx();
+            $clause = ComparisonType::CONTAINS_ALL === $comparison ? new Andx() : new Orx();
+            $comparison = ComparisonType::CONTAINS_ALL === $comparison ? 'LIKE' : $comparison;
             foreach ($value as $key => $item) {
                 $itemParameterName = sprintf('%s_%s', $parameterName, $key);
-                $orX->add(sprintf('%s.%s %s :%s', $alias, $property, $comparison, $itemParameterName));
+                $clause->add(sprintf('%s.%s %s :%s', $alias, $property, $comparison, $itemParameterName));
                 $queryBuilder->setParameter($itemParameterName, $useQuotes ? '%"'.$item.'"%' : '%'.$item.'%');
             }
             if (ComparisonType::NOT_CONTAINS === $comparison) {
-                $orX->add(sprintf('%s.%s IS NULL', $alias, $property));
+                $clause->add(sprintf('%s.%s IS NULL', $alias, $property));
             }
-            $queryBuilder->andWhere($orX);
+            $queryBuilder->andWhere($clause);
         }
     }
 }

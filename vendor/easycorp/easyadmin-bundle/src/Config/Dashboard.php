@@ -110,6 +110,9 @@ final class Dashboard
         return $this;
     }
 
+    /**
+     * @param array<Locale|string> $locales
+     */
     public function setLocales(array $locales): self
     {
         $localeDtos = [];
@@ -124,6 +127,13 @@ final class Dashboard
         }
 
         $this->dto->setLocales($localeDtos);
+
+        return $this;
+    }
+
+    public function useEntityTranslations(bool $useEntityTranslations = true): self
+    {
+        $this->dto->setUseEntityTranslations($useEntityTranslations);
 
         return $this;
     }

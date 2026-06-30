@@ -24,6 +24,7 @@ final class FormField implements FieldInterface
     public const OPTION_TAB_ID = 'tabId';
     public const OPTION_TAB_IS_ACTIVE = 'tabIsActive';
     public const OPTION_TAB_ERROR_COUNT = 'tabErrorCount';
+    public const OPTION_FIELDSET_ERROR_COUNT = 'fieldsetErrorCount';
 
     /**
      * @internal Use the other named constructors instead (addPanel(), etc.)
@@ -54,8 +55,20 @@ final class FormField implements FieldInterface
      * @param TranslatableInterface|string|false|null $label
      * @param string|null                             $icon  The full CSS classes of the FontAwesome icon to render (see https://fontawesome.com/v6/search?m=free)
      */
-    public static function addFieldset($label = false, ?string $icon = null, ?string $propertySuffix = null): self
+    public static function addFieldset(/* TranslatableInterface|string|false|null */ $label = false, ?string $icon = null, ?string $propertySuffix = null): self
     {
+        if (!\is_string($label) && !$label instanceof TranslatableInterface && false !== $label && null !== $label) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.27.0',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$label',
+                __METHOD__,
+                '"string" or "TranslatableInterface" or "false" or "null"',
+                \gettype($label)
+            );
+        }
+
         $field = new self();
 
         return $field
@@ -70,6 +83,7 @@ final class FormField implements FieldInterface
             ->setCustomOption(self::OPTION_ICON, $icon)
             ->setCustomOption(self::OPTION_COLLAPSIBLE, false)
             ->setCustomOption(self::OPTION_COLLAPSED, false)
+            ->setCustomOption(self::OPTION_FIELDSET_ERROR_COUNT, 0)
             ->setValue(true);
     }
 

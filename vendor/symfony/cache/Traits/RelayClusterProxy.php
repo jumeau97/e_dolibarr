@@ -13,6 +13,10 @@ namespace Symfony\Component\Cache\Traits;
 
 use Relay\Cluster;
 use Relay\Relay;
+use Symfony\Component\Cache\Traits\Relay\RelayCluster11Trait;
+use Symfony\Component\Cache\Traits\Relay\RelayCluster121Trait;
+use Symfony\Component\Cache\Traits\Relay\RelayCluster12Trait;
+use Symfony\Component\Cache\Traits\Relay\RelayCluster20Trait;
 use Symfony\Component\VarExporter\LazyObjectInterface;
 use Symfony\Contracts\Service\ResetInterface;
 
@@ -29,6 +33,10 @@ class RelayClusterProxy extends Cluster implements ResetInterface, LazyObjectInt
     use RedisProxyTrait {
         resetLazyObject as reset;
     }
+    use RelayCluster11Trait;
+    use RelayCluster121Trait;
+    use RelayCluster12Trait;
+    use RelayCluster20Trait;
 
     public function __construct(
         ?string $name,
@@ -185,11 +193,6 @@ class RelayClusterProxy extends Cluster implements ResetInterface, LazyObjectInt
     public function dbsize(array|string $key_or_address): Cluster|int|false
     {
         return $this->initializeLazyObject()->dbsize(...\func_get_args());
-    }
-
-    public function waitaof(array|string $key_or_address, int $numlocal, int $numremote, int $timeout): Relay|array|false
-    {
-        return $this->initializeLazyObject()->waitaof(...\func_get_args());
     }
 
     public function restore(mixed $key, int $ttl, string $value, ?array $options = null): Cluster|bool
@@ -512,14 +515,14 @@ class RelayClusterProxy extends Cluster implements ResetInterface, LazyObjectInt
         return $this->initializeLazyObject()->expiretime(...\func_get_args());
     }
 
+    public function getWithMeta($key): Cluster|array|false
+    {
+        return $this->initializeLazyObject()->getWithMeta(...\func_get_args());
+    }
+
     public function pexpireat(mixed $key, int $timestamp_ms): Cluster|bool
     {
         return $this->initializeLazyObject()->pexpireat(...\func_get_args());
-    }
-
-    public static function flushMemory(?string $endpointId = null, ?int $db = null): bool
-    {
-        return Cluster::flushMemory(...\func_get_args());
     }
 
     public function pexpiretime(mixed $key): Cluster|false|int
@@ -660,11 +663,6 @@ class RelayClusterProxy extends Cluster implements ResetInterface, LazyObjectInt
     public function ltrim(mixed $key, int $start, int $end): Cluster|bool
     {
         return $this->initializeLazyObject()->ltrim(...\func_get_args());
-    }
-
-    public static function maxMemory(): int
-    {
-        return Cluster::maxMemory();
     }
 
     public function hget(mixed $key, mixed $member): mixed

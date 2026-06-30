@@ -61,27 +61,32 @@ trait FieldTrait
     /**
      * @param TranslatableInterface|string|false|null $label
      */
-    public function setLabel($label): self
+    public function setLabel(/* TranslatableInterface|string|false|null */ $label): self
     {
+        if (!\is_string($label) && !$label instanceof TranslatableInterface && false !== $label && null !== $label) {
+            trigger_deprecation(
+                'easycorp/easyadmin-bundle',
+                '4.27.0',
+                'Argument "%s" for "%s" must be one of these types: %s. Passing type "%s" will cause an error in 5.0.0.',
+                '$label',
+                __METHOD__,
+                '"string" or "TranslatableInterface" or "false" or "null"',
+                \gettype($label)
+            );
+        }
         $this->dto->setLabel($label);
 
         return $this;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function setValue($value): self
+    public function setValue(mixed $value): self
     {
         $this->dto->setValue($value);
 
         return $this;
     }
 
-    /**
-     * @param mixed $value
-     */
-    public function setFormattedValue($value): self
+    public function setFormattedValue(mixed $value): self
     {
         $this->dto->setFormattedValue($value);
 
@@ -116,10 +121,7 @@ trait FieldTrait
         return $this;
     }
 
-    /**
-     * @param mixed $emptyData
-     */
-    public function setEmptyData($emptyData = null): self
+    public function setEmptyData(mixed $emptyData = null): self
     {
         $this->dto->setFormTypeOption('empty_data', $emptyData);
 
@@ -133,6 +135,9 @@ trait FieldTrait
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function setFormTypeOptions(array $options): self
     {
         $this->dto->setFormTypeOptions($options);
@@ -186,6 +191,9 @@ trait FieldTrait
         return $this;
     }
 
+    /**
+     * @param array<string, bool|int|float|string> $attributes
+     */
     public function setHtmlAttributes(array $attributes): self
     {
         foreach ($attributes as $attributeName => $attributeValue) {
@@ -245,6 +253,9 @@ trait FieldTrait
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $parameters
+     */
     public function setTranslationParameters(array $parameters): self
     {
         $this->dto->setTranslationParameters($parameters);
@@ -365,6 +376,9 @@ trait FieldTrait
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function setCustomOptions(array $options): self
     {
         $this->dto->setCustomOptions($options);

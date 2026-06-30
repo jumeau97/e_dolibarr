@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Option\EA;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Provider\AdminContextProviderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\BatchActionDto;
-use EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
@@ -48,15 +47,21 @@ if (interface_exists(ValueResolverInterface::class)) {
 
         private function getReferrerUrl(AdminContext $adminContext, Request $request): string
         {
-            $urlUsesPrettyUrls = $request->attributes->has(EA::CRUD_CONTROLLER_FQCN);
-            if ($urlUsesPrettyUrls) {
-                $crudControllerFqcn = $request->attributes->get(EA::CRUD_CONTROLLER_FQCN);
-            } else {
+            $crudControllerFqcn = $request->attributes->get(EA::CRUD_CONTROLLER_FQCN);
+
+            if (null === $crudControllerFqcn) {
                 $batchActionUrl = $adminContext->getRequest()->request->get(EA::BATCH_ACTION_URL);
-                $batchActionUrlQueryString = parse_url($batchActionUrl, \PHP_URL_QUERY);
-                parse_str($batchActionUrlQueryString, $batchActionUrlParts);
-                $batchActionUrlParts = $request->query->all();
+                if (null !== $batchActionUrl) {
+                    $batchActionUrlQueryString = parse_url($batchActionUrl, \PHP_URL_QUERY);
+                    parse_str($batchActionUrlQueryString ?? '', $batchActionUrlParts);
+                } else {
+                    $batchActionUrlParts = $request->query->all();
+                }
                 $crudControllerFqcn = $batchActionUrlParts[EA::CRUD_CONTROLLER_FQCN] ?? null;
+            }
+
+            if (null === $crudControllerFqcn) {
+                throw new \RuntimeException('The batch action could not be processed because the CRUD controller FQCN could not be determined from the request.');
             }
 
             return $this->adminUrlGenerator
@@ -71,13 +76,8 @@ if (interface_exists(ValueResolverInterface::class)) {
 } else {
     final class BatchActionDtoResolver implements ArgumentValueResolverInterface
     {
-        private AdminContextProvider $adminContextProvider;
-        private AdminUrlGeneratorInterface $adminUrlGenerator;
-
-        public function __construct(AdminContextProviderInterface $adminContextProvider, AdminUrlGeneratorInterface $adminUrlGenerator)
+        public function __construct(private readonly AdminContextProviderInterface $adminContextProvider, private readonly AdminUrlGeneratorInterface $adminUrlGenerator)
         {
-            $this->adminContextProvider = $adminContextProvider;
-            $this->adminUrlGenerator = $adminUrlGenerator;
         }
 
         public function supports(Request $request, ArgumentMetadata $argument): bool
@@ -103,15 +103,21 @@ if (interface_exists(ValueResolverInterface::class)) {
 
         private function getReferrerUrl(AdminContext $adminContext, Request $request): string
         {
-            $urlUsesPrettyUrls = $request->attributes->has(EA::CRUD_CONTROLLER_FQCN);
-            if ($urlUsesPrettyUrls) {
-                $crudControllerFqcn = $request->attributes->get(EA::CRUD_CONTROLLER_FQCN);
-            } else {
+            $crudControllerFqcn = $request->attributes->get(EA::CRUD_CONTROLLER_FQCN);
+
+            if (null === $crudControllerFqcn) {
                 $batchActionUrl = $adminContext->getRequest()->request->get(EA::BATCH_ACTION_URL);
-                $batchActionUrlQueryString = parse_url($batchActionUrl, \PHP_URL_QUERY);
-                parse_str($batchActionUrlQueryString, $batchActionUrlParts);
-                $batchActionUrlParts = $request->query->all();
+                if (null !== $batchActionUrl) {
+                    $batchActionUrlQueryString = parse_url($batchActionUrl, \PHP_URL_QUERY);
+                    parse_str($batchActionUrlQueryString ?? '', $batchActionUrlParts);
+                } else {
+                    $batchActionUrlParts = $request->query->all();
+                }
                 $crudControllerFqcn = $batchActionUrlParts[EA::CRUD_CONTROLLER_FQCN] ?? null;
+            }
+
+            if (null === $crudControllerFqcn) {
+                throw new \RuntimeException('The batch action could not be processed because the CRUD controller FQCN could not be determined from the request.');
             }
 
             return $this->adminUrlGenerator

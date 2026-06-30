@@ -6,6 +6,7 @@ use App\Repository\EntrepotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: EntrepotRepository::class)]
 class Entrepot
@@ -13,25 +14,29 @@ class Entrepot
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["getEntrepot", "getProduct"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getEntrepot", "getProduct"])]
     private ?string $lieu = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["getEntrepot", "getProduct"])]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getEntrepot","getProduct"])]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getEntrepot", "getProduct"])]
     private ?string $town = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["getEntrepot", "getProduct"])]
     private ?string $phone = null;
 
-    #[ORM\Column]
-    private ?bool $status = null;
 
     /**
      * @var Collection<int, Produit>
@@ -39,9 +44,27 @@ class Entrepot
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'entrepots')]
     private Collection $produits;
 
+    /**
+     * @var Collection<int, StockMovement>
+     */
+    #[ORM\OneToMany(targetEntity: StockMovement::class, mappedBy: 'entrepotSource')]
+    private Collection $stockMovements;
+
+    /**
+     * @var Collection<int, EntrepotStock>
+     */
+    #[ORM\OneToMany(targetEntity: EntrepotStock::class, mappedBy: 'entrepot')]
+    private Collection $entrepotStocks;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["getEntrepot", "getProduct"])]
+    private ?string $status = null;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->stockMovements = new ArrayCollection();
+        $this->entrepotStocks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,18 +132,6 @@ class Entrepot
         return $this;
     }
 
-    public function isStatus(): ?bool
-    {
-        return $this->status;
-    }
-
-    public function setStatus(bool $status): static
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Produit>
      */
@@ -144,6 +155,78 @@ class Entrepot
         if ($this->produits->removeElement($produit)) {
             $produit->removeEntrepot($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, StockMovement>
+     */
+    public function getStockMovements(): Collection
+    {
+        return $this->stockMovements;
+    }
+
+    public function addStockMovement(StockMovement $stockMovement): static
+    {
+        if (!$this->stockMovements->contains($stockMovement)) {
+            $this->stockMovements->add($stockMovement);
+            $stockMovement->setEntrepotSource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockMovement(StockMovement $stockMovement): static
+    {
+        if ($this->stockMovements->removeElement($stockMovement)) {
+            // set the owning side to null (unless already changed)
+            if ($stockMovement->getEntrepotSource() === $this) {
+                $stockMovement->setEntrepotSource(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EntrepotStock>
+     */
+    public function getEntrepotStocks(): Collection
+    {
+        return $this->entrepotStocks;
+    }
+
+    public function addEntrepotStock(EntrepotStock $entrepotStock): static
+    {
+        if (!$this->entrepotStocks->contains($entrepotStock)) {
+            $this->entrepotStocks->add($entrepotStock);
+            $entrepotStock->setEntrepot($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntrepotStock(EntrepotStock $entrepotStock): static
+    {
+        if ($this->entrepotStocks->removeElement($entrepotStock)) {
+            // set the owning side to null (unless already changed)
+            if ($entrepotStock->getEntrepot() === $this) {
+                $entrepotStock->setEntrepot(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

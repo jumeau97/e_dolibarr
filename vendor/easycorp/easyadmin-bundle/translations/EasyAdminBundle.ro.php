@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Crează și continuă editarea',
         'save' => 'Salvează modificarile',
         'save_and_continue' => 'Salvează și continuă editarea',
+        'toggle_dropdown' => 'Comutați meniul drop-down',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Ești sigur că vrei să ștergi acest item?',
         'content' => 'Nu există posibilitatea de a reveni asupra acestei decizii.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Ești sigur că vrei să %action_name%?',
+        'action' => 'Confirmă',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'este mai mic sau egal cu',
         'label.is_between' => 'e între',
         'label.contains' => 'conține',
+        'label.contains_all' => 'conține tot',
         'label.not_contains' => 'nu conține',
         'label.starts_with' => 'începe cu',
         'label.ends_with' => 'termină cu',
@@ -99,7 +106,7 @@ return [
 
     'form' => [
         'are_you_sure' => 'Nu ați salvat modificările.',
-        'tab.error_badge_title' => '1 câmp nevalid |% count% câmpuri nevalide',
+        'tab.error_badge_title' => '1 câmp nevalid|%count% câmpuri nevalide',
         'slug.confirm_text' => 'Dacă modificați slug-ul, veți strica link-urile pe alte pagini.',
     ],
 
@@ -134,6 +141,10 @@ return [
         'entity_remove' => 'Acest item nu poate fi șters deoarece alte iteme depind de acesta.',
         'forbidden_action' => 'Acțiunea solicitată nu poate fi efectuată asupra acestui item.',
         'insufficient_entity_permission' => 'Nu sunteți autorizat să accesați acest item.',
+        'general' => 'A apărut o eroare la procesarea solicitării dumneavoastră.',
+        'general_403' => 'Nu aveți permisiunea de a efectua această acțiune.',
+        'general_404' => 'Pagina solicitată nu a fost găsită.',
+        'general_500' => 'A apărut o eroare internă la procesarea solicitării dumneavoastră.',
     ],
 
     'autocomplete' => [

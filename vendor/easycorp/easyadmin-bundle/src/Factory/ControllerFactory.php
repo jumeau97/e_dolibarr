@@ -2,6 +2,7 @@
 
 namespace EasyCorp\Bundle\EasyAdminBundle\Factory;
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +14,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 final class ControllerFactory
 {
-    private ControllerResolverInterface $controllerResolver;
-
-    public function __construct(ControllerResolverInterface $controllerResolver)
+    public function __construct(private readonly ControllerResolverInterface $controllerResolver)
     {
-        $this->controllerResolver = $controllerResolver;
     }
 
     public function getDashboardControllerInstance(string $controllerFqcn, Request $request): ?DashboardControllerInterface
@@ -36,7 +34,7 @@ final class ControllerFactory
 
     private function getDashboardController(?string $dashboardControllerFqcn, Request $request): ?DashboardControllerInterface
     {
-        return $this->getController(DashboardControllerInterface::class, $dashboardControllerFqcn, 'index', $request);
+        return $this->getController(DashboardControllerInterface::class, $dashboardControllerFqcn, Action::INDEX, $request);
     }
 
     private function getCrudController(?string $crudControllerFqcn, ?string $crudAction, Request $request): ?CrudControllerInterface
@@ -44,6 +42,13 @@ final class ControllerFactory
         return $this->getController(CrudControllerInterface::class, $crudControllerFqcn, $crudAction, $request);
     }
 
+    /**
+     * @template T of object
+     *
+     * @param class-string<T> $controllerInterface
+     *
+     * @return T|null
+     */
     private function getController(string $controllerInterface, ?string $controllerFqcn, ?string $controllerAction, Request $request): ?object
     {
         if (null === $controllerFqcn || null === $controllerAction) {
@@ -68,6 +73,9 @@ final class ControllerFactory
         }
 
         $controllerInstance = $controllerCallable[0];
+        if (!\is_object($controllerInstance)) {
+            return null;
+        }
 
         return is_subclass_of($controllerInstance, $controllerInterface) ? $controllerInstance : null;
     }

@@ -232,9 +232,9 @@ class TwigComponentDebugCommand extends Command
             ['Properties', implode("\n", $this->getComponentProperties($metadata))],
         ]);
 
-        $logMethod = function (\ReflectionMethod $m) {
+        $logMethod = static function (\ReflectionMethod $m) {
             $params = array_map(
-                fn (\ReflectionParameter $p) => '$'.$p->getName(),
+                static fn (\ReflectionParameter $p) => '$'.$p->getName(),
                 $m->getParameters(),
             );
 
@@ -298,7 +298,7 @@ class TwigComponentDebugCommand extends Command
                 } else {
                     $typeName = (string) $type;
                 }
-                $value = $property->getDefaultValue();
+                $value = $property->hasDefaultValue() ? $property->getDefaultValue() : null;
                 $propertyDisplay = $typeName.' $'.$propertyName.(null !== $value ? ' = '.json_encode($value) : '');
                 $properties[$property->name] = $propertyDisplay;
             }

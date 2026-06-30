@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Stocks{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <!-- EN-TÊTE DE LA PAGE -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-boxes text-indigo mr-2"></i> État du Stock
+                        </h1>
+                        <p class="text-muted text-sm mb-0">Visualisez l'état de vos stocks physiques, virtuels ainsi que les flux de marchandises entrants et sortants.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENU PRINCIPAL -->
+     {{ component('StockComponent') }}
+    </div>
+
+
+{% endblock %}

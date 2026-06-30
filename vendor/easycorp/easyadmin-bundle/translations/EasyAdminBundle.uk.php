@@ -59,6 +59,7 @@ return [
         'create_and_continue' => 'Створити і продовжити',
         'save' => 'Зберегти',
         'save_and_continue' => 'Зберегти і продовжити',
+        'toggle_dropdown' => 'Перемкнути випадаюче меню',
     ],
 
     'batch_action_modal' => [
@@ -70,6 +71,11 @@ return [
     'delete_modal' => [
         'title' => 'Ви дійсно бажаєте видалити цей об\'єкт?',
         'content' => 'Цю дію не можна буде відмінити.',
+    ],
+
+    'action_confirmation_modal' => [
+        'title' => 'Ви впевнені, що хочете %action_name%?',
+        'action' => 'Підтвердити',
     ],
 
     'filter' => [
@@ -84,6 +90,7 @@ return [
         'label.is_less_than_or_equal_to' => 'менше ніж або рівно',
         'label.is_between' => 'між',
         'label.contains' => 'містить',
+        'label.contains_all' => 'містить все',
         'label.not_contains' => 'не містить',
         'label.starts_with' => 'починається з',
         'label.ends_with' => 'закінчується на',
@@ -134,6 +141,10 @@ return [
         'entity_remove' => 'Цей елемент не можна видалити, оскільки від нього залежать інші елементи.',
         'forbidden_action' => 'Дія не може бути виконана над цим елементом.',
         'insufficient_entity_permission' => 'У вас немає дозволу на доступ до цього елемента.',
+        'general' => 'Під час обробки вашого запиту сталася помилка.',
+        'general_403' => 'У вас немає дозволу на виконання цієї дії.',
+        'general_404' => 'Запитувану сторінку не знайдено.',
+        'general_500' => 'Під час обробки вашого запиту сталася внутрішня помилка.',
     ],
 
     'autocomplete' => [

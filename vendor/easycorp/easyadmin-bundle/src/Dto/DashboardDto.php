@@ -25,6 +25,7 @@ final class DashboardDto
     private string $defaultColorScheme = ColorScheme::AUTO;
     /** @var LocaleDto[] */
     private array $locales = [];
+    private bool $useEntityTranslations = false;
 
     public function getRouteName(): string
     {
@@ -189,6 +190,9 @@ final class DashboardDto
         return $this;
     }
 
+    /**
+     * @return LocaleDto[]
+     */
     public function getLocales(): array
     {
         return $this->locales;
@@ -200,5 +204,17 @@ final class DashboardDto
     public function setLocales(array $locales): void
     {
         $this->locales = $locales;
+    }
+
+    public function isUseEntityTranslations(): bool
+    {
+        return $this->useEntityTranslations;
+    }
+
+    public function setUseEntityTranslations(bool $useEntityTranslations): self
+    {
+        $this->useEntityTranslations = $useEntityTranslations;
+
+        return $this;
     }
 }
