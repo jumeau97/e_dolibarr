@@ -1,36 +1,24 @@
 <?php
 
 namespace App\Service\Category;
+
+use App\Payload\SearchRequest\SearchCategory;
 use App\Payload\Utils\UtilisService;
-use App\Repository\EntrepotRepository;
-use App\Repository\ProduitRepository;
-use App\Request\Search\SearchEntrepot;
-
-use App\Request\Search\SearchProduct;
-use App\Service\Entrepot\EntrepotInterface;
-use App\Service\Product\ProductInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Email;
-
-
+use App\Repository\CategoryRepository;
 
 class CategoryImplement implements CategoryInterface
 {
 
     public function __construct(
         private UtilisService   $utilisService,
-
+        private CategoryRepository $categoryRepository,
     )
     {
     }
 
 
-//    public function findAllByCriteria($pageNumber, $limit, SearchProduct $data)
-//    {
-//        return $this->utilisService->ToPaginate($pageNumber, $limit, $this->produitRepository->findAllByCriteria($data, $pageNumber, $limit));
-//    }
-
-
+    public function findAllByCriteria($pageNumber, $limit, ?SearchCategory $data = null)
+    {
+        return $this->utilisService->ToPaginate($pageNumber, $limit, $this->categoryRepository->findAllByCriteria($data, $pageNumber, $limit));
+    }
 }

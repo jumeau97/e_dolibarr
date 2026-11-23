@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\StockMovementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: StockMovementRepository::class)]
 class StockMovement
@@ -20,24 +22,36 @@ class StockMovement
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'stockMovements')]
+    #[Groups(["getProduct"])]
     private ?Produit $produit = null;
 
     #[ORM\ManyToOne(inversedBy: 'stockMovements')]
+    #[Groups(["getProduct"])]
     private ?Entrepot $entrepotSource = null;
 
     #[ORM\ManyToOne(inversedBy: 'stockMovements')]
+    #[Groups(["getProduct"])]
     private ?Entrepot $entrepotDestination = null;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Groups(["getProduct"])]
+    private ?User $user = null;
+
     #[ORM\Column(nullable: true)]
+    #[Groups(["getProduct"])]
     private ?int $quantite = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["getProduct"])]
     private ?string $typeMouvement = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["getProduct"])]
     private ?string $motif = null;
 
     #[ORM\Column]
+    #[Groups(["getProduct"])]
     private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
@@ -130,6 +144,18 @@ class StockMovement
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -4,8 +4,8 @@ namespace App\Request\Search;
 
 class SearchUser
 {
-
-    public array $roles=[];
+    public array $roles = [];
+    public ?string $search = null;
 
     /**
      * @return array
@@ -23,4 +23,13 @@ class SearchUser
         $this->roles = $roles;
     }
 
+    public function getSearch(): ?string
+    {
+        return $this->search;
+    }
+
+    public function setSearch(?string $search): void
+    {
+        $this->search = $search;
+    }
 }

@@ -3,6 +3,7 @@
 namespace Symfony\Config;
 
 require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigComponent'.\DIRECTORY_SEPARATOR.'DefaultsConfig.php';
+require_once __DIR__.\DIRECTORY_SEPARATOR.'TwigComponent'.\DIRECTORY_SEPARATOR.'ProfilerConfig.php';
 
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Loader\ParamConfigurator;
@@ -59,17 +60,19 @@ class TwigComponentConfig implements \Symfony\Component\Config\Builder\ConfigBui
     }
 
     /**
-     * Enables the profiler for Twig Component (in debug mode)
-     * @default '%kernel.debug%'
-     * @param ParamConfigurator|bool $value
-     * @return $this
-     */
-    public function profiler($value): static
+     * Enables the profiler for Twig Component
+     * @default {"enabled":"%kernel.debug%","collect_components":true}
+    */
+    public function profiler(array $value = []): \Symfony\Config\TwigComponent\ProfilerConfig
     {
-        $this->_usedProperties['profiler'] = true;
-        $this->profiler = $value;
+        if (null === $this->profiler) {
+            $this->_usedProperties['profiler'] = true;
+            $this->profiler = new \Symfony\Config\TwigComponent\ProfilerConfig($value);
+        } elseif (0 < \func_num_args()) {
+            throw new InvalidConfigurationException('The node created by "profiler()" has already been initialized. You cannot pass values the second time you call profiler().');
+        }
 
-        return $this;
+        return $this->profiler;
     }
 
     /**
@@ -107,7 +110,7 @@ class TwigComponentConfig implements \Symfony\Component\Config\Builder\ConfigBui
 
         if (array_key_exists('profiler', $value)) {
             $this->_usedProperties['profiler'] = true;
-            $this->profiler = $value['profiler'];
+            $this->profiler = \is_array($value['profiler']) ? new \Symfony\Config\TwigComponent\ProfilerConfig($value['profiler']) : $value['profiler'];
             unset($value['profiler']);
         }
 
@@ -132,7 +135,7 @@ class TwigComponentConfig implements \Symfony\Component\Config\Builder\ConfigBui
             $output['anonymous_template_directory'] = $this->anonymousTemplateDirectory;
         }
         if (isset($this->_usedProperties['profiler'])) {
-            $output['profiler'] = $this->profiler;
+            $output['profiler'] = $this->profiler instanceof \Symfony\Config\TwigComponent\ProfilerConfig ? $this->profiler->toArray() : $this->profiler;
         }
         if (isset($this->_usedProperties['controllersJson'])) {
             $output['controllers_json'] = $this->controllersJson;

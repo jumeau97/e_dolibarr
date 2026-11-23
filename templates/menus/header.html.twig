@@ -1,4 +1,7 @@
 <div id="mobile-cart-popup" class="mobile-popup d-lg-none">
+{% set previewCart = previewCart|default([]) %}
+{% set currentCart = currentCart|default([]) %}
+{% set form = form|default(null) %}
     <div class="popup-content">
         <div class="icon-box">
             <i class="fas fa-shopping-bag"></i>
@@ -16,8 +19,8 @@
     <div class="container">
         <div class="header-top">
             <div class="header-profile">
-                <a href="{{ path('app_account') }}"><span>Mon compte</span></a>
-                <a href="{{ path('account_order') }}"><span>Commande</span></a>
+                <a href="{{ path('app_home') }}"><span>Mon compte</span></a>
+                <a href="{{ path('app_home') }}"><span>Commande</span></a>
                 <a href="#"><span>Support</span></a>
             </div>
             <div class="header-contact d-none d-lg-block">
@@ -147,7 +150,7 @@
                                             <span class="text-dark fw-bold fs-5">{{ cat.name }}</span>
                                         </a>
 
-                                        {% if cat.categories is not empty %}
+                                        {% if cat.categories|default([]) is not empty %}
                                             <button class="btn border-0 p-3" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#collapse-{{ loop.index }}">
                                                 <i class="fas fa-chevron-down text-primary"></i>
@@ -155,10 +158,10 @@
                                         {% endif %}
                                     </div>
                                     {# --- NIVEAU 2 (Sous-menus) --- #}
-                                    {% if cat.categories is not empty %}
+                                    {% if cat.categories|default([]) is not empty %}
                                         <div class="collapse bg-light" id="collapse-{{ loop.index }}">
                                             <ul class="list-unstyled ps-0 pb-2">
-                                                {% for subCat in cat.categories %}
+                                                {% for subCat in cat.categories|default([]) %}
                                                     <li class="py-2 border-bottom border-white">
                                                         <div
                                                             class="d-flex justify-content-between align-items-center px-4 py-2">
@@ -167,7 +170,7 @@
                                                                 {{ subCat.name }}
                                                             </a>
 
-                                                            {% if subCat.categories is not empty %}
+                                                            {% if subCat.categories|default([]) is not empty %}
                                                                 <button
                                                                     class="btn btn-sm btn-outline-secondary rounded-circle"
                                                                     style="width: 10px; height: 10px; padding: 0;"
@@ -180,11 +183,11 @@
                                                         </div>
 
                                                         {# --- NIVEAU 3 (Petits-enfants) --- #}
-                                                        {% if subCat.categories is not empty %}
+                                                        {% if subCat.categories|default([]) is not empty %}
                                                             <div class="collapse bg-white-50"
                                                                  id="sub-collapse-{{ loop.parent.loop.index }}-{{ loop.index }}">
                                                                 <ul class="list-unstyled ps-5 mt-1">
-                                                                    {% for subCat2 in subCat.categories %}
+                                                                    {% for subCat2 in subCat.categories|default([]) %}
                                                                         <li class="py-2">
                                                                             <a href="{{ path('app_home', {'slug': subCat2.name}) }}"
                                                                                class="text-secondary text-decoration-none fs-6 d-block">
@@ -252,28 +255,28 @@
                                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                                         <!-- Level two dropdown-->
                                         {% for cat in categories %}
-                                            {% if(cat.categories is not empty) %}
+                                            {% if(cat.categories|default([]) is not empty) %}
                                                 <li class="dropdown-submenu dropdown-hover">
                                                     <a id="dropdownSubMenu2"
                                                        href="{{ path('app_home',{slug:cat.name}) }}" role="button"
                                                        aria-haspopup="true" aria-expanded="false"
                                                        class="dropdown-item dropdown-toggle">{{ cat.name }}</a>
-                                                    {% if cat.categories|length > 0 %}
+                                                    {% if cat.categories|default([])|length > 0 %}
                                                         <ul aria-labelledby="dropdownSubMenu2"
                                                             class="dropdown-menu border-0 shadow">
-                                                            {% for subCat in cat.categories %}
+                                                            {% for subCat in cat.categories|default([]) %}
                                                                 <!-- Level three dropdown-->
-                                                                {% if(subCat.categories is not empty) %}
+                                                                {% if(subCat.categories|default([]) is not empty) %}
                                                                     <li class="dropdown-submenu">
                                                                         <a id="dropdownSubMenu3"
                                                                            href="{{ path('app_home',{'slug':subCat.name}) }}"
                                                                            role="button"
                                                                            aria-haspopup="true" aria-expanded="false"
                                                                            class="dropdown-item dropdown-toggle">{{ subCat.name }}</a>
-                                                                        {% if subCat.categories|length > 0 %}
+                                                                        {% if subCat.categories|default([])|length > 0 %}
                                                                             <ul aria-labelledby="dropdownSubMenu3"
                                                                                 class="dropdown-menu border-0 shadow">
-                                                                                {% for subCat2 in subCat.categories %}
+                                                                                {% for subCat2 in subCat.categories|default([]) %}
                                                                                     <li>
                                                                                         <a href="{{ path('app_home',{'slug':subCat2.name}) }}"
                                                                                            class="dropdown-item">{{ subCat2.name }}</a>
@@ -339,6 +342,7 @@
                 <div class="header-nav-menu py-3">
                     <div class="container">
                         <div class="search-content">
+                            {% if form is not null %}
                             {{ form_start(form) }}
                             <div class="search-section-wb">
                                 <div class="input-group search-wrapper">
@@ -359,6 +363,7 @@
                                 </div>
                             </div>
                             {{ form_end(form) }}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

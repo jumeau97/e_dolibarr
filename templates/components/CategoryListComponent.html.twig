@@ -1,3 +1,112 @@
 <div{{ attributes }}>
-    <!-- component HTML -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-outline card-indigo shadow-sm mt-3">
+                <div class="card-header bg-white py-3">
+                    <h3 class="card-title font-weight-bold text-dark mt-1">
+                        <i class="fas fa-tags text-muted mr-2"></i> Catégories de Produits
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 280px;">
+                            <input type="text"
+                                   data-model="searchQuery"
+                                   class="form-control float-right"
+                                   placeholder="Filtrer par nom de catégorie...">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-default"
+                                        data-action="live#update"
+                                        data-model="searchQuery"
+                                        data-value="">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0 text-center align-middle">
+                            <thead class="bg-light text-sm text-dark">
+                            <tr>
+                                <th class="text-left">Nom de la catégorie</th>
+                                <th>Description</th>
+                                <th class="text-center">Nb Produits</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for category in this.pagedData.items %}
+                                <tr>
+                                    <td class="text-left font-weight-bold text-dark">
+                                        {{ category.libelle }}
+                                    </td>
+                                    <td class="text-muted">
+                                        {{ category.description|default('Aucune description') }}
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="badge badge-info">{{ category.produits|length }}</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{{ path('app_categorie_edit', {'id': category.id}) }}"
+                                           class="btn btn-xs btn-default shadow-sm" title="Modifier">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-5 text-muted">
+                                        <i class="fas fa-tags fa-2x mb-2 text-gray-300"></i>
+                                        <p class="mb-0">Aucune catégorie trouvée.</p>
+                                        <button class="btn btn-sm btn-primary" data-action="live#update"
+                                                data-model="searchQuery" data-value="">
+                                            Réinitialiser la recherche
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if this.pagedData.totalItemCount > 0 %}
+                    <div class="card-footer clearfix bg-white border-top py-2">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.pagedData.currentPageNumber - 1 }}"
+                                        {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}>&laquo;</button>
+                            </li>
+
+                            {% for i in 1..this.pagedData.totalPage %}
+                                <li class="page-item {{ i == this.pagedData.currentPageNumber ? 'active' }}">
+                                    <button class="page-link {{ i == this.pagedData.currentPageNumber ? 'bg-indigo border-indigo' }}"
+                                            data-action="live#update"
+                                            data-model="currentPage"
+                                            data-value="{{ i }}">{{ i }}</button>
+                                </li>
+                            {% endfor %}
+
+                            <li class="page-item {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.pagedData.currentPageNumber + 1 }}"
+                                        {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}>&raquo;</button>
+                            </li>
+                        </ul>
+
+                        <span class="text-muted text-xs float-left mt-2">
+                            Total : <b>{{ this.pagedData.totalItemCount }}</b> catégorie(s)
+                        </span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 </div>

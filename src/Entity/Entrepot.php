@@ -42,6 +42,7 @@ class Entrepot
      * @var Collection<int, Produit>
      */
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'entrepots')]
+    #[Groups(["getEntrepot"])]
     private Collection $produits;
 
     /**

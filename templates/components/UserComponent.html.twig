@@ -1,15 +1,8 @@
 <div{{ attributes }}>
     <section class="content">
         <div class="container-fluid">
-            <!-- /.row -->
             <div class="row">
                 <div class="col-12">
-                    <div data-loading="show" class="text-center p-3">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Chargement...</span>
-                        </div>
-                        <p>Mise à jour des utilisateurs...</p>
-                    </div>
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -21,14 +14,16 @@
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 400px;">
-                                    <input type="text" name="table_search" data-model="norender|searchQuery"
+                                    <input type="text" name="table_search" data-model="searchQuery"
                                            class="form-control float-right"
-                                           placeholder="Nom">
+                                           placeholder="Nom, e-mail...">
 
                                     <div class="input-group-append">
-                                        <button data-action="live#$render" type="submit" class="btn btn-default">
+                                        <button data-action="live#update"
+                                                data-model="searchQuery"
+                                                data-value=""
+                                                type="button" class="btn btn-default">
                                             <i class="fas fa-search"></i>
-                                            Rechercher
                                         </button>
                                     </div>
                                 </div>
@@ -42,186 +37,48 @@
                                     <th>Prénom & Nom</th>
                                     <th>E-mail</th>
                                     <th>Rôles</th>
+                                    <th class="text-center">Téléphone</th>
+                                    <th class="text-center">État</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for user in this.pagedData.items %}
-                                    {# Ligne principale cliquable pour ouvrir les détails #}
-                                    <tr data-toggle="collapse" data-target="#user-detail-{{ user.id }}"
-                                        style="cursor: pointer;">
+                                    <tr>
                                         <td>
                                             <span class="text-primary"><i class="fas fa-user-circle mr-1"></i></span>
-                                            <strong>{{ user.firstName }}</strong> {{ user.lastName|upper }}
+                                            <strong>{{ user.firstName|default('-') }}</strong> {{ user.lastName|upper|default('-') }}
                                         </td>
                                         <td>{{ user.email }}</td>
                                         <td>
                                             {% for role in user.roles %}
-                                                {% if role == 'ROLE_ADMIN' %}<span
-                                                    class="badge badge-danger">Admin</span>
+                                                {% if role == 'ROLE_ADMINISTRATEUR' or role == 'ROLE_ADMIN' %}<span
+                                                    class="badge badge-danger">Administrateur</span>
                                                 {% elseif role == 'ROLE_FORMATEUR' %}<span class="badge badge-warning">Formateur</span>
                                                 {% elseif role == 'ROLE_APPRENANT' %}<span class="badge badge-warning">Apprenant</span>
-                                                    {#                                                {% else %}<span class="badge badge-primary">Apprenant</span> #}
+                                                {% else %}<span class="badge badge-primary">{{ role }}</span>
                                                 {% endif %}
                                             {% endfor %}
                                         </td>
+                                        <td class="text-center">{{ user.phoneNumber|default('-') }}</td>
                                         <td class="text-center">
-                                            <button class="btn btn-xs btn-outline-info shadow-sm">
-                                                <i class="fas fa-plus"></i> Détails
-                                            </button>
+                                            {% if user.state %}
+                                                <span class="badge badge-success">Actif</span>
+                                            {% else %}
+                                                <span class="badge badge-secondary">Inactif</span>
+                                            {% endif %}
                                         </td>
-                                    </tr>
-
-                                    {# TIROIR DE DÉTAILS #}
-                                    <tr id="user-detail-{{ user.id }}" class="collapse bg-light">
-                                        <td colspan="4" class="p-4 border-left border-info"
-                                            style="border-left-width: 5px !important;">
-                                            <div class="row">
-                                                {# INFOS GÉNÉRALES #}
-                                                <div class="col-md-4">
-                                                    <h6 class="text-muted font-weight-bold small text-uppercase">
-                                                        Informations profil</h6>
-                                                    <hr class="mt-1">
-                                                    {#                                                    <p class="mb-1"><strong>Date d'inscription :</strong> {{ user.createdAt|date('d/m/Y')|default('N/A') }}</p> #}
-                                                    <p class="mb-1"><strong>Identifiant unique :</strong> #{{ user.id }}
-                                                    </p>
-                                                </div>
-
-                                                <div class="col-md-8 border-left pl-4">
-                                                    {% if 'ROLE_FORMATEUR' in user.roles %}
-                                                        {# SECTION FORMATEUR (Déjà vue) #}
-                                                        <h6 class="text-info font-weight-bold"><i
-                                                                class="fas fa-chalkboard-teacher mr-1"></i> Modules
-                                                            enseignés</h6>
-                                                        <hr class="mt-1">
-                                                        {% set managedModules = user.modules|default([]) %}
-                                                        {% if managedModules|length > 0 %}
-                                                            <div class="row">
-                                                                {% for module in managedModules %}
-                                                                    <div class="col-sm-6 mb-2">
-                                                                        <div
-                                                                            class="p-3 border rounded bg-white shadow-sm position-relative overflow-hidden">
-
-                                                                            {# Indicateur de statut (Actif/Inactif) - Petit point discret #}
-                                                                            <div class="position-absolute"
-                                                                                 style="top: 10px; right: 10px;">
-                                                                                <i class="fas fa-circle {{ module.state ? 'text-success' : 'text-danger' }}"
-                                                                                   title="{{ module.state ? 'Actif' : 'Inactif' }}"
-                                                                                   style="font-size: 0.6rem;"></i>
-                                                                            </div>
-
-                                                                            <div class="d-flex align-items-center mb-2">
-                                                                                <i class="fas fa-layer-group text-info mr-2"></i>
-                                                                                <span class="font-weight-bold text-dark"
-                                                                                      style="font-size: 0.9rem;">{{ module.libelle }}</span>
-                                                                            </div>
-
-                                                                            <div
-                                                                                class="d-flex justify-content-between align-items-center">
-                                                                                {# Gestion du Prix et de la Promo #}
-                                                                                <div>
-                                                                                    {% if module.isPromotion and module.promotionPrice %}
-                                                                                        <span
-                                                                                            class="badge badge-success shadow-xs">
-                            <i class="fas fa-tag mr-1"></i> {{ module.promotionPrice|number_format(0, '.', ' ') }} FCFA
-                        </span>
-                                                                                        <small class="text-muted ml-1"
-                                                                                               style="text-decoration: line-through;">
-                                                                                            {{ module.price|number_format(0, '.', ' ') }}
-                                                                                        </small>
-                                                                                    {% else %}
-                                                                                        <span
-                                                                                            class="badge badge-light border text-dark">
-                            {{ module.price|default(0)|number_format(0, '.', ' ') }} FCFA
-                        </span>
-                                                                                    {% endif %}
-                                                                                </div>
-
-                                                                                {# Étiquette "Promo" clignotante ou colorée si actif #}
-                                                                                {% if module.isPromotion %}
-                                                                                    <span
-                                                                                        class="badge badge-pill badge-warning"
-                                                                                        style="font-size: 0.65rem; text-transform: uppercase;">
-                        Promo
-                    </span>
-                                                                                {% endif %}
-                                                                            </div>
-
-                                                                            {# Petit rappel si le module est inactif #}
-                                                                            {% if not module.state %}
-                                                                                <div class="mt-1">
-                                                                                    <small
-                                                                                        class="text-danger font-italic"
-                                                                                        style="font-size: 0.75rem;">
-                                                                                        <i class="fas fa-eye-slash mr-1"></i>
-                                                                                        Actuellement masqué
-                                                                                    </small>
-                                                                                </div>
-                                                                            {% endif %}
-                                                                        </div>
-                                                                    </div>
-                                                                {% endfor %}
-                                                            </div>
-                                                        {% else %}
-                                                            <p class="text-muted small italic">Aucun module assigné.</p>
-                                                        {% endif %}
-
-                                                    {% elseif 'ROLE_APPRENANT' in user.roles %}
-                                                        {# SECTION APPRENANT : On parcourt ses inscriptions #}
-                                                        <h6 class="text-primary font-weight-bold"><i
-                                                                class="fas fa-user-graduate mr-1"></i> Formations
-                                                            suivies</h6>
-                                                        <hr class="mt-1">
-
-                                                        {# On suppose que l'entité User a une relation 'inscriptions' #}
-                                                        {% if user.inscriptions|length > 0 %}
-                                                            <div class="table-responsive">
-                                                                <table class="table table-sm table-borderless">
-                                                                    <thead>
-                                                                    <tr class="text-muted small">
-                                                                        <th>Module</th>
-                                                                        <th>Statut</th>
-                                                                        <th>Certification</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    {% for ins in user.inscriptions %}
-                                                                        <tr class="border-bottom">
-                                                                            <td class="py-2">
-                                                                                <span
-                                                                                    class="font-weight-bold">{{ ins.module.libelle }}</span>
-                                                                            </td>
-                                                                            <td>
-                                    <span
-                                        class="badge {{ ins.paymentState ? 'badge-success' : 'badge-secondary' }} btn-xs">
-                                        {{ ins.paymentState ? 'Payé' : 'En attente' }}
-                                    </span>
-                                                                            </td>
-                                                                            <td>
-                                                                                {% if ins.isCertified %}
-                                                                                    <span class="text-success small"><i
-                                                                                            class="fas fa-certificate mr-1"></i>Certifié</span>
-                                                                                {% else %}
-                                                                                    <span class="text-muted small">En cours</span>
-                                                                                {% endif %}
-                                                                            </td>
-                                                                        </tr>
-                                                                    {% endfor %}
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        {% else %}
-                                                            <p class="text-muted small italic">Aucune inscription
-                                                                enregistrée pour cet apprenant.</p>
-                                                        {% endif %}
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                                        <td class="text-center">
+                                            <a href="{{ path('user_list') }}"
+                                               class="btn btn-xs btn-outline-info shadow-sm"
+                                               title="Voir les utilisateurs">
+                                                <i class="fas fa-user"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 {% else %}
                                     <tr>
-                                        <td colspan="4" class="text-center py-5">
+                                        <td colspan="6" class="text-center py-5">
                                             <div class="text-muted">
                                                 <i class="fas fa-users-slash fa-3x mb-3 opacity-50"></i>
                                                 <p class="lead">Aucun utilisateur trouvé pour
@@ -238,39 +95,44 @@
                             </table>
                         </div>
 
-                        {# Le footer de pagination reste le même #}
                         {% if this.pagedData.totalItemCount > 0 %}
-                            <div class="card-footer clearfix">
+                            <div class="card-footer clearfix bg-white border-top py-2">
                                 <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
+                                    <li class="page-item {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}">
                                         <button class="page-link" data-action="live#update" data-model="currentPage"
-                                                data-value="{{ currentPage - 1 }}" {{ currentPage <= 1 ? 'disabled' }}>
+                                                data-value="{{ this.pagedData.currentPageNumber - 1 }}"
+                                                {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}>
                                             &laquo;
                                         </button>
                                     </li>
 
                                     {% for i in 1..this.pagedData.totalPage %}
-                                        <li class="page-item {{ i == currentPage ? 'active' }}">
-                                            <button class="page-link" data-action="live#update" data-model="currentPage"
+                                        <li class="page-item {{ i == this.pagedData.currentPageNumber ? 'active' }}">
+                                            <button class="page-link" data-action="live#update"
+                                                    data-model="currentPage"
                                                     data-value="{{ i }}">{{ i }}</button>
                                         </li>
                                     {% endfor %}
 
-                                    <li class="page-item {{ currentPage >= this.pagedData.totalPage ? 'disabled' }}">
-                                        <button class="page-link" data-action="live#update" data-model="currentPage"
-                                                data-value="{{ currentPage + 1 }}" {{ currentPage >= this.pagedData.totalPage ? 'disabled' }}>
+                                    <li class="page-item {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}">
+                                        <button class="page-link" data-action="live#update"
+                                                data-model="currentPage"
+                                                data-value="{{ this.pagedData.currentPageNumber + 1 }}"
+                                                {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}>
                                             &raquo;
                                         </button>
                                     </li>
                                 </ul>
+
+                                <span class="text-muted text-xs float-left mt-2">
+                                    Total : <b>{{ this.pagedData.totalItemCount }}</b> utilisateur(s)
+                                </span>
                             </div>
                         {% endif %}
                     </div>
                     <!-- /.card -->
                 </div>
-
             </div>
-
         </div><!-- /.container-fluid -->
     </section>
 </div>

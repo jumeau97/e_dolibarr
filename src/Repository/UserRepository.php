@@ -36,42 +36,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function findAllByCriteria(SearchUser $data, $pageNumber, $limit)
     {
-        $qb = $this->createQueryBuilder('u');
+        $qb = $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC');
+
         if ($data->getRoles()) {
             foreach ($data->getRoles() as $key => $role) {
                 $qb->andWhere('u.roles LIKE :role_' . $key)
                     ->setParameter('role_' . $key, '%"' . $role . '"%');
             }
-
         }
 
+        if (null !== $data->getSearch() && '' !== $data->getSearch()) {
+            $qb->andWhere('u.email LIKE :search OR u.firstName LIKE :search OR u.lastName LIKE :search')
+                ->setParameter('search', '%' . $data->getSearch() . '%');
+        }
 
-        $qb->setFirstResult($pageNumber - 1)->setMaxResults($limit);
+        $qb->setFirstResult(($pageNumber - 1) * $limit)
+            ->setMaxResults($limit);
+
         return $qb;
     }
-
-    //    /**
-    //     * @return User[] Returns an array of User objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?User
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

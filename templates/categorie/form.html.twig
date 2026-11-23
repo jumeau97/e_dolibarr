@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if mode == 'add' %}Nouvelle catégorie{% else %}Modifier la catégorie{% endif %}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            {% if mode == 'add' %}
+                                <i class="fas fa-plus text-indigo mr-2"></i> Nouvelle Catégorie
+                            {% else %}
+                                <i class="fas fa-pencil-alt text-indigo mr-2"></i> Modifier la Catégorie
+                            {% endif %}
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
+                        <a href="{{ path('app_categorie_index') }}" class="btn btn-default btn-sm">
+                            <i class="fas fa-arrow-left mr-1"></i> Retour à la liste
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card card-outline card-indigo shadow-sm">
+                            <div class="card-header bg-white py-3">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    {{ mode == 'add' ? 'Création' : 'Modification' }} de catégorie
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        {{ form_row(form.libelle, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-indigo btn-sm font-weight-bold">
+                                            <i class="fas fa-save mr-1"></i>
+                                            {% if mode == 'add' %}Créer la catégorie{% else %}Enregistrer les modifications{% endif %}
+                                        </button>
+                                        <a href="{{ path('app_categorie_index') }}" class="btn btn-default btn-sm">
+                                            Annuler
+                                        </a>
+                                    </div>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

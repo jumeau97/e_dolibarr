@@ -386,14 +386,12 @@ class ScopedClientConfig
     }
 
     /**
-     * @param ParamConfigurator|list<ParamConfigurator|mixed> $value
-     *
      * @return $this
      */
-    public function extra(ParamConfigurator|array $value): static
+    public function extra(string $name, mixed $value): static
     {
         $this->_usedProperties['extra'] = true;
-        $this->extra = $value;
+        $this->extra[$name] = $value;
 
         return $this;
     }

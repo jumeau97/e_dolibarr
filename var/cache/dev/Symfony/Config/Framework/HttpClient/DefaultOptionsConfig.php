@@ -50,14 +50,12 @@ class DefaultOptionsConfig
     }
 
     /**
-     * @param ParamConfigurator|list<ParamConfigurator|mixed> $value
-     *
      * @return $this
      */
-    public function vars(ParamConfigurator|array $value): static
+    public function vars(string $name, mixed $value): static
     {
         $this->_usedProperties['vars'] = true;
-        $this->vars = $value;
+        $this->vars[$name] = $value;
 
         return $this;
     }
@@ -313,14 +311,12 @@ class DefaultOptionsConfig
     }
 
     /**
-     * @param ParamConfigurator|list<ParamConfigurator|mixed> $value
-     *
      * @return $this
      */
-    public function extra(ParamConfigurator|array $value): static
+    public function extra(string $name, mixed $value): static
     {
         $this->_usedProperties['extra'] = true;
-        $this->extra = $value;
+        $this->extra[$name] = $value;
 
         return $this;
     }

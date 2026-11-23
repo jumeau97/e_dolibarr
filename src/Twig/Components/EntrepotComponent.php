@@ -6,11 +6,11 @@ use App\Payload\Utils\UtilisService;
 use App\Request\Search\SearchEntrepot;
 use App\Service\Entrepot\EntrepotInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
-use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent]
+#[AsLiveComponent]
 final class EntrepotComponent
 {
     use DefaultActionTrait;
@@ -29,16 +29,13 @@ final class EntrepotComponent
         private EntrepotInterface   $entrepotInterface,
         private UtilisService       $utilisService,
         private SerializerInterface $serializer
-    )
-    {
+    ) {
     }
 
     public function getPagedData(): array
     {
-
-//        dd('ooh');
         $search = new SearchEntrepot();
-//        $search->setName($this->searchQuery);
+        $search->setSearch($this->searchQuery);
 
         $pagination = $this->entrepotInterface->findAllByCriteria(
             $this->currentPage,
@@ -52,7 +49,5 @@ final class EntrepotComponent
         );
 
         return $this->utilisService->paginationResp($dataArray, $pagination, $this->itemPerPage);
-
-
     }
 }

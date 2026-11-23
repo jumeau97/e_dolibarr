@@ -74,47 +74,12 @@
                             <div class="tab-pane fade" id="tab-categories" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Classez vos produits pour simplifier la recherche à la caisse.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold"><i
+                                    <a href="{{ path('app_categorie_add') }}" class="btn btn-sm btn-success font-weight-bold"><i
                                                 class="fas fa-plus mr-1"></i> Nouvelle Catégorie
-                                    </button>
+                                    </a>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped mb-0 text-nowrap">
-                                        <thead class="bg-dark">
-                                        <tr>
-                                            <th>Nom de la catégorie</th>
-                                            <th>Nombre d'articles liés</th>
-                                            <th class="text-right">Actions</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><b>🧱 Matériaux de construction</b></td>
-                                            <td>24 articles</td>
-                                            <td class="text-right">
-                                                <button class="btn btn-xs btn-outline-secondary"><i
-                                                            class="fas fa-pencil-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>🛠️ Prestations & Services</b></td>
-                                            <td>5 services</td>
-                                            <td class="text-right">
-                                                <button class="btn btn-xs btn-outline-secondary"><i
-                                                            class="fas fa-pencil-alt"></i></button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- PAGINATION CATÉGORIES -->
-                                <div class="card-footer clearfix bg-white border-top">
-                                    <ul class="pagination pagination-sm m-0 float-right">
-                                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                    </ul>
-                                    <span class="text-muted text-sm float-left mt-1">Affichage de 1 à 2 sur 2 catégories</span>
+                                    {{ component('CategoryListComponent') }}
                                 </div>
                             </div>
 
@@ -137,70 +102,16 @@
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Le cahier d'historique de toutes les entrées, sorties et transferts.</span>
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-danger font-weight-bold"><i
+                                        <button class="btn btn-sm btn-danger font-weight-bold" data-toggle="modal" data-target="#modal-correction"><i
                                                     class="fas fa-minus-circle mr-1"></i> Signaler Perte/Casse
                                         </button>
-                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1"><i
+                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1" data-toggle="modal" data-target="#modal-transfert"><i
                                                     class="fas fa-exchange-alt mr-1"></i> Transférer du stock
                                         </button>
                                     </div>
                                 </div>
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-striped mb-0 text-nowrap text-sm">
-                                        <thead class="bg-dark">
-                                        <tr>
-                                            <th>Date & Heure</th>
-                                            <th>Article</th>
-                                            <th>Type de Mouvement</th>
-                                            <th>Quantité</th>
-                                            <th>Depuis ➡️ Vers</th>
-                                            <th>Par qui ?</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>21/05/2026 à 14:20</td>
-                                            <td><b>Sac de Ciment 50kg</b></td>
-                                            <td><span class="badge badge-success"><i class="fas fa-plus mr-1"></i> Entrée (Achat)</span>
-                                            </td>
-                                            <td class="font-weight-bold text-success">+ 100 sacs</td>
-                                            <td>Fournisseur ➡️ Entrepôt Principal</td>
-                                            <td>Alassane</td>
-                                        </tr>
-                                        <tr>
-                                            <td>21/05/2026 à 11:05</td>
-                                            <td><b>Fer à béton 12</b></td>
-                                            <td><span class="badge badge-warning text-dark"><i
-                                                            class="fas fa-arrow-right mr-1"></i> Transfert Interne</span>
-                                            </td>
-                                            <td class="font-weight-bold text-warning">20 barres</td>
-                                            <td>Entrepôt Principal ➡️ Boutique</td>
-                                            <td>Seydou KONE</td>
-                                        </tr>
-                                        <tr>
-                                            <td>21/05/2026 à 09:15</td>
-                                            <td><b>Sac de Ciment 50kg</b></td>
-                                            <td><span class="badge badge-danger"><i
-                                                            class="fas fa-shopping-cart mr-1"></i> Sortie (Vente)</span>
-                                            </td>
-                                            <td class="font-weight-bold text-danger">- 5 sacs</td>
-                                            <td>Boutique ➡️ Client Comptoir</td>
-                                            <td>Caissier</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- PAGINATION MOUVEMENTS -->
-                                <div class="card-footer clearfix bg-white border-top">
-                                    <ul class="pagination pagination-sm m-0 float-right">
-                                        <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                    </ul>
-                                    <span class="text-muted text-sm float-left mt-1">Affichage de 1 à 3 sur 52 mouvements</span>
+                                    {{ component('HistoriqueComponent') }}
                                 </div>
                             </div>
 
@@ -237,7 +148,7 @@
 
                             <div class="row">
                                 <div class="d-none">
-                                    {{ form_widget(formTransfert.product, {'attr': {'id': 'transfert-product-id'}}) }}
+                                    {{ form_widget(formTransfert.product, {'attr': {'id': 'transfert-produit-id'}}) }}
                                 </div>
                                 <div class="col-md-12">
                                     {{ form_row(formTransfert.entrepotSource) }}
@@ -290,7 +201,7 @@
 
                             <div class="row">
                                 <div class="d-none">
-                                    {{ form_widget(formCorrection.product, {'attr': {'id': 'correct-product-id'}}) }}
+                                    {{ form_widget(formCorrection.product, {'attr': {'id': 'correct-produit-id'}}) }}
                                 </div>
                                 <div class="col-md-12">
                                     {{ form_row(formCorrection.entrepot) }}

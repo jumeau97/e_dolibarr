@@ -19,34 +19,23 @@ class ProduitRepository extends ServiceEntityRepository
 
     public function findAllByCriteria(SearchProduct $data, $pageNumber, $limit)
     {
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.category', 'c')
+            ->addSelect('c')
+            ->orderBy('p.id', 'DESC');
 
-        $qb->setFirstResult($pageNumber - 1)->setMaxResults($limit);
+        if (null !== $data->getSearch() && '' !== $data->getSearch()) {
+            $qb->andWhere('p.libelle LIKE :search OR p.reference LIKE :search OR c.libelle LIKE :search')
+                ->setParameter('search', '%' . $data->getSearch() . '%');
+        }
+
+        if (true === $data->getIsQuantity()) {
+            $qb->andWhere('p.stockPhysique > 0');
+        }
+
+        $qb->setFirstResult(($pageNumber - 1) * $limit)
+            ->setMaxResults($limit);
+
         return $qb;
     }
-
-//    /**
-//     * @return Produit[] Returns an array of Produit objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Produit
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

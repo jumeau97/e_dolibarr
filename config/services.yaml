@@ -18,3 +18,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Bind interfaces to their implementations
+    App\Service\Product\ProductInterface: '@App\Service\Product\ProductImplement'
+    App\Service\Entrepot\EntrepotInterface: '@App\Service\Entrepot\EntrepotImplement'
+    App\Service\Utilisateur\UserInterface: '@App\Service\Utilisateur\UserImplement'
+    App\Service\Category\CategoryInterface: '@App\Service\Category\CategoryImplement'

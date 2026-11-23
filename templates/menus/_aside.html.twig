@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
+    <a href="{{ path('app_home') }}" class="brand-link">
         <span class="brand-text font-weight-bold ml-3">Smart<span class="font-weight-light">ERP</span></span>
     </a>
 
@@ -19,22 +19,22 @@
 
                 <!-- ACCUEIL -->
                 <li class="nav-item">
-                    <a href="?page=dashboard" class="nav-link {{ app.request.query.get('page') == 'dashboard' or app.request.query.get('page') is empty ? 'active' : '' }}">
+                    <a href="{{ path('app_home') }}" class="nav-link {{ app.current_route == 'app_home' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Accueil (Vue d'ensemble)</p>
                     </a>
                 </li>
 
-                <!-- ASSISTANT IA -->
+                <!-- ASSISTANT IA & PRÉVISIONS -->
                 <li class="nav-header text-warning font-weight-bold">ASSISTANT IA & PRÉVISIONS</li>
                 <li class="nav-item">
-                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.request.query.get('page') == 'pred_sales' ? 'active' : '' }}">
+                    <a href="{{ path('app_predprediction_vente') }}" class="nav-link {{ app.current_route == 'app_predprediction_vente' ? 'active' : '' }}">
                         <i class="fas fa-brain nav-icon text-warning"></i>
                         <p>Prédictions des Ventes</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=pred_stocks" class="nav-link {{ app.request.query.get('page') == 'pred_stocks' ? 'active' : '' }}">
+                    <a href="{{ path('app_alert_rupture_stock') }}" class="nav-link {{ app.current_route == 'app_alert_rupture_stock' ? 'active' : '' }}">
                         <i class="fas fa-boxes nav-icon text-warning"></i>
                         <p>Alerte Rupture & Stock</p>
                     </a>
@@ -43,56 +43,74 @@
                 <!-- COMPTOIR & VENTES -->
                 <li class="nav-header">VENTES AU QUOTIDIEN</li>
                 <li class="nav-item">
-                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.request.query.get('page') == 'sales_pos' ? 'active' : '' }} text-info">
+                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.current_route == 'app_vente' ? 'active' : '' }} text-info">
                         <i class="nav-icon fas fa-cash-register"></i>
                         <p><b>Faire une Vente (Caisse)</b></p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="?page=sales_orders" class="nav-link {{ app.request.query.get('page') == 'sales_orders' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-file-invoice-dollar"></i>
-                        <p>Factures & Commandes</p>
                     </a>
                 </li>
 
                 <!-- STOCKS, MULTI-ENTREPÔTS & LOGISTIQUE -->
                 <li class="nav-header">LOGISTIQUE & ENTREPÔTS</li>
                 <li class="nav-item">
-                    <a href="{{ path('app_produit_article') }}" class="nav-link {{ app.request.query.get('page') == 'products' ? 'active' : '' }}">
+                    <a href="{{ path('app_produit_article') }}" class="nav-link {{ app.current_route == 'app_produit_article' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cubes"></i>
                         <p>Catalogue Articles</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=warehouse_index" class="nav-link {{ app.request.query.get('page') == 'warehouse_index' ? 'active' : '' }}">
+                    <a href="{{ path('app_categorie_index') }}" class="nav-link {{ app.current_route starts with('app_categorie') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>Catégories</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_entrepot') }}" class="nav-link {{ app.current_route == 'app_entrepot' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>État des Entrepôts</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <!-- LE MENU UNIQUE POUR TOUS LES MOUVEMENTS ET FLUX DE STOCK -->
-                    <a href="?page=stock_movements" class="nav-link {{ app.request.query.get('page') == 'stock_movements' ? 'active' : '' }}">
+                    <a href="{{ path('app_stock') }}" class="nav-link {{ app.current_route == 'app_stock' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-exchange-alt"></i>
                         <p>Stock</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=shipping_logs" class="nav-link {{ app.request.query.get('page') == 'shipping_logs' ? 'active' : '' }}">
+                    <a href="{{ path('app_stock_mouvement_index') }}" class="nav-link {{ app.current_route == 'app_stock_mouvement_index' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-history"></i>
+                        <p>Historique des Mouvements</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_vente') }}" class="nav-link {{ app.current_route == 'app_vente' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-truck-loading"></i>
                         <p>Suivi des Livraisons</p>
                     </a>
                 </li>
 
+                <!-- UTILISATEURS (réservé admin) -->
+                {% if is_granted('ROLE_ADMINISTRATEUR') %}
+                    <li class="nav-header">ADMINISTRATION</li>
+                    <li class="nav-item">
+                        <a href="{{ path('user_list') }}" class="nav-link {{ app.current_route == 'user_list' ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Gestion des Utilisateurs</p>
+                        </a>
+                    </li>
+                {% endif %}
+
                 <!-- ARGENT / FINANCES -->
                 <li class="nav-header">ARGENT & TRÉSORERIE</li>
+                {# TODO: À activer lorsque les modules Finances seront créés #}
                 <li class="nav-item">
-                    <a href="?page=finance_expenses" class="nav-link {{ app.request.query.get('page') == 'finance_expenses' ? 'active' : '' }}">
+                    <a href="#" class="nav-link text-muted" style="pointer-events: none; opacity: 0.5;">
                         <i class="nav-icon fas fa-arrow-circle-down text-danger"></i>
                         <p>Enregistrer une Dépense</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="?page=finance_accounts" class="nav-link {{ app.request.query.get('page') == 'finance_accounts' ? 'active' : '' }}">
+                    <a href="#" class="nav-link text-muted" style="pointer-events: none; opacity: 0.5;">
                         <i class="nav-icon fas fa-wallet"></i>
                         <p>État de la Caisse / Banque</p>
                     </a>
@@ -100,7 +118,7 @@
 
                 <!-- DECONNEXION -->
                 <li class="nav-item mt-4">
-                    <a href="#" class="nav-link text-muted">
+                    <a href="{{ path('app_logout') }}" class="nav-link text-muted">
                         <i class="nav-icon fas fa-power-off"></i>
                         <p>Quitter le logiciel</p>
                     </a>

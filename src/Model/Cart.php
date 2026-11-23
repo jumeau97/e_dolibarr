@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Entity\Product;
+use App\Entity\Produit;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -39,7 +39,7 @@ class Cart
         $cartComplete = [];
         if ($this->get()) {
             foreach ($this->get() as $id => $quantity) {
-                $product_object = $this->entityManager->getRepository(Product::class)->findOneBy(['id' => $id]);
+                $product_object = $this->entityManager->getRepository(Produit::class)->findOneBy(['id' => $id]);
                 if (!$product_object) {
                     $this->delete($id);
                     continue;

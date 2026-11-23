@@ -4,7 +4,8 @@ namespace App\Request\Search;
 
 class SearchProduct
 {
-    public ?bool $isQuantity=false;
+    public ?bool $isQuantity = false;
+    public ?string $search = null;
 
     /**
      * @return bool|null
@@ -22,7 +23,13 @@ class SearchProduct
         $this->isQuantity = $isQuantity;
     }
 
+    public function getSearch(): ?string
+    {
+        return $this->search;
+    }
 
-
-
+    public function setSearch(?string $search): void
+    {
+        $this->search = $search;
+    }
 }

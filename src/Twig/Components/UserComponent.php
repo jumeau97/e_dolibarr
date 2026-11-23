@@ -2,28 +2,27 @@
 
 namespace App\Twig\Components;
 
-use App\Payload\SearchRequest\SearchCategory;
 use App\Payload\Utils\UtilisService;
 use App\Request\Search\SearchUser;
-use App\Service\Category\CategoryInterface;
 use App\Service\Utilisateur\UserInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
-use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 
-#[AsTwigComponent]
+#[AsLiveComponent]
 final class UserComponent
 {
     use DefaultActionTrait;
-
 
     #[LiveProp(writable: true)]
     public ?int $currentPage = 1;
     public ?int $itemPerPage = 10;
     public ?int $totalPage = 0;
     #[LiveProp(writable: true)]
-    public string $searchQuery = ''; // Lié à l'input de recherche
+    public string $searchQuery = '';
+    #[LiveProp(writable: true)]
+    public array $roles = [];
 
     #[LiveProp(writable: true)]
     public int $page = 1;
@@ -32,16 +31,14 @@ final class UserComponent
         private UserInterface   $userInterface,
         private UtilisService       $utilisService,
         private SerializerInterface $serializer
-    )
-    {
+    ) {
     }
 
     public function getPagedData(): array
     {
-
-//        dd('ooh');
         $search = new SearchUser();
-//        $search->setName($this->searchQuery);
+        $search->setSearch($this->searchQuery);
+        $search->setRoles($this->roles);
 
         $pagination = $this->userInterface->findAllByCriteria(
             $this->currentPage,
@@ -54,10 +51,6 @@ final class UserComponent
             true
         );
 
-        // Retourne la structure exacte que votre service utilisService produisait
         return $this->utilisService->paginationResp($dataArray, $pagination, $this->itemPerPage);
-
-
     }
-
 }

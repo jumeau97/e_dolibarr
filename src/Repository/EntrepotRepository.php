@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Entrepot;
 use App\Request\Search\SearchEntrepot;
-use App\Request\Search\SearchUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,36 +19,17 @@ class EntrepotRepository extends ServiceEntityRepository
 
     public function findAllByCriteria(SearchEntrepot $data, $pageNumber, $limit)
     {
-        $qb = $this->createQueryBuilder('e');
+        $qb = $this->createQueryBuilder('e')
+            ->orderBy('e.lieu', 'ASC');
 
+        if (null !== $data->getSearch() && '' !== $data->getSearch()) {
+            $qb->andWhere('e.lieu LIKE :search OR e.address LIKE :search OR e.town LIKE :search OR e.description LIKE :search')
+                ->setParameter('search', '%' . $data->getSearch() . '%');
+        }
 
-        $qb->setFirstResult($pageNumber - 1)->setMaxResults($limit);
+        $qb->setFirstResult(($pageNumber - 1) * $limit)
+            ->setMaxResults($limit);
+
         return $qb;
     }
-
-
-    //    /**
-    //     * @return Entrepot[] Returns an array of Entrepot objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Entrepot
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

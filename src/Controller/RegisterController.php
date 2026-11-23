@@ -153,7 +153,7 @@ final class RegisterController extends AbstractController
                 ->setRoles([RoleStatus::ROLE_APPRENANT]);
             $password = $passwordHasher->hashPassword(
                 $user,
-                "12345678"
+                bin2hex(random_bytes(8))
             );
             $user->setPassword($password);
 

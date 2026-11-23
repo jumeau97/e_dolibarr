@@ -19,11 +19,9 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route("/product")]
 final class ProduitArticleController extends AbstractController
 {
-
     public function __construct(
         private EntityManagerInterface $em
-    )
-    {
+    ) {
     }
 
     #[Route('', name: 'app_produit_article')]
@@ -37,55 +35,58 @@ final class ProduitArticleController extends AbstractController
         $formEntrepot->handleRequest($request);
 
         if ($formEntrepot->isSubmitted() && $formEntrepot->isValid()) {
-            $data = $formEntrepot->getData();
-//           dd($data);
-            $entrepot->setPhone($data->getPhone())
-                ->setAddress($data->getAddress())
-                ->setDescription($data->getDescription())
-                ->setLieu($data->getLieu())
-                ->setTown($data->getTown())
-                ->setStatus($data->getStatus());
+            $entrepot->setPhone($formEntrepot->get('phone')->getData())
+                ->setAddress($formEntrepot->get('address')->getData())
+                ->setDescription($formEntrepot->get('description')->getData())
+                ->setLieu($formEntrepot->get('lieu')->getData())
+                ->setTown($formEntrepot->get('town')->getData())
+                ->setStatus($formEntrepot->get('status')->getData());
 
             $this->em->persist($entrepot);
             $this->em->flush();
+
+            $this->addFlash('success', 'L\'entrepôt a été enregistré avec succès.');
+
+            return $this->redirectToRoute('app_produit_article');
         }
 
-        $formCorrection->handleRequest($request);
+        // --- TRANSFERT DE STOCK ---
         $formTransfert->handleRequest($request);
-//        dd($formTransfert->getData());
         if ($formTransfert->isSubmitted() && $formTransfert->isValid()) {
             $data = $formTransfert->getData();
 
             $produit = $data['product'];
             $source = $data['entrepotSource'];
             $destination = $data['entrepotDestination'];
-            $quantite = $data['quantite'];
+            $quantite = (int) $data['quantite'];
             $motif = $data['motif'];
 
-
             if ($source->getId() === $destination->getId()) {
-//                $this->addFlash('error', 'L\'entrepôt de départ et de destination ne peuvent pas être identiques.');
-//                return $this->redirectToRoute('app_stock_index');
+                $this->addFlash('error', 'L\'entrepôt de départ et de destination ne peuvent pas être identiques.');
+
+                return $this->redirectToRoute('app_produit_article');
             }
 
+            $stockSource = $this->em->getRepository(EntrepotStock::class)
+                ->findOneBy(['product' => $produit, 'entrepot' => $source]);
 
-            $stockSource = $this->em->getRepository(StockMovement::class)->findOneBy(['product' => $produit, 'entrepot' => $source]);
+            if (!$stockSource || (int) $stockSource->getQuantite() < $quantite) {
+                $this->addFlash('error', sprintf(
+                    'Stock insuffisant dans %s. Disponible : %d unité(s).',
+                    $source->getLieu(),
+                    $stockSource ? (int) $stockSource->getQuantite() : 0
+                ));
 
-            if (!$stockSource || $stockSource->getQuantite() < $quantite) {
-//                $this->addFlash('error', sprintf(
-//                    'Stock insuffisant dans %s. Disponible : %d unité(s).',
-//                    $source->getLieu(),
-//                    $stockSource ? $stockSource->getQuantite() : 0
-//                ));
-//                return $this->redirectToRoute('app_stock_index');
+                return $this->redirectToRoute('app_produit_article');
             }
 
-            // 3. Traitement logistique (Mouvements réels sur les stocks)
-            // Soustraction au départ
-            $stockSource->setQuantite($stockSource->getQuantite() - $quantite);
+            // Soustraction à la source
+            $stockSource->setQuantite((int) $stockSource->getQuantite() - $quantite);
 
-            // Ajout à l'arrivée
-            $stockDest = $this->em->getRepository(StockMovement::class)->findOneBy(['product' => $produit, 'entrepot' => $destination]);
+            // Ajout à la destination
+            $stockDest = $this->em->getRepository(EntrepotStock::class)
+                ->findOneBy(['product' => $produit, 'entrepot' => $destination]);
+
             if (!$stockDest) {
                 $stockDest = new EntrepotStock();
                 $stockDest->setProduct($produit);
@@ -94,12 +95,14 @@ final class ProduitArticleController extends AbstractController
                 $this->em->persist($stockDest);
             }
 
-            $stockDest->setQuantite($stockDest->getQuantite() + $quantite);
+            $stockDest->setQuantite((int) $stockDest->getQuantite() + $quantite);
 
+            // Traçabilité du mouvement
             $stockMvt = new StockMovement();
             $stockMvt->setProduit($produit)
                 ->setEntrepotSource($source)
                 ->setEntrepotDestination($destination)
+                ->setUser($this->getUser())
                 ->setQuantite($quantite)
                 ->setMotif($motif)
                 ->setTypeMouvement(StockMovement::TYPE_TRANSFERT)
@@ -108,17 +111,30 @@ final class ProduitArticleController extends AbstractController
             $this->em->persist($stockMvt);
             $this->em->flush();
 
+            $this->addFlash('success', sprintf(
+                'Transfert de %d unité(s) de "%s" effectué avec succès (%s → %s).',
+                $quantite,
+                $produit->getLibelle(),
+                $source->getLieu(),
+                $destination->getLieu()
+            ));
+
+            return $this->redirectToRoute('app_produit_article');
         }
+
+        // --- CORRECTION / AJUSTEMENT DE STOCK ---
+        $formCorrection->handleRequest($request);
         if ($formCorrection->isSubmitted() && $formCorrection->isValid()) {
             $data = $formCorrection->getData();
 
             $entrepot = $data['entrepot'];
             $product = $data['product'];
             $typeAjustement = $data['typeAjustement']; // 'AJOUT' ou 'RETRAIT'
-            $quantite = $data['quantite'];
+            $quantite = (int) $data['quantite'];
             $motif = $data['motif'];
 
-            $stock = $this->em->getRepository(EntrepotStock::class)->findOneBy(['product' => $product, 'entrepot' => $entrepot]);
+            $stock = $this->em->getRepository(EntrepotStock::class)
+                ->findOneBy(['product' => $product, 'entrepot' => $entrepot]);
 
             if (!$stock) {
                 $stock = new EntrepotStock();
@@ -131,33 +147,49 @@ final class ProduitArticleController extends AbstractController
             $stockMvt = new StockMovement();
             $stockMvt->setProduit($product)
                 ->setEntrepotSource($entrepot)
+                ->setUser($this->getUser())
                 ->setMotif($motif)
                 ->setQuantite($quantite)
                 ->setCreatedAt(new \DateTimeImmutable());
 
             if ($typeAjustement === 'AJOUT') {
-                $stock->setQuantite($stock->getQuantite() + $quantite);
-
+                $stock->setQuantite((int) $stock->getQuantite() + $quantite);
                 $stockMvt->setTypeMouvement(StockMovement::TYPE_AJOUT);
 
-//                $this->addFlash('success', sprintf(
-//                    'Correction réussie : +%d unité(s) pour "%s" dans l\'entrepôt %s.',
-//                    $quantite, $produit->getLibelle(), $entrepot->getLieu()
-//                ));
+                $this->addFlash('success', sprintf(
+                    'Correction réussie : +%d unité(s) pour "%s" dans l\'entrepôt %s.',
+                    $quantite,
+                    $product->getLibelle(),
+                    $entrepot->getLieu()
+                ));
             } else { // RETRAIT
+                if ((int) $stock->getQuantite() < $quantite) {
+                    $this->addFlash('error', sprintf(
+                        'Stock insuffisant pour le retrait dans %s. Disponible : %d unité(s).',
+                        $entrepot->getLieu(),
+                        (int) $stock->getQuantite()
+                    ));
 
-                if ($stock->getQuantite() < $quantite) {
-                    return $this->redirectToRoute('app_stock_index');
+                    return $this->redirectToRoute('app_produit_article');
                 }
 
-                $stock->setQuantite($stock->getQuantite() - $quantite);
-
+                $stock->setQuantite((int) $stock->getQuantite() - $quantite);
                 $stockMvt->setTypeMouvement(StockMovement::TYPE_RETRAIT);
 
+                $this->addFlash('success', sprintf(
+                    'Correction réussie : -%d unité(s) pour "%s" dans l\'entrepôt %s.',
+                    $quantite,
+                    $product->getLibelle(),
+                    $entrepot->getLieu()
+                ));
             }
+
             $this->em->persist($stockMvt);
             $this->em->flush();
+
+            return $this->redirectToRoute('app_produit_article');
         }
+
         return $this->render('produit_article/index.html.twig', [
             'formTransfert' => $formTransfert->createView(),
             'formCorrection' => $formCorrection->createView(),
@@ -165,49 +197,43 @@ final class ProduitArticleController extends AbstractController
         ]);
     }
 
-
-    #[
-        Route('/add', name: 'add_product')]
+    #[Route('/add', name: 'add_product')]
     public function addProduct(Request $request, EntityManagerInterface $entityManager): Response
     {
         $produit = new Produit();
 
-        $entrepotAuto = null;
-        // 2. Logique de récupération de l'entrepôt géré
-        // if ($user && method_exists($user, 'getEntrepotGere') && $user->getEntrepotGere()) {
-        //     $entrepotAuto = $user->getEntrepotGere();
-        // }
-
-
-        // 3. Création du formulaire en passant l'entrepôt ciblé
         $form = $this->createForm(ProductTypeFormType::class, $produit, [
-            'entrepot_responsable' => $entrepotAuto
+            'entrepot_responsable' => null,
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $entrepotSelectionne = $form->get('entrepots')->getData();
 
-            if ($entrepotAuto) {
-                $produit->addEntrepot($entrepotAuto);
-            } else {
-                $entrepotSelectionne = $form->get('entrepots')->getData();
+            if ($entrepotSelectionne) {
+                $produit->addEntrepot($entrepotSelectionne);
+            }
 
-                if ($entrepotSelectionne) {
-                    $produit->addEntrepot($entrepotSelectionne);
-                }
+            // Créer également l'enregistrement EntrepotStock avec quantité à 0
+            if ($entrepotSelectionne) {
+                $entrepotStock = new EntrepotStock();
+                $entrepotStock->setProduct($produit);
+                $entrepotStock->setEntrepot($entrepotSelectionne);
+                $entrepotStock->setQuantite(0);
+                $entityManager->persist($entrepotStock);
             }
 
             $entityManager->persist($produit);
             $entityManager->flush();
 
-//            $this->addFlash('success', 'Le produit a été enregistré avec succès et affecté à son entrepôt.');
-//            return $this->redirectToRoute('app_produit_index');
+            $this->addFlash('success', 'Le produit a été enregistré avec succès.');
+
+            return $this->redirectToRoute('add_product');
         }
 
         return $this->render('produit_article/add-product.html.twig', [
             'form' => $form->createView(),
-            'estResponsable' => ($entrepotAuto !== null)
         ]);
     }
 }

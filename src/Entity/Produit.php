@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Category;
 use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use FontLib\Table\Type\name;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -31,6 +31,11 @@ class Produit
     #[ORM\Column(nullable: true)]
     #[Groups(["getProduct"])]
     private ?int $stockOptimal = null;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'produits')]
+    #[ORM\JoinColumn(nullable: true)]
+    #[Groups(["getProduct"])]
+    private ?Category $category = null;
 
     /**
      * @var Collection<int, Entrepot>
@@ -111,6 +116,24 @@ class Produit
         return $this;
     }
 
+    #[Groups(["getProduct"])]
+    public function getStockAlerte(): ?int
+    {
+        return $this->limitStock;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     public function getStockOptimal(): ?int
     {
         return $this->stockOptimal;
@@ -152,7 +175,7 @@ class Produit
         return $this->prixAchat;
     }
 
-    public function setPrixAchat(float $prixAchat): static
+    public function setPrixAchat(?float $prixAchat): static
     {
         $this->prixAchat = $prixAchat;
 

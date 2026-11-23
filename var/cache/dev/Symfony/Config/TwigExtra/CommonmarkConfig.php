@@ -18,6 +18,7 @@ class CommonmarkConfig
     private $htmlInput;
     private $allowUnsafeLinks;
     private $maxNestingLevel;
+    private $maxDelimitersPerLine;
     private $slugNormalizer;
     private $commonmark;
     private $_usedProperties = [];
@@ -81,6 +82,20 @@ class CommonmarkConfig
     }
 
     /**
+     * The maximum number of strong/emphasis delimiters per line.
+     * @default 9223372036854775807
+     * @param ParamConfigurator|int $value
+     * @return $this
+     */
+    public function maxDelimitersPerLine($value): static
+    {
+        $this->_usedProperties['maxDelimitersPerLine'] = true;
+        $this->maxDelimitersPerLine = $value;
+
+        return $this;
+    }
+
+    /**
      * Array of options for configuring how URL-safe slugs are created.
     */
     public function slugNormalizer(array $value = []): \Symfony\Config\TwigExtra\Commonmark\SlugNormalizerConfig
@@ -136,6 +151,12 @@ class CommonmarkConfig
             unset($value['max_nesting_level']);
         }
 
+        if (array_key_exists('max_delimiters_per_line', $value)) {
+            $this->_usedProperties['maxDelimitersPerLine'] = true;
+            $this->maxDelimitersPerLine = $value['max_delimiters_per_line'];
+            unset($value['max_delimiters_per_line']);
+        }
+
         if (array_key_exists('slug_normalizer', $value)) {
             $this->_usedProperties['slugNormalizer'] = true;
             $this->slugNormalizer = new \Symfony\Config\TwigExtra\Commonmark\SlugNormalizerConfig($value['slug_normalizer']);
@@ -166,6 +187,9 @@ class CommonmarkConfig
         }
         if (isset($this->_usedProperties['maxNestingLevel'])) {
             $output['max_nesting_level'] = $this->maxNestingLevel;
+        }
+        if (isset($this->_usedProperties['maxDelimitersPerLine'])) {
+            $output['max_delimiters_per_line'] = $this->maxDelimitersPerLine;
         }
         if (isset($this->_usedProperties['slugNormalizer'])) {
             $output['slug_normalizer'] = $this->slugNormalizer->toArray();

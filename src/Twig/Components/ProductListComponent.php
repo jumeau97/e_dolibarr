@@ -14,7 +14,6 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
 final class ProductListComponent
 {
     use DefaultActionTrait;
-    use DefaultActionTrait;
 
     #[LiveProp(writable: true)]
     public ?int $currentPage = 1;
@@ -30,16 +29,13 @@ final class ProductListComponent
         private ProductInterface   $productInterface,
         private UtilisService       $utilisService,
         private SerializerInterface $serializer
-    )
-    {
+    ) {
     }
 
     public function getPagedData(): array
     {
-
-//        dd('ooh');
         $search = new SearchProduct();
-//        $search->setName($this->searchQuery);
+        $search->setSearch($this->searchQuery);
 
         $pagination = $this->productInterface->findAllByCriteria(
             $this->currentPage,
@@ -53,8 +49,5 @@ final class ProductListComponent
         );
 
         return $this->utilisService->paginationResp($dataArray, $pagination, $this->itemPerPage);
-
-
     }
-
 }

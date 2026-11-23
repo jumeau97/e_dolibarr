@@ -18,6 +18,9 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/alert/rupture/stock' => [[['_route' => 'app_alert_rupture_stock', '_controller' => 'App\\Controller\\AlertRuptureStockController::index'], null, null, null, false, false, null]],
+        '/categorie' => [[['_route' => 'app_categorie_index', '_controller' => 'App\\Controller\\CategoryController::index'], null, ['GET' => 0], null, false, false, null]],
+        '/categorie/add' => [[['_route' => 'app_categorie_add', '_controller' => 'App\\Controller\\CategoryController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
         '/entrepot' => [[['_route' => 'app_entrepot', '_controller' => 'App\\Controller\\EntrepotController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/predprediction/vente' => [[['_route' => 'app_predprediction_vente', '_controller' => 'App\\Controller\\PredpredictionVenteController::index'], null, null, null, false, false, null]],
@@ -31,9 +34,11 @@ return [
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/api/login' => [[['_route' => 'api_login', '_controller' => 'App\\Controller\\SecurityController::apiLogin'], null, null, null, false, false, null]],
         '/stock' => [[['_route' => 'app_stock', '_controller' => 'App\\Controller\\StockController::index'], null, null, null, false, false, null]],
-        '/stock/mouvement' => [[['_route' => 'app_stock_mouvement', '_controller' => 'App\\Controller\\StockMouvementController::index'], null, null, null, false, false, null]],
+        '/stock/mouvement' => [[['_route' => 'app_stock_mouvement_index', '_controller' => 'App\\Controller\\StockMouvementController::index'], null, ['GET' => 0], null, false, false, null]],
         '/user' => [[['_route' => 'user_list', '_controller' => 'App\\Controller\\UserController::list'], null, null, null, false, false, null]],
         '/api/user/current-user' => [[['_route' => 'current-user', '_controller' => 'App\\Controller\\UserController::currentUser'], null, ['GET' => 0], null, false, false, null]],
+        '/vente/api/produits' => [[['_route' => 'api_vente_produits', '_controller' => 'App\\Controller\\VenteApiController::produits'], null, ['GET' => 0], null, false, false, null]],
+        '/vente/api/valider' => [[['_route' => 'api_vente_valider', '_controller' => 'App\\Controller\\VenteApiController::valider'], null, ['POST' => 0], null, false, false, null]],
         '/vente' => [[['_route' => 'app_vente', '_controller' => 'App\\Controller\\VenteController::index'], null, null, null, false, false, null]],
         '/api/login_check' => [[['_route' => 'api_login_check'], null, null, null, false, false, null]],
     ],
@@ -58,7 +63,11 @@ return [
                         .')'
                     .')'
                 .')'
-                .'|/entrepot/details/([^/]++)(*:269)'
+                .'|/categorie/(?'
+                    .'|edit/([^/]++)(*:270)'
+                    .'|delete/([^/]++)(*:293)'
+                .')'
+                .'|/entrepot/details/([^/]++)(*:328)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -71,7 +80,9 @@ return [
         209 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         222 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         232 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        269 => [
+        270 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        293 => [[['_route' => 'app_categorie_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        328 => [
             [['_route' => 'details_entrepot', '_controller' => 'App\\Controller\\EntrepotController::details'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

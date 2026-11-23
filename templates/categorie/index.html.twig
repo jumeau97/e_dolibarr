@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories de produits{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-tags text-indigo mr-2"></i> Catégories de Produits
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-sm-right mt-2 mt-sm-0">
+                        <a href="{{ path('app_categorie_add') }}" class="btn btn-indigo btn-sm shadow-sm">
+                            <i class="fas fa-plus mr-1"></i> Nouvelle catégorie
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-outline card-indigo shadow-sm">
+                    <div class="card-header bg-white py-3">
+                        <div class="input-group input-group-sm" style="width: 300px; display: inline-block; margin-right: 1rem;">
+                            <form method="get" action="{{ path('app_categorie_index') }}">
+                                <input type="text" name="search" value="{{ search }}"
+                                       class="form-control"
+                                       placeholder="Rechercher une catégorie...">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        {% if search != '' %}
+                            <a href="{{ path('app_categorie_index') }}" class="btn btn-xs btn-outline-secondary">
+                                <i class="fas fa-times mr-1"></i> Effacer
+                            </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped mb-0 text-center align-middle">
+                                <thead class="bg-light text-sm text-dark">
+                                <tr>
+                                    <th class="text-left">Nom de la catégorie</th>
+                                    <th class="text-left">Description</th>
+                                    <th class="text-center">Nb Produits</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for categorie in categories %}
+                                    <tr>
+                                        <td class="text-left font-weight-bold text-dark">
+                                            {{ categorie.libelle }}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{ categorie.description|default('Aucune description') }}
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge badge-info">{{ categorie.produits|length }}</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}"
+                                               class="btn btn-xs btn-primary shadow-sm">
+                                                <i class="fas fa-pencil-alt mr-1"></i> Modifier
+                                            </a>
+                                            <form action="{{ path('app_categorie_delete', {'id': categorie.id}) }}"
+                                                method="post" style="display: inline;">
+                                                <input type="hidden" name="_token"
+                                                       value="{{ csrf_token('delete_category_' ~ categorie.id) }}">
+                                                <button type="submit" class="btn btn-xs btn-danger shadow-sm"
+                                                        onclick="return confirm('Supprimer cette catégorie ? Cette action est irréversible.')">
+                                                    <i class="fas fa-trash mr-1"></i> Supprimer
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4" class="text-center py-5 text-muted">
+                                            <i class="fas fa-tags fa-3x mb-3 text-gray-300"></i>
+                                            <p class="mb-0">Aucune catégorie trouvée.</p>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card-footer clearfix bg-white border-top py-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-xs text-muted">
+                                Total : <b>{{ categories.totalItemCount }}</b> catégorie(s)
+                            </span>
+
+                            <ul class="pagination pagination-sm m-0">
+                                <li class="page-item {{ categories.currentPageNumber <= 1 ? 'disabled' }}">
+                                    <a class="page-link"
+                                       href="{{ path('app_categorie_index', {'page': categories.currentPageNumber - 1, 'search': search}) }}"
+                                       {{ categories.currentPageNumber <= 1 ? 'disabled' }}>&laquo;</a>
+                                </li>
+
+                                {% for i in 1..totalPage %}
+                                    <li class="page-item {{ i == categories.currentPageNumber ? 'active' }}">
+                                        <a class="page-link {{ i == categories.currentPageNumber ? 'bg-indigo border-indigo' }}"
+                                           href="{{ path('app_categorie_index', {'page': i, 'search': search}) }}">
+                                            {{ i }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+
+                                <li class="page-item {{ categories.currentPageNumber >= totalPage ? 'disabled' }}">
+                                    <a class="page-link"
+                                       href="{{ path('app_categorie_index', {'page': categories.currentPageNumber + 1, 'search': search}) }}"
+                                       {{ categories.currentPageNumber >= totalPage ? 'disabled' }}>&raquo;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

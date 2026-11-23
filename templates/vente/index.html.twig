@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Caisse - Simulation Vente{% endblock %}
+{% block title %}Caisse - Encaissement{% endblock %}
 
 {% block stylesheets %}
     <style>
-        /* Optimisation ergonomique pour l'écran de caisse */
         .product-grid {
-            max-height: 68vh;
+            max-height: 65vh;
             overflow-y: auto;
         }
         .cart-table-container {
-            max-height: 42vh;
+            max-height: 55vh;
             overflow-y: auto;
         }
         .product-card {
@@ -21,12 +20,25 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
         }
+        .product-card.stock-alert {
+            border-left: 4px solid #dc3545;
+        }
+        .product-card.stock-ok {
+            border-left: 4px solid #28a745;
+        }
+        .ticket-printed {
+            border: 2px solid #28a745;
+            background: #f8f9fa;
+        }
+        .qty-input {
+            width: 60px;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
     <div class="content-wrapper">
-        <!-- En-tête minimal pour maximiser la hauteur de travail -->
+        <!-- En-tête de la page -->
         <div class="content-header py-2">
             <div class="container-fluid">
                 <div class="row align-items-center">
@@ -36,9 +48,9 @@
                         </h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                    <span class="badge badge-success p-2 shadow-sm">
-                        <i class="fas fa-dot-circle mr-1 animate-pulse"></i> Mode Standard Statie
-                    </span>
+                        <span class="badge badge-success p-2 shadow-sm">
+                            <i class="fas fa-dot-circle mr-1 animate-pulse"></i> Mode Caisse Dynamique
+                        </span>
                     </div>
                 </div>
             </div>
@@ -49,106 +61,42 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <!-- ZONE GAUCHE : RECHERCHE & PRODUITS EXEMPLES -->
-                    <div class="col-lg-7 col-md-6">
+                    <!-- ZONE GAUCHE : PRODUITS & PANIER -->
+                    <div class="col-lg-8 col-md-12 mb-3">
                         <div class="card card-outline card-indigo shadow-sm">
                             <div class="card-header bg-white py-2">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-light"><i class="fas fa-search"></i></span>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="input-group" style="width: 300px;">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-light"><i class="fas fa-search"></i></span>
+                                        </div>
+                                        <input type="text" id="search-product" class="form-control form-control-lg" placeholder="Rechercher un article ou sa référence...">
                                     </div>
-                                    <input type="text" id="search-product" class="form-control form-control-lg" placeholder="Rechercher un article ou sa référence...">
+                                    <span id="produits-count" class="badge badge-info"></span>
                                 </div>
                             </div>
 
-                            <!-- Liste de produits fictifs pour tester l'UX -->
+                            <!-- Liste de produits depuis l'API -->
                             <div class="card-body product-grid bg-light p-3">
                                 <div class="row" id="products-list">
-
-                                    <div class="col-xl-4 col-md-6 mb-3 product-item" data-id="1" data-libelle="Huile de Palme Raffinée 1L" data-prix="1200" data-ref="HPR-001">
-                                        <div class="card h-100 m-0 shadow-sm product-card border-left-success">
-                                            <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                                <div>
-                                                    <span class="text-xs text-muted d-block">Ref: HPR-001</span>
-                                                    <h6 class="font-weight-bold text-dark my-1">Huile de Palme 1L</h6>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <span class="badge badge-success">45 dispo</span>
-                                                    <span class="text-md font-weight-bold text-indigo">1 200 F</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-6 mb-3 product-item" data-id="2" data-libelle="Sac de Riz Brisure 50kg" data-prix="22500" data-ref="RIZ-B50">
-                                        <div class="card h-100 m-0 shadow-sm product-card border-left-success">
-                                            <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                                <div>
-                                                    <span class="text-xs text-muted d-block">Ref: RIZ-B50</span>
-                                                    <h6 class="font-weight-bold text-dark my-1">Sac de Riz 50kg</h6>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <span class="badge badge-success">12 dispo</span>
-                                                    <span class="text-md font-weight-bold text-indigo">22 500 F</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-6 mb-3 product-item" data-id="3" data-libelle="Carton de Savon Madar" data-prix="8500" data-ref="SAD-MAD">
-                                        <div class="card h-100 m-0 shadow-sm product-card border-left-success">
-                                            <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                                <div>
-                                                    <span class="text-xs text-muted d-block">Ref: SAD-MAD</span>
-                                                    <h6 class="font-weight-bold text-dark my-1">Carton Savon Madar</h6>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <span class="badge badge-danger">2 Alerte</span>
-                                                    <span class="text-md font-weight-bold text-indigo">8 500 F</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-6 mb-3 product-item" data-id="4" data-libelle="Paquet de Pâtes Alimentaires 500g" data-prix="450" data-ref="PAT-500">
-                                        <div class="card h-100 m-0 shadow-sm product-card border-left-success">
-                                            <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                                <div>
-                                                    <span class="text-xs text-muted d-block">Ref: PAT-500</span>
-                                                    <h6 class="font-weight-bold text-dark my-1">Paquet Pâtes 500g</h6>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <span class="badge badge-success">120 dispo</span>
-                                                    <span class="text-md font-weight-bold text-indigo">450 F</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-6 mb-3 product-item" data-id="5" data-libelle="Sucre en Poudre 1kg" data-prix="750" data-ref="SUC-001">
-                                        <div class="card h-100 m-0 shadow-sm product-card border-left-success">
-                                            <div class="card-body p-3 d-flex flex-column justify-content-between">
-                                                <div>
-                                                    <span class="text-xs text-muted d-block">Ref: SUC-001</span>
-                                                    <h6 class="font-weight-bold text-dark my-1">Sucre Poudre 1kg</h6>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center mt-2">
-                                                    <span class="badge badge-success">80 dispo</span>
-                                                    <span class="text-md font-weight-bold text-indigo">750 F</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <!-- Produits injectés par JavaScript -->
+                                </div>
+                                <div id="products-empty" class="col-12 text-center text-muted py-5" style="display:none;">
+                                    <i class="fas fa-box-open fa-2x mb-2"></i>
+                                    <p>Aucun produit disponible.</p>
+                                </div>
+                                <div id="products-loading" class="col-12 text-center py-5">
+                                    <i class="fas fa-circle-notch fa-spin fa-2x text-primary mb-2"></i>
+                                    <p>Chargement des produits...</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- ZONE DROITE : PANIER ACTIF & RÈGLEMENT -->
-                    <div class="col-lg-5 col-md-6">
+                    <div class="col-lg-4 col-md-12">
 
-                        <!-- Le Panier Statique -->
+                        <!-- Le Panier -->
                         <div class="card card-dark shadow-sm mb-3">
                             <div class="card-header bg-dark">
                                 <h3 class="card-title font-weight-bold"><i class="fas fa-shopping-basket mr-2"></i> Panier de vente</h3>
@@ -162,17 +110,17 @@
                                     <thead class="thead-light">
                                     <tr>
                                         <th>Article</th>
-                                        <th style="width: 90px;">Qté</th>
-                                        <th class="text-right">Prix</th>
+                                        <th style="width: 60px;">Qté</th>
+                                        <th class="text-right">Prix Un.</th>
                                         <th class="text-right">Total</th>
-                                        <th style="width: 35px;"></th>
+                                        <th style="width: 40px;"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="cart-table-body">
                                     <tr id="empty-cart-row">
                                         <td colspan="5" class="text-center text-muted py-5">
                                             <i class="fas fa-cart-plus fa-2x mb-2 text-gray d-block"></i>
-                                            Cliquez sur un article à gauche pour l'ajouter
+                                            Cliquez sur un article pour l'ajouter
                                         </td>
                                     </tr>
                                     </tbody>
@@ -195,7 +143,7 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="input-group input-group-sm">
-                                            <input type="number" id="discount-input" value="0" min="0" step="50" class="form-control text-right font-weight-bold text-danger">
+                                            <input type="number" id="discount-input" value="0" min="0" step="100" class="form-control text-right font-weight-bold text-danger qty-input">
                                             <div class="input-group-append">
                                                 <span class="input-group-text bg-white">FCFA</span>
                                             </div>
@@ -215,19 +163,19 @@
                                     <label class="text-xs text-muted text-uppercase font-weight-bold">Mode de règlement :</label>
                                     <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
                                         <label class="btn btn-outline-secondary active flex-fill py-2">
-                                            <input type="radio" name="pay_opt" checked> <i class="fas fa-money-bill-wave d-block mb-1"></i> Espèces
+                                            <input type="radio" name="pay_opt" value="Especes" checked> <i class="fas fa-money-bill-wave d-block mb-1"></i> Espèces
                                         </label>
                                         <label class="btn btn-outline-secondary flex-fill py-2">
-                                            <input type="radio" name="pay_opt"> <i class="fas fa-mobile-alt d-block mb-1"></i> Mobile
+                                            <input type="radio" name="pay_opt" value="Mobile"> <i class="fas fa-mobile-alt d-block mb-1"></i> Mobile
                                         </label>
                                         <label class="btn btn-outline-secondary flex-fill py-2">
-                                            <input type="radio" name="pay_opt"> <i class="fas fa-credit-card d-block mb-1"></i> Chèque
+                                            <input type="radio" name="pay_opt" value="Cheque"> <i class="fas fa-credit-card d-block mb-1"></i> Chèque
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Calcul de monnaie -->
-                                <div class="row bg-white p-2 rounded border mx-0 mb-2">
+                                <div class="row bg-white p-2 rounded border mx-0 mb-3">
                                     <div class="col-6">
                                         <div class="form-group mb-0">
                                             <label class="text-xs text-muted mb-0">Montant Reçu</label>
@@ -240,11 +188,46 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="card-footer bg-white p-2">
-                                <button type="button" class="btn btn-success btn-lg btn-block font-weight-bold shadow-sm py-3" id="btn-validate-sale" disabled>
-                                    <i class="fas fa-print mr-2"></i> Valider l'encaissement (Ticket)
-                                </button>
+                                <!-- Bouton de validation -->
+                                <div class="d-grid">
+                                    <button type="button" class="btn btn-success btn-lg font-weight-bold shadow-sm py-3" id="btn-validate-sale" disabled>
+                                        <i class="fas fa-print mr-2"></i> Valider l'encaissement
+                                    </button>
+                                </div>
+
+                                <div class="mt-2" id="ticket-container" style="display:none;">
+                                    <div class="card card-success ticket-printed">
+                                        <div class="card-header bg-success text-white">
+                                            <h5 class="card-title"><i class="fas fa-ticket-alt mr-2"></i> Ticket de Vente</h5>
+                                        </div>
+                                        <div class="card-body p-3">
+                                            <div class="row mb-2">
+                                                <div class="col-6"><strong>N° :</strong> <span id="ticket-numero"></span></div>
+                                                <div class="col-6 text-right"><strong>Date :</strong> <span id="ticket-date"></span></div>
+                                            </div>
+                                            <hr>
+                                            <div id="ticket-lignes"></div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-6"><strong>Total :</strong></div>
+                                                <div class="col-6 text-right"><strong id="ticket-total">0 FCFA</strong></div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-6"><strong>Caissier :</strong></div>
+                                                <div class="col-6 text-right"><strong id="ticket-caissier"></strong></div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" id="btn-new-sale">
+                                                <i class="fas fa-plus mr-1"></i> Nouvelle vente
+                                            </button>
+                                            <button type="button" class="btn btn-primary btn-sm" id="btn-print-ticket">
+                                                <i class="fas fa-print mr-1"></i> Imprimer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -254,16 +237,38 @@
             </div>
         </section>
     </div>
+
+    <!-- Modal de confirmation -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="confirmModalTitle">Confirmation</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="confirmModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="confirmModalAction">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const productsList = document.getElementById('products-list');
+            const productsEmpty = document.getElementById('products-empty');
+            const productsLoading = document.getElementById('products-loading');
             const searchInput = document.getElementById('search-product');
             const cartTableBody = document.querySelector('#cart-table tbody');
             const emptyCartRow = document.getElementById('empty-cart-row');
             const clearCartBtn = document.getElementById('clear-cart');
+            const produitsCount = document.getElementById('produits-count');
 
             const subtotalEl = document.getElementById('summary-subtotal');
             const totalEl = document.getElementById('summary-total');
@@ -271,45 +276,113 @@
             const amountReceivedInput = document.getElementById('amount-received');
             const changeToReturnEl = document.getElementById('change-to-return');
             const btnValidateSale = document.getElementById('btn-validate-sale');
+            const ticketContainer = document.getElementById('ticket-container');
+            const btnNewSale = document.getElementById('btn-new-sale');
 
+            // Ticket elements
+            const ticketNumero = document.getElementById('ticket-numero');
+            const ticketDate = document.getElementById('ticket-date');
+            const ticketLignes = document.getElementById('ticket-lignes');
+            const ticketTotal = document.getElementById('ticket-total');
+            const ticketCaissier = document.getElementById('ticket-caissier');
+
+            let produits = [];
             let cart = [];
 
-            // Filtre de recherche dynamique
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase().trim();
-                const items = productsList.getElementsByClassName('product-item');
-
-                Array.from(items).forEach(item => {
-                    const libelle = item.getAttribute('data-libelle').toLowerCase();
-                    const reference = item.getAttribute('data-ref').toLowerCase();
-                    if (libelle.includes(query) || reference.includes(query)) {
-                        item.style.setProperty('display', '', 'important');
+            // Charger les produits depuis l'API
+            async function chargerProduits() {
+                try {
+                    const response = await fetch("{{ path('api_vente_produits') }}");
+                    const result = await response.json();
+                    if (result.status === 1 && result.data) {
+                        produits = result.data;
+                        afficherProduits(produits);
+                        produitsCount.textContent = produits.length + ' article(s)';
                     } else {
-                        item.style.setProperty('display', 'none', 'important');
+                        produitsEmpty.style.display = 'block';
+                        produitsLoading.style.display = 'none';
                     }
+                } catch (e) {
+                    console.error('Erreur chargement produits:', e);
+                    produitsEmpty.style.display = 'block';
+                    produitsLoading.style.display = 'none';
+                }
+            }
+
+            function afficherProduits(liste) {
+                productsList.innerHTML = '';
+                productsLoading.style.display = 'none';
+
+                if (!liste || liste.length === 0) {
+                    productsEmpty.style.display = 'block';
+                    return;
+                }
+                productsEmpty.style.display = 'none';
+
+                liste.forEach(p => {
+                    const estAlerte = p.stockPhysique <= (p.limitStock || 0);
+                    const cardClass = estAlerte ? 'stock-alert' : 'stock-ok';
+                    const badgeClass = estAlerte ? 'badge-danger' : 'badge-success';
+                    const badgeText = estAlerte ? p.stockPhysique + ' (Alerte)' : p.stockPhysique + ' en stock';
+
+                    const col = document.createElement('div');
+                    col.className = 'col-xl-4 col-md-6 mb-3 product-item';
+                    col.setAttribute('data-id', p.id);
+                    col.setAttribute('data-libelle', p.libelle);
+                    col.setAttribute('data-prix', p.prixVente);
+                    col.setAttribute('data-stock', p.stockPhysique);
+
+                    col.innerHTML = `
+                        <div class="card h-100 m-0 shadow-sm product-card ${cardClass}">
+                            <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                <div>
+                                    <span class="text-xs text-muted d-block">Ref: ${p.reference || '-'}</span>
+                                    <h6 class="font-weight-bold text-dark my-1">${p.libelle}</h6>
+                                    <small class="text-muted d-block">Stock: ${p.stockPhysique}</small>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-2">
+                                    <span class="badge ${badgeClass}">${badgeText}</span>
+                                    <span class="text-md font-weight-bold text-indigo">${Number(p.prixVente).toLocaleString('fr-FR')} F</span>
+                                </div>
+                                <button type="button" class="btn btn-outline-primary btn-sm w-100 mt-2 add-to-cart">
+                                    <i class="fas fa-plus mr-1"></i> Ajouter
+                                </button>
+                            </div>
+                        </div>
+                    `;
+
+                    col.querySelector('.add-to-cart').addEventListener('click', () => ajouterAuPanier(p));
+                    col.querySelector('.product-card').addEventListener('click', (e) => {
+                        if (!e.target.classList.contains('add-to-cart') && !e.target.classList.contains('fa-plus')) {
+                            ajouterAuPanier(p);
+                        }
+                    });
+
+                    productsList.appendChild(col);
                 });
-            });
+            }
 
-            // Ajout au panier au clic
-            productsList.addEventListener('click', function(e) {
-                const card = e.target.closest('.product-card');
-                if (!card) return;
-
-                const itemEl = card.closest('.product-item');
-                const id = itemEl.getAttribute('data-id');
-                const libelle = itemEl.getAttribute('data-libelle');
-                const prix = parseFloat(itemEl.getAttribute('data-prix'));
-
-                const existingItem = cart.find(item => item.id === id);
-                if (existingItem) {
-                    existingItem.quantity++;
+            function ajouterAuPanier(produit) {
+                const existing = cart.find(item => item.id === produit.id);
+                if (existing) {
+                    if (existing.quantite >= produit.stockPhysique) {
+                        showAlert('Stock insuffisant pour ajouter davantage de "' + produit.libelle + '".');
+                        return;
+                    }
+                    existing.quantite++;
                 } else {
-                    cart.push({ id, libelle, prix, quantity: 1 });
+                    cart.push({
+                        id: produit.id,
+                        libelle: produit.libelle,
+                        reference: produit.reference,
+                        prix: parseFloat(produit.prixVente),
+                        stockPhysique: produit.stockPhysique,
+                        quantite: 1
+                    });
                 }
                 renderCart();
-            });
+            }
 
-            // Rendu d'affichage du panier
             function renderCart() {
                 cartTableBody.innerHTML = '';
 
@@ -323,40 +396,39 @@
                 btnValidateSale.disabled = false;
                 let subtotal = 0;
 
-                cart.forEach((item) => {
-                    const itemTotal = item.prix * item.quantity;
+                cart.forEach((item, index) => {
+                    const itemTotal = item.prix * item.quantite;
                     subtotal += itemTotal;
 
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                <td class="py-2">
-                    <span class="font-weight-bold d-block text-truncate text-sm" style="max-width: 160px;">${item.libelle}</span>
-                </td>
-                <td class="py-1">
-                    <input type="number" class="form-control form-control-sm text-center change-qty py-0 px-1" data-id="${item.id}" value="${item.quantity}" min="1" style="height: 26px;">
-                </td>
-                <td class="text-right text-sm py-2">${item.prix.toLocaleString()}</td>
-                <td class="text-right font-weight-bold text-sm py-2">${itemTotal.toLocaleString()}</td>
-                <td class="text-center py-2">
-                    <button type="button" class="btn btn-xs text-danger remove-item" data-id="${item.id}">
-                        <i class="fas fa-times-circle"></i>
-                    </button>
-                </td>
-            `;
+                        <td class="py-2">
+                            <span class="font-weight-bold d-block text-truncate text-sm" style="max-width: 160px;">${item.libelle}</span>
+                            <small class="text-muted d-block">Ref: ${item.reference || '-'}</small>
+                        </td>
+                        <td class="py-1">
+                            <input type="number" class="form-control form-control-sm text-center qty-input change-qty" data-index="${index}" value="${item.quantite}" min="1" max="${item.stockPhysique}" style="height: 26px; width: 60px;">
+                        </td>
+                        <td class="text-right text-sm py-2">${item.prix.toLocaleString('fr-FR')}</td>
+                        <td class="text-right font-weight-bold text-sm py-2">${itemTotal.toLocaleString('fr-FR')}</td>
+                        <td class="text-center py-2">
+                            <button type="button" class="btn btn-xs text-danger remove-item" data-index="${index}">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </td>
+                    `;
                     cartTableBody.appendChild(tr);
                 });
 
                 updateTotals(subtotal);
             }
 
-            // Gestion Totaux & Calcul de monnaie
             function updateTotals(subtotal) {
                 const discount = parseFloat(discountInput.value) || 0;
                 const total = Math.max(0, subtotal - discount);
 
-                subtotalEl.textContent = `${subtotal.toLocaleString()} FCFA`;
-                totalEl.textContent = `${total.toLocaleString()} FCFA`;
-
+                subtotalEl.textContent = subtotal.toLocaleString('fr-FR') + ' FCFA';
+                totalEl.textContent = total.toLocaleString('fr-FR') + ' FCFA';
                 calculateChange(total);
             }
 
@@ -365,36 +437,52 @@
                 const change = received - totalNet;
 
                 if (change >= 0 && totalNet > 0) {
-                    changeToReturnEl.textContent = `${change.toLocaleString()} FCFA`;
+                    changeToReturnEl.textContent = change.toLocaleString('fr-FR') + ' FCFA';
                     changeToReturnEl.className = "font-weight-bold text-success m-0";
                 } else {
-                    changeToReturnEl.textContent = `0 FCFA`;
+                    changeToReturnEl.textContent = '0 FCFA';
                     changeToReturnEl.className = "font-weight-bold text-danger m-0";
                 }
             }
 
-            // Écouteurs d'actions à l'intérieur du panier
+            // Événements panier
             cartTableBody.addEventListener('input', function(e) {
                 if (e.target.classList.contains('change-qty')) {
-                    const id = e.target.getAttribute('data-id');
+                    const index = e.target.getAttribute('data-index');
                     const newQty = parseInt(e.target.value) || 1;
-                    const item = cart.find(i => i.id === id);
-                    if (item) {
-                        item.quantity = newQty;
-                        renderCart();
+                    const maxQty = parseInt(e.target.getAttribute('max'));
+                    if (newQty > maxQty) {
+                        e.target.value = maxQty;
+                        cart[index].quantite = maxQty;
+                    } else {
+                        cart[index].quantite = newQty;
                     }
+                    renderCart();
                 }
             });
 
             cartTableBody.addEventListener('click', function(e) {
                 const btn = e.target.closest('.remove-item');
-                if (!btn) return;
-                const id = btn.getAttribute('data-id');
-                cart = cart.filter(item => item.id !== id);
-                renderCart();
+                if (btn) {
+                    const index = btn.getAttribute('data-index');
+                    cart.splice(index, 1);
+                    renderCart();
+                }
             });
 
-            discountInput.addEventListener('input', () => renderCart());
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                const filtered = produits.filter(p =>
+                    (p.libelle || '').toLowerCase().includes(query) ||
+                    (p.reference || '').toLowerCase().includes(query)
+                );
+                afficherProduits(filtered);
+            });
+
+            discountInput.addEventListener('input', () => {
+                const subtotal = cart.reduce((sum, item) => sum + (item.prix * item.quantite), 0);
+                updateTotals(subtotal);
+            });
 
             amountReceivedInput.addEventListener('input', () => {
                 const totalNet = parseFloat(totalEl.textContent.replace(/[^0-9]/g, '')) || 0;
@@ -406,14 +494,105 @@
                 renderCart();
             });
 
-            // Simulation d'impression de ticket à la validation
-            btnValidateSale.addEventListener('click', function() {
-                alert("Succès : Enregistrement de la vente et simulation d'impression du ticket de caisse effectué !");
-                cart = [];
-                discountInput.value = 0;
-                amountReceivedInput.value = '';
-                renderCart();
+            // Validation de la vente (persistance en BD)
+            btnValidateSale.addEventListener('click', async function() {
+                if (cart.length === 0) return;
+
+                const totalNet = parseFloat(totalEl.textContent.replace(/[^0-9]/g, '')) || 0;
+                const received = parseFloat(amountReceivedInput.value) || 0;
+                if (received < totalNet) {
+                    showAlert('Le montant reçu est insuffisant.');
+                    return;
+                }
+
+                const modeReglement = document.querySelector('input[name="pay_opt"]:checked').value;
+                const discount = parseFloat(discountInput.value) || 0;
+
+                btnValidateSale.disabled = true;
+                btnValidateSale.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Traitement...';
+
+                try {
+                    const response = await fetch("{{ path('api_vente_valider') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({
+                            lignes: cart.map(item => ({
+                                produit_id: item.id,
+                                quantite: item.quantite
+                            })),
+                            remise: discount,
+                            mode_reglement: modeReglement
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (result.status === 1) {
+                        // Succès - afficher le ticket
+                        afficherTicket(result.data);
+                        cart = [];
+                        renderCart();
+                        discountInput.value = 0;
+                        amountReceivedInput.value = '';
+                        // Recharger les produits pour avoir les stocks à jour
+                        await chargerProduits();
+                    } else {
+                        showAlert(result.message || 'Erreur lors de la validation de la vente.');
+                        btnValidateSale.disabled = false;
+                        btnValidateSale.innerHTML = '<i class="fas fa-print mr-2"></i> Valider l\'encaissement';
+                    }
+                } catch (e) {
+                    console.error(e);
+                    showAlert('Erreur de connexion lors de la validation.');
+                    btnValidateSale.disabled = false;
+                    btnValidateSale.innerHTML = '<i class="fas fa-print mr-2"></i> Valider l\'encaissement';
+                }
             });
+
+            btnNewSale.addEventListener('click', function() {
+                ticketContainer.style.display = 'none';
+                btnValidateSale.disabled = false;
+                btnValidateSale.innerHTML = '<i class="fas fa-print mr-2"></i> Valider l\'encaissement';
+            });
+
+            function afficherTicket(data) {
+                const now = new Date();
+                ticketNumero.textContent = data.numero;
+                ticketDate.textContent = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'});
+                ticketTotal.textContent = Number(data.montantTTC).toLocaleString('fr-FR') + ' FCFA';
+                ticketCaissier.textContent = "{{ app.user.firstName|default('Caissier') }} {{ app.user.lastName|default('') }}";
+
+                ticketLignes.innerHTML = '';
+                cart.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'd-flex justify-content-between mb-1';
+                    row.innerHTML = `
+                        <span>${item.libelle} x${item.quantite}</span>
+                        <span>${(item.prix * item.quantite).toLocaleString('fr-FR')} F</span>
+                    `;
+                    ticketLignes.appendChild(row);
+                });
+
+                ticketContainer.style.display = 'block';
+                // Auto-impression (optionnel)
+                // window.print();
+            }
+
+            function showAlert(message) {
+                const body = document.getElementById('confirmModalBody');
+                body.textContent = message;
+                const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
+                document.getElementById('confirmModalAction').style.display = 'none';
+                modal.show();
+                setTimeout(() => modal.hide(), 2000);
+            }
+
+            // Initialisation
+            chargerProduits();
         });
     </script>
 {% endblock %}

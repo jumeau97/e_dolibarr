@@ -1,3 +1,119 @@
 <div{{ attributes }}>
-    <!-- component HTML -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-outline card-indigo shadow-sm mt-3">
+                <div class="card-header bg-white py-3">
+                    <h3 class="card-title font-weight-bold text-dark mt-1">
+                        <i class="fas fa-history text-muted mr-2"></i> Historique des Mouvements de Stock
+                    </h3>
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 280px;">
+                            <input type="text"
+                                   data-model="searchQuery"
+                                   class="form-control float-right"
+                                   placeholder="Filtrer par produit, entrepôt...">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-default"
+                                        data-action="live#update"
+                                        data-model="searchQuery"
+                                        data-value="">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0 text-center align-middle">
+                            <thead class="bg-light text-sm text-dark">
+                            <tr>
+                                <th class="text-left">Date</th>
+                                <th class="text-left">Produit</th>
+                                <th>Type</th>
+                                <th class="text-left">Entrepôt Source</th>
+                                <th class="text-left">Entrepôt Destination</th>
+                                <th class="text-center">Quantité</th>
+                                <th class="text-left">Motif</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for mvt in this.historique.items %}
+                                <tr>
+                                    <td class="text-left font-mono text-sm">
+                                        {{ mvt.createdAt|date('d/m/Y H:i')|default('-') }}
+                                    </td>
+                                    <td class="text-left text-dark">
+                                        {{ mvt.produit.libelle|default('-') }}
+                                        <small class="text-muted d-block font-mono">{{ mvt.produit.reference|default('-') }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if mvt.typeMouvement == 'TRANSFERT' %}badge-info{% elseif mvt.typeMouvement == 'AJOUT_INVENTAIRE' %}badge-success{% elseif mvt.typeMouvement == 'RETRAIT_INVENTAIRE' %}badge-warning{% elseif mvt.typeMouvement == 'ENTREE_ACHAT' %}badge-success{% else %}badge-danger{% endif %} px-2 py-1">
+                                            {{ mvt.typeMouvement|default('-') }}
+                                        </span>
+                                    </td>
+                                    <td class="text-left">
+                                        {{ mvt.entrepotSource.lieu|default('-') }}
+                                    </td>
+                                    <td class="text-left">
+                                        {{ mvt.entrepotDestination.lieu|default('-') }}
+                                    </td>
+                                    <td class="text-center font-weight-bold">
+                                        {{ mvt.quantite|default(0) }}
+                                    </td>
+                                    <td class="text-left text-muted text-sm">
+                                        {{ mvt.motif|default('-') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7" class="text-center py-5 text-muted">
+                                        <i class="fas fa-history fa-2x mb-2 text-gray-300"></i>
+                                        <p class="mb-0">Aucun mouvement de stock enregistré.</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if this.historique.totalItemCount > 0 %}
+                    <div class="card-footer clearfix bg-white border-top py-2">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item {{ this.historique.currentPageNumber <= 1 ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.historique.currentPageNumber - 1 }}"
+                                        {{ this.historique.currentPageNumber <= 1 ? 'disabled' }}>&laquo;</button>
+                            </li>
+
+                            {% for i in 1..this.historique.totalPage %}
+                                <li class="page-item {{ i == this.historique.currentPageNumber ? 'active' }}">
+                                    <button class="page-link {{ i == this.historique.currentPageNumber ? 'bg-indigo border-indigo' }}"
+                                            data-action="live#update"
+                                            data-model="currentPage"
+                                            data-value="{{ i }}">{{ i }}</button>
+                                </li>
+                            {% endfor %}
+
+                            <li class="page-item {{ this.historique.currentPageNumber >= this.historique.totalPage ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.historique.currentPageNumber + 1 }}"
+                                        {{ this.historique.currentPageNumber >= this.historique.totalPage ? 'disabled' }}>&raquo;</button>
+                            </li>
+                        </ul>
+
+                        <span class="text-muted text-xs float-left mt-2">
+                            Total : <b>{{ this.historique.totalItemCount }}</b> mouvement(s)
+                        </span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 </div>

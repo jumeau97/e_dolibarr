@@ -106,7 +106,7 @@ class NelmioApiDocConfig implements \Symfony\Component\Config\Builder\ConfigBuil
 
     /**
      * UI configuration options
-     * @default {"assets_mode":"cdn","swagger_ui_config":[],"redocly_config":[],"stoplight_config":[]}
+     * @default {"assets_mode":"cdn","swagger_ui_config":[],"redocly_config":[],"scalar_config":[],"stoplight_config":[]}
     */
     public function htmlConfig(array $value = []): \Symfony\Config\NelmioApiDoc\HtmlConfigConfig
     {

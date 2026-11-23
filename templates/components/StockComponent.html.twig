@@ -9,13 +9,16 @@
                         <i class="fas fa-cubes text-muted mr-2"></i> Vue Instantanée du Stock
                     </h3>
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 250px;">
+                        <div class="input-group input-group-sm" style="width: 280px;">
                             <input type="text"
                                    data-model="searchQuery"
                                    class="form-control float-right"
-                                   placeholder="Filtrer par réf, libellé...">
+                                   placeholder="Filtrer par réf, libellé, catégorie...">
                             <div class="input-group-append">
-                                <button type="button" class="btn btn-default">
+                                <button type="button" class="btn btn-default"
+                                        data-action="live#update"
+                                        data-model="searchQuery"
+                                        data-value="">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -31,32 +34,40 @@
                             <tr>
                                 <th class="text-left">Réf.</th>
                                 <th class="text-left">Libellé</th>
-                                <th>Limite stock pour alerte</th>
-                                <th>Stock désiré optimal</th>
+                                <th class="text-left">Catégorie</th>
+                                <th>Seuil alerte</th>
+                                <th>Stock optimal</th>
                                 <th class="text-indigo font-weight-bold">Stock physique</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for product in this.StockList.items %}
+                            {% for product in this.stockList.items %}
                                 <tr>
                                     <!-- Réf. -->
                                     <td class="text-left font-mono text-sm">
-                                        {{ product.reference }}
+                                        {{ product.reference|default('-') }}
                                     </td>
 
                                     <!-- Libellé -->
                                     <td class="text-left text-dark">
-                                        {{ product.libelle }}
+                                        {{ product.libelle|default('-') }}
                                     </td>
 
-                                    <!-- Limite stock pour alerte -->
+                                    <!-- Catégorie -->
+                                    <td class="text-left">
+                                        <span class="badge badge-light border text-secondary text-sm">
+                                            {{ product.category.libelle|default('Non classé') }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Seuil alerte -->
                                     <td>
                                         <span class="badge badge-warning-light text-warning px-2 py-1">
                                             {{ product.stockAlerte|default(0) }}
                                         </span>
                                     </td>
 
-                                    <!-- Stock désiré optimal -->
+                                    <!-- Stock optimal -->
                                     <td>
                                         <span class="text-muted">{{ product.stockOptimal|default(0) }}</span>
                                     </td>
@@ -68,7 +79,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="5" class="text-center py-5 text-muted">
+                                    <td colspan="6" class="text-center py-5 text-muted">
                                         <i class="fas fa-boxes fa-2x mb-2 text-gray-300"></i>
                                         <p class="mb-0">Aucun produit trouvé dans le catalogue de stock.</p>
                                     </td>
@@ -80,30 +91,41 @@
                 </div>
 
                 <!-- FOOTER AVEC PAGINATION REACTIVE -->
-                {% if this.StockList.totalItemCount > 0 %}
+                {% if this.stockList.totalItemCount > 0 %}
                     <div class="card-footer clearfix bg-white border-top py-2">
                         <ul class="pagination pagination-sm m-0 float-right">
                             {# Bouton Précédent #}
-                            <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
-                                <button class="page-link" data-action="live#update" data-model="currentPage" data-value="{{ currentPage - 1 }}" {{ currentPage <= 1 ? 'disabled' }}>&laquo;</button>
+                            <li class="page-item {{ this.stockList.currentPageNumber <= 1 ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.stockList.currentPageNumber - 1 }}"
+                                        {{ this.stockList.currentPageNumber <= 1 ? 'disabled' }}>&laquo;</button>
                             </li>
 
                             {# Boucle des Pages #}
-                            {% for i in 1..this.StockList.totalPage %}
-                                <li class="page-item {{ i == currentPage ? 'active' }}">
-                                    <button class="page-link {{ i == currentPage ? 'bg-indigo border-indigo' }}" data-action="live#update" data-model="currentPage" data-value="{{ i }}">{{ i }}</button>
+                            {% for i in 1..this.stockList.totalPage %}
+                                <li class="page-item {{ i == this.stockList.currentPageNumber ? 'active' }}">
+                                    <button class="page-link {{ i == this.stockList.currentPageNumber ? 'bg-indigo border-indigo' }}"
+                                            data-action="live#update"
+                                            data-model="currentPage"
+                                            data-value="{{ i }}">{{ i }}</button>
                                 </li>
                             {% endfor %}
 
                             {# Bouton Suivant #}
-                            <li class="page-item {{ currentPage >= this.StockList.totalPage ? 'disabled' }}">
-                                <button class="page-link" data-action="live#update" data-model="currentPage" data-value="{{ currentPage + 1 }}" {{ currentPage >= this.StockList.totalPage ? 'disabled' }}>&raquo;</button>
+                            <li class="page-item {{ this.stockList.currentPageNumber >= this.stockList.totalPage ? 'disabled' }}">
+                                <button class="page-link"
+                                        data-action="live#update"
+                                        data-model="currentPage"
+                                        data-value="{{ this.stockList.currentPageNumber + 1 }}"
+                                        {{ this.stockList.currentPageNumber >= this.stockList.totalPage ? 'disabled' }}>&raquo;</button>
                             </li>
                         </ul>
 
                         {# Indicateur de lignes #}
                         <span class="text-muted text-xs float-left mt-2">
-                            Total : <b>{{ this.StockList.totalItemCount }}</b> référence(s) en stock
+                            Total : <b>{{ this.stockList.totalItemCount }}</b> référence(s) en stock
                         </span>
                     </div>
                 {% endif %}

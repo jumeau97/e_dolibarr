@@ -4,6 +4,7 @@ namespace Symfony\Config\NelmioApiDoc;
 
 require_once __DIR__.\DIRECTORY_SEPARATOR.'HtmlConfig'.\DIRECTORY_SEPARATOR.'SwaggerUiConfigConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'HtmlConfig'.\DIRECTORY_SEPARATOR.'RedoclyConfigConfig.php';
+require_once __DIR__.\DIRECTORY_SEPARATOR.'HtmlConfig'.\DIRECTORY_SEPARATOR.'ScalarConfigConfig.php';
 require_once __DIR__.\DIRECTORY_SEPARATOR.'HtmlConfig'.\DIRECTORY_SEPARATOR.'StoplightConfigConfig.php';
 
 use Symfony\Component\Config\Loader\ParamConfigurator;
@@ -17,6 +18,7 @@ class HtmlConfigConfig
     private $assetsMode;
     private $swaggerUiConfig;
     private $redoclyConfig;
+    private $scalarConfig;
     private $stoplightConfig;
     private $_usedProperties = [];
 
@@ -64,6 +66,21 @@ class HtmlConfigConfig
     }
 
     /**
+     * https://scalar.com/products/api-references/configuration
+    */
+    public function scalarConfig(array $value = []): \Symfony\Config\NelmioApiDoc\HtmlConfig\ScalarConfigConfig
+    {
+        if (null === $this->scalarConfig) {
+            $this->_usedProperties['scalarConfig'] = true;
+            $this->scalarConfig = new \Symfony\Config\NelmioApiDoc\HtmlConfig\ScalarConfigConfig($value);
+        } elseif (0 < \func_num_args()) {
+            throw new InvalidConfigurationException('The node created by "scalarConfig()" has already been initialized. You cannot pass values the second time you call scalarConfig().');
+        }
+
+        return $this->scalarConfig;
+    }
+
+    /**
      * https://docs.stoplight.io/docs/elements/b074dc47b2826-elements-configuration-options
     */
     public function stoplightConfig(array $value = []): \Symfony\Config\NelmioApiDoc\HtmlConfig\StoplightConfigConfig
@@ -98,6 +115,12 @@ class HtmlConfigConfig
             unset($value['redocly_config']);
         }
 
+        if (array_key_exists('scalar_config', $value)) {
+            $this->_usedProperties['scalarConfig'] = true;
+            $this->scalarConfig = new \Symfony\Config\NelmioApiDoc\HtmlConfig\ScalarConfigConfig($value['scalar_config']);
+            unset($value['scalar_config']);
+        }
+
         if (array_key_exists('stoplight_config', $value)) {
             $this->_usedProperties['stoplightConfig'] = true;
             $this->stoplightConfig = new \Symfony\Config\NelmioApiDoc\HtmlConfig\StoplightConfigConfig($value['stoplight_config']);
@@ -120,6 +143,9 @@ class HtmlConfigConfig
         }
         if (isset($this->_usedProperties['redoclyConfig'])) {
             $output['redocly_config'] = $this->redoclyConfig->toArray();
+        }
+        if (isset($this->_usedProperties['scalarConfig'])) {
+            $output['scalar_config'] = $this->scalarConfig->toArray();
         }
         if (isset($this->_usedProperties['stoplightConfig'])) {
             $output['stoplight_config'] = $this->stoplightConfig->toArray();

@@ -14,7 +14,6 @@ use Symfony\UX\LiveComponent\DefaultActionTrait;
 final class StockComponent
 {
     use DefaultActionTrait;
-    use DefaultActionTrait;
 
     #[LiveProp(writable: true)]
     public ?int $currentPage = 1;
@@ -30,16 +29,14 @@ final class StockComponent
         private ProductInterface   $productInterface,
         private UtilisService       $utilisService,
         private SerializerInterface $serializer
-    )
-    {
+    ) {
     }
 
     public function getStockList(): array
     {
-
-//        dd('ooh');
         $search = new SearchProduct();
         $search->setIsQuantity(true);
+        $search->setSearch($this->searchQuery);
 
         $pagination = $this->productInterface->findAllByCriteria(
             $this->currentPage,
@@ -53,7 +50,5 @@ final class StockComponent
         );
 
         return $this->utilisService->paginationResp($dataArray, $pagination, $this->itemPerPage);
-
-
     }
 }

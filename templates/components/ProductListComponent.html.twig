@@ -1,249 +1,282 @@
 <div{{ attributes }}>
     <div {{ stimulus_controller('product') }}>
-        <div class="table-responsive">
-            <table class="table table-hover table-striped mb-0 text-nowrap align-middle">
-                <thead class="bg-dark">
-                <tr>
-                    <th style="width: 50px;"></th>
-                    <th>Type</th>
-                    <th>Nom de l'élément</th>
-                    <th>Catégorie</th>
-                    <th>Prix de Vente</th>
-                    <th class="text-center">Stock Actuel</th>
-                    <th class="text-right">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for product in this.PagedData.items %}
-                    {# Ligne Principale #}
-                    <tr class="main-row">
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary"
-                                    type="button"
-                                    data-toggle="collapse"
-                                    data-target="#details-stock-{{ product.id }}"
-                                    aria-expanded="false">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </td>
-                        <td>
-                        <span class="badge badge-primary px-2 py-1">
-                            <i class="fas fa-box mr-1"></i> Produit
-                        </span>
-                        </td>
-                        <td>
-                            <span class="font-weight-bold text-dark">{{ product.libelle }}</span><br>
-                            <small class="text-muted font-mono">Réf: {{ product.reference }}</small>
-                        </td>
-                        <td>
-                            {# Protection si le produit n'a pas de catégorie associée #}
-                            <span class="text-secondary">{{ product.category.libelle|default('Non classé') }}</span>
-                        </td>
-                        <td class="font-weight-bold text-indigo">
-                            {{ product.prixVente|number_format(0, ',', ' ') }} FCFA
-                        </td>
-                        <td class="text-center">
-                            {% set stockReel = product.quantite|default(0) %}
-
-                            {% if product.limitStock is defined and stockReel <= product.limitStock %}
-                                <span class="badge badge-pill bg-danger-light text-danger font-weight-bold px-2 py-1">
-                                {{ stockReel }} (Rupture / Alerte)
-                            </span>
-                            {% else %}
-                                <span class="badge badge-pill bg-success-light text-success font-weight-bold px-2 py-1">
-                                {{ stockReel }} en stock
-                            </span>
-                            {% endif %}
-                        </td>
-                        <td class="text-right py-1">
-                            {# Lien vers la vue détails ou modification #}
-                            <div class="btn-group">
-                                <a href="{{ path('details_entrepot',{"id":product.id}) }}"
-                                   class="btn btn-sm btn-default"
-                                   title="Voir la fiche">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <button class="btn btn-sm btn-default" title="Modifier">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </button>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-outline card-indigo shadow-sm mt-3">
+                    <div class="card-header bg-white py-3">
+                        <h3 class="card-title font-weight-bold text-dark mt-1">
+                            <i class="fas fa-box text-muted mr-2"></i> Catalogue des Articles
+                        </h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 280px;">
+                                <input type="text"
+                                       data-model="searchQuery"
+                                       class="form-control float-right"
+                                       placeholder="Filtrer par nom, référence, catégorie...">
+                                <div class="input-group-append">
+                                    <button type="button" class="btn btn-default"
+                                            data-action="live#update"
+                                            data-model="searchQuery"
+                                            data-value="">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
 
-                    {# Ligne de Détails (Dépliable) #}
-                    <tr class="collapse-row">
-                        <td colspan="7" class="p-0">
-                            <div id="details-stock-{{ product.id }}" class="collapse bg-light">
-                                <div class="p-4">
-                                    <div class="row">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped mb-0 text-nowrap align-middle">
+                                <thead class="bg-dark text-white">
+                                <tr>
+                                    <th style="width: 50px;"></th>
+                                    <th>Type</th>
+                                    <th>Nom de l'élément</th>
+                                    <th>Catégorie</th>
+                                    <th>Prix de Vente</th>
+                                    <th class="text-center">Stock Actuel</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for product in this.pagedData.items %}
+                                    {# Ligne Principale #}
+                                    <tr class="main-row">
+                                        <td>
+                                            <button class="btn btn-sm btn-outline-primary"
+                                                    type="button"
+                                                    data-toggle="collapse"
+                                                    data-target="#details-stock-{{ product.id }}"
+                                                    aria-expanded="false">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                        <span class="badge badge-primary px-2 py-1">
+                                            <i class="fas fa-box mr-1"></i> Produit
+                                        </span>
+                                        </td>
+                                        <td>
+                                            <span class="font-weight-bold text-dark">{{ product.libelle }}</span><br>
+                                            <small class="text-muted font-mono">Réf: {{ product.reference }}</small>
+                                        </td>
+                                        <td>
+                                            <span class="text-secondary">{{ product.category.libelle|default('Non classé') }}</span>
+                                        </td>
+                                        <td class="font-weight-bold text-indigo">
+                                            {{ product.prixVente|number_format(0, ',', ' ') }} FCFA
+                                        </td>
+                                        <td class="text-center">
+                                            {% set stockReel = product.quantite|default(0) %}
 
-                                        <div class="col-md-7">
-                                            <div class="card card-outline card-info shadow-sm">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">
-                                                        <i class="fas fa-warehouse mr-1 text-info"></i> Répartition par
-                                                        entrepôt
-                                                    </h3>
-                                                </div>
-                                                <div class="card-body p-0">
-                                                    <table class="table table-sm table-striped mb-0 text-center bg-white">
-                                                        <thead class="bg-light text-xs text-muted text-uppercase">
-                                                        <tr>
-                                                            <th class="text-left pl-3">Nom de l'entrepôt</th>
-                                                            <th>Emplacement</th>
-                                                            <th>Quantité disponible</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        {% for stock in product.entrepotStocks %}
-                                                            <tr>
-                                                                <td class="text-left pl-3 font-weight-bold text-secondary">
-                                                                    <i class="fas fa-map-marker-alt text-muted mr-2"></i> {{ stock.entrepot.lieu }}
-                                                                </td>
-                                                                <td class="text-secondary text-sm">
-                                                                    {{ stock.entrepot.town|default('N/A') }}
-                                                                </td>
-                                                                <td class="font-weight-bold text-dark">
-                                                                    {{ stock.quantite }} unités
-                                                                </td>
-                                                            </tr>
-                                                        {% else %}
-                                                            <tr>
-                                                                <td colspan="3" class="text-center py-3 text-muted">
-                                                                    <i class="fas fa-exclamation-triangle mr-1 text-warning"></i>
-                                                                    Cet article n'est actuellement stocké dans aucun
-                                                                    entrepôt.
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                            {% if product.limitStock is defined and stockReel <= product.limitStock %}
+                                                <span class="badge badge-pill bg-danger-light text-danger font-weight-bold px-2 py-1">
+                                                    {{ stockReel }} (Rupture / Alerte)
+                                                </span>
+                                            {% else %}
+                                                <span class="badge badge-pill bg-success-light text-success font-weight-bold px-2 py-1">
+                                                    {{ stockReel }} en stock
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-right py-1">
+                                            <div class="btn-group">
+                                                <a href="{{ path('details_entrepot',{"id":product.id}) }}"
+                                                   class="btn btn-sm btn-default"
+                                                   title="Voir la fiche">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                <a href="{{ path('add_product') }}"
+                                                   class="btn btn-sm btn-default"
+                                                   title="Modifier ce produit">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
                                             </div>
-                                        </div>
+                                        </td>
+                                    </tr>
 
-                                        <div class="col-md-5">
-                                            <div class="card card-outline card-indigo shadow-sm">
-                                                <div class="card-header">
-                                                    <h3 class="card-title">
-                                                        <i class="fas fa-cubes mr-1 text-indigo"></i> Actions &amp;
-                                                        Seuils Globaux
-                                                    </h3>
-                                                </div>
-                                                <div class="card-body">
-                                                    <ul class="list-group list-group-flush mb-4">
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
-                                                            <span><i class="fas fa-exclamation-triangle text-warning mr-2"></i> Seuil d'alerte :</span>
-                                                            <span class="badge badge-warning font-weight-bold">{{ product.stockAlerte|default(0) }}</span>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
-                                                            <span><i class="fas fa-check-circle text-success mr-2"></i> Stock optimal visé :</span>
-                                                            <span class="badge badge-success font-weight-bold">{{ product.stockOptimal|default(0) }}</span>
-                                                        </li>
-                                                    </ul>
+                                    {# Ligne de Détails (Dépliable) #}
+                                    <tr class="collapse-row">
+                                        <td colspan="7" class="p-0">
+                                            <div id="details-stock-{{ product.id }}" class="collapse bg-light">
+                                                <div class="p-4">
+                                                    <div class="row">
 
-                                                    <hr>
+                                                        <div class="col-md-7">
+                                                            <div class="card card-outline card-info shadow-sm">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">
+                                                                        <i class="fas fa-warehouse mr-1 text-info"></i> Répartition par
+                                                                        entrepôt
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="card-body p-0">
+                                                                    <table class="table table-sm table-striped mb-0 text-center bg-white">
+                                                                        <thead class="bg-light text-xs text-muted text-uppercase">
+                                                                        <tr>
+                                                                            <th class="text-left pl-3">Nom de l'entrepôt</th>
+                                                                            <th>Emplacement</th>
+                                                                            <th>Quantité disponible</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        {% for stock in product.entrepotStocks %}
+                                                                            <tr>
+                                                                                <td class="text-left pl-3 font-weight-bold text-secondary">
+                                                                                    <i class="fas fa-map-marker-alt text-muted mr-2"></i> {{ stock.entrepot.lieu }}
+                                                                                </td>
+                                                                                <td class="text-secondary text-sm">
+                                                                                    {{ stock.entrepot.town|default('N/A') }}
+                                                                                </td>
+                                                                                <td class="font-weight-bold text-dark">
+                                                                                    {{ stock.quantite }} unités
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% else %}
+                                                                            <tr>
+                                                                                <td colspan="3" class="text-center py-3 text-muted">
+                                                                                    <i class="fas fa-exclamation-triangle mr-1 text-warning"></i>
+                                                                                    Cet article n'est actuellement stocké dans aucun entrepôt.
+                                                                                </td>
+                                                                            </tr>
+                                                                        {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                    <h6 class="text-muted text-sm font-weight-bold mb-3">Mouvements de
-                                                        stock généraux</h6>
-                                                    <div class="d-flex flex-column gap-2">
-                                                        <button type="button"
-                                                                class="btn btn-sm btn-primary btn-block text-left mb-2 shadow-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#modal-transfert"
-                                                                {{ stimulus_action('product', 'open', 'click', {
-                                                                    'id': product.id,
-                                                                    'name': product.libelle
-                                                                }) }}
-                                                        >
-                                                            <i class="fas fa-truck mr-2"></i> Transférer ce produit
-                                                        </button>
+                                                        <div class="col-md-5">
+                                                            <div class="card card-outline card-indigo shadow-sm">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">
+                                                                        <i class="fas fa-cubes mr-1 text-indigo"></i> Actions &
+                                                                        Seuils Globaux
+                                                                    </h3>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <ul class="list-group list-group-flush mb-4">
+                                                                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                                            <span><i class="fas fa-exclamation-triangle text-warning mr-2"></i> Seuil d'alerte :</span>
+                                                                            <span class="badge badge-warning font-weight-bold">{{ product.stockAlerte|default(0) }}</span>
+                                                                        </li>
+                                                                        <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent px-0">
+                                                                            <span><i class="fas fa-check-circle text-success mr-2"></i> Stock optimal visé :</span>
+                                                                            <span class="badge badge-success font-weight-bold">{{ product.stockOptimal|default(0) }}</span>
+                                                                        </li>
+                                                                    </ul>
 
-                                                        <button type="button"
-                                                                class="btn btn-sm btn-danger btn-block text-left shadow-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#modal-correction"
-                                                                {{ stimulus_action('product', 'openning', 'click', {
-                                                                    'id': product.id,
-                                                                    'name': product.libelle
-                                                                }) }}
-                                                        >
-                                                            <i class="fas fa-tools mr-2"></i> Corriger / Ajuster le
-                                                            stock
-                                                        </button>
+                                                                    <hr>
+
+                                                                    <h6 class="text-muted text-sm font-weight-bold mb-3">Mouvements de
+                                                                        stock généraux</h6>
+                                                                    <div class="d-flex flex-column gap-2">
+                                                                        <button type="button"
+                                                                                class="btn btn-sm btn-primary btn-block text-left mb-2 shadow-sm"
+                                                                                data-toggle="modal"
+                                                                                data-target="#modal-transfert"
+                                                                                {{ stimulus_action('product', 'open', 'click', {
+                                                                                    'id': product.id,
+                                                                                    'name': product.libelle
+                                                                                }) }}
+                                                                        >
+                                                                            <i class="fas fa-truck mr-2"></i> Transférer ce produit
+                                                                        </button>
+
+                                                                        <button type="button"
+                                                                                class="btn btn-sm btn-danger btn-block text-left shadow-sm"
+                                                                                data-toggle="modal"
+                                                                                data-target="#modal-correction"
+                                                                                {{ stimulus_action('product', 'openning', 'click', {
+                                                                                    'id': product.id,
+                                                                                    'name': product.libelle
+                                                                                }) }}
+                                                                        >
+                                                                            <i class="fas fa-tools mr-2"></i> Corriger / Ajuster le
+                                                                            stock
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    {# Sécurité si le tableau d'articles est vide #}
+                                    <tr>
+                                        <td colspan="7" class="text-center py-5">
+                                            <div class="text-muted">
+                                                <i class="fas fa-box-open fa-2x mb-2"></i>
+                                                <p class="mb-0">Aucun produit ne correspond à vos critères de recherche.</p>
+                                                <button class="btn btn-sm btn-primary" data-action="live#update"
+                                                        data-model="searchQuery" data-value="">
+                                                    Réinitialiser la recherche
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                {% else %}
-                    {# Sécurité si le tableau d'articles est vide #}
-                    <tr>
-                        <td colspan="7" class="text-center py-5">
-                            <div class="text-muted">
-                                <i class="fas fa-box-open fa-2x mb-2"></i>
-                                <p class="mb-0">Aucun produit ne correspond à vos critères de recherche.</p>
-                            </div>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    {% if this.pagedData.totalItemCount > 0 %}
+                        <div class="card-footer clearfix bg-white border-top py-2">
 
-        {% if this.PagedData.totalItemCount > 0 %}
-            <div class="card-footer clearfix bg-white border-top py-2">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                {# Précédent #}
+                                <li class="page-item {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}">
+                                    <button class="page-link"
+                                            data-action="live#update"
+                                            data-model="currentPage"
+                                            data-value="{{ this.pagedData.currentPageNumber - 1 }}"
+                                            {{ this.pagedData.currentPageNumber <= 1 ? 'disabled' }}>
+                                        &laquo;
+                                    </button>
+                                </li>
 
-                <ul class="pagination pagination-sm m-0 float-right">
-                    {# Précédent #}
-                    <li class="page-item {{ currentPage <= 1 ? 'disabled' }}">
-                        <button class="page-link"
-                                data-action="live#update"
-                                data-model="currentPage"
-                                data-value="{{ currentPage - 1 }}"
-                                {{ currentPage <= 1 ? 'disabled' }}>
-                            &laquo;
-                        </button>
-                    </li>
+                                {# Numéros de pages dynamiques #}
+                                {% for i in 1..this.pagedData.totalPage %}
+                                    <li class="page-item {{ i == this.pagedData.currentPageNumber ? 'active' }}">
+                                        <button class="page-link {{ i == this.pagedData.currentPageNumber ? 'bg-indigo border-indigo' }}"
+                                                data-action="live#update"
+                                                data-model="currentPage"
+                                                data-value="{{ i }}">
+                                            {{ i }}
+                                        </button>
+                                    </li>
+                                {% endfor %}
 
-                    {# Numéros de pages dynamiques #}
-                    {% for i in 1..this.PagedData.totalPage %}
-                        <li class="page-item {{ i == currentPage ? 'active' }}">
-                            <button class="page-link {{ i == currentPage ? 'bg-indigo border-indigo' }}"
-                                    data-action="live#update"
-                                    data-model="currentPage"
-                                    data-value="{{ i }}">
-                                {{ i }}
-                            </button>
-                        </li>
-                    {% endfor %}
+                                {# Suivant #}
+                                <li class="page-item {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}">
+                                    <button class="page-link"
+                                            data-action="live#update"
+                                            data-model="currentPage"
+                                            data-value="{{ this.pagedData.currentPageNumber + 1 }}"
+                                            {{ this.pagedData.currentPageNumber >= this.pagedData.totalPage ? 'disabled' }}>
+                                        &raquo;
+                                    </button>
+                                </li>
+                            </ul>
 
-                    {# Suivant #}
-                    <li class="page-item {{ currentPage >= this.PagedData.totalPage ? 'disabled' }}">
-                        <button class="page-link"
-                                data-action="live#update"
-                                data-model="currentPage"
-                                data-value="{{ currentPage + 1 }}"
-                                {{ currentPage >= this.PagedData.totalPage ? 'disabled' }}>
-                            &raquo;
-                        </button>
-                    </li>
-                </ul>
+                            {% set maxItemsPerPage = this.pagedData.items|length %}
+                            {% set startItem = ((this.pagedData.currentPageNumber - 1) * this.pagedData.itemPerPage) + 1 %}
+                            {% set endItem = startItem + maxItemsPerPage - 1 %}
+                            {% if endItem > this.pagedData.totalItemCount %}{% set endItem = this.pagedData.totalItemCount %}{% endif %}
 
-                {% set maxItemsPerPage = this.PagedData.items|length %}
-                {% set startItem = ((currentPage - 1) * maxItemsPerPage) + 1 %}
-                {% set endItem = startItem + maxItemsPerPage - 1 %}
-                {% if endItem > this.PagedData.totalItemCount %}{% set endItem = this.PagedData.totalItemCount %}{% endif %}
-
-                <span class="text-muted text-xs float-left mt-2">
-            Affichage de <b>{{ startItem }}</b> à <b>{{ endItem }}</b> sur <b>{{ this.PagedData.totalItemCount }}</b> articles
-        </span>
+                            <span class="text-muted text-xs float-left mt-2">
+                                Affichage de <b>{{ startItem }}</b> à <b>{{ endItem }}</b> sur <b>{{ this.pagedData.totalItemCount }}</b> articles
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-        {% endif %}
+        </section>
     </div>
 </div>
