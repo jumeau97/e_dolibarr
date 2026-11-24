@@ -63,9 +63,9 @@
                             <div class="tab-pane fade show active" id="tab-articles" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Gestion de vos marchandises et prestations facturables.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold"><i
+                                    <a href="{{ path('add_product') }}" class="btn btn-sm btn-success font-weight-bold"><i
                                                 class="fas fa-plus mr-1"></i> Nouveau Produit / Service
-                                    </button>
+                                    </a>
                                 </div>
                                 {{ component('ProductListComponent') }}
                             </div>
@@ -74,7 +74,8 @@
                             <div class="tab-pane fade" id="tab-categories" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Classez vos produits pour simplifier la recherche à la caisse.</span>
-                                    <a href="{{ path('app_categorie_add') }}" class="btn btn-sm btn-success font-weight-bold"><i
+                                    <a href="{{ path('app_categorie_add') }}"
+                                       class="btn btn-sm btn-success font-weight-bold"><i
                                                 class="fas fa-plus mr-1"></i> Nouvelle Catégorie
                                     </a>
                                 </div>
@@ -87,7 +88,8 @@
                             <div class="tab-pane fade" id="tab-entrepots" role="tabpanel">
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Lieux physiques de stockage ou de vente.</span>
-                                    <button class="btn btn-sm btn-success font-weight-bold" data-toggle="modal" data-target="#modal-add-warehouse"><i
+                                    <button class="btn btn-sm btn-success font-weight-bold" data-toggle="modal"
+                                            data-target="#modal-add-warehouse"><i
                                                 class="fas fa-plus mr-1"></i> Ajouter un Emplacement
                                     </button>
                                 </div>
@@ -102,10 +104,12 @@
                                 <div class="p-3 bg-light d-flex justify-content-between align-items-center border-bottom">
                                     <span class="text-muted">Le cahier d'historique de toutes les entrées, sorties et transferts.</span>
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-danger font-weight-bold" data-toggle="modal" data-target="#modal-correction"><i
+                                        <button class="btn btn-sm btn-danger font-weight-bold" data-toggle="modal"
+                                                data-target="#modal-correction"><i
                                                     class="fas fa-minus-circle mr-1"></i> Signaler Perte/Casse
                                         </button>
-                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1" data-toggle="modal" data-target="#modal-transfert"><i
+                                        <button class="btn btn-sm btn-primary font-weight-bold ml-1" data-toggle="modal"
+                                                data-target="#modal-transfert"><i
                                                     class="fas fa-exchange-alt mr-1"></i> Transférer du stock
                                         </button>
                                     </div>
@@ -136,7 +140,7 @@
                             </button>
                         </div>
 
-                        {{ form_start(formTransfert) }}
+                        {{ form_start(formTransfert, {'attr': {'method': 'post', 'id': 'form-transfert'}}) }}
                         <div class="modal-body bg-light">
 
                             <div class="alert alert-info border-0 shadow-sm mb-3 py-2">
@@ -148,7 +152,7 @@
 
                             <div class="row">
                                 <div class="d-none">
-                                    {{ form_widget(formTransfert.product, {'attr': {'id': 'transfert-produit-id'}}) }}
+                                    {{ form_widget(formTransfert.product, {'attr': {'id': 'transfere_stock_form_product'}}) }}
                                 </div>
                                 <div class="col-md-12">
                                     {{ form_row(formTransfert.entrepotSource) }}
@@ -188,7 +192,7 @@
                             </button>
                         </div>
 
-                        {{ form_start(formCorrection) }}
+                        {{ form_start(formCorrection, {'attr': {'method': 'post', 'id': 'form-correction'}}) }}
                         <div class="modal-body bg-light">
 
                             <div class="alert alert-warning border-0 shadow-sm mb-3 py-2 text-dark">
@@ -201,7 +205,7 @@
 
                             <div class="row">
                                 <div class="d-none">
-                                    {{ form_widget(formCorrection.product, {'attr': {'id': 'correct-produit-id'}}) }}
+                                    {{ form_widget(formCorrection.product, {'attr': {'id': 'correction_stock_product'}}) }}
                                 </div>
                                 <div class="col-md-12">
                                     {{ form_row(formCorrection.entrepot) }}
@@ -232,13 +236,15 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="modal-add-warehouse" tabindex="-1" role="dialog" aria-labelledby="modalAddWarehouseLabel" aria-hidden="true">
+            <div class="modal fade" id="modal-add-warehouse" tabindex="-1" role="dialog"
+                 aria-labelledby="modalAddWarehouseLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <!-- En-tête de la Modal -->
                         <div class="modal-header bg-dark text-white py-3">
                             <h5 class="modal-title font-weight-bold" id="modalAddWarehouseLabel">
-                                <i class="fas fa-warehouse text-warning mr-2"></i> Enregistrer une Nouvelle Infrastructure
+                                <i class="fas fa-warehouse text-warning mr-2"></i> Enregistrer une Nouvelle
+                                Infrastructure
                             </h5>
                             <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -317,7 +323,8 @@
 
                         {# Actions du Formulaire #}
                         <div class="modal-footer bg-white py-2">
-                            <button type="button" class="btn btn-default btn-sm text-sm" data-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-default btn-sm text-sm" data-dismiss="modal">Annuler
+                            </button>
                             <button type="submit" class="btn btn-indigo btn-sm text-sm font-weight-bold">
                                 <i class="fas fa-save mr-1"></i> Enregistrer le site
                             </button>

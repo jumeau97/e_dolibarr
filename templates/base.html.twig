@@ -68,6 +68,18 @@
     {% include 'menus/_aside.html.twig' %}
 {% endblock %}
 
+{# Affichage des messages flash (succès / erreur) #}
+{% block flash_messages %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label == 'success' ? 'success' : (label == 'error' ? 'danger' : 'info') }} alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index: 1050; max-width: 600px;" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
 {% block body %}
 
 {% endblock %}

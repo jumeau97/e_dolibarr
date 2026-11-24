@@ -4,10 +4,8 @@ namespace App\Form;
 
 use App\Entity\Entrepot;
 use App\Entity\Produit;
-use PHPUnit\Framework\Constraint\GreaterThan;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +22,7 @@ class TransfereStockFormType extends AbstractType
                 'choice_label' => 'libelle',
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'transfert-product-id']
+                    'id' => 'transfere_stock_form_product']
             ])
 
             // Entrepôt Source (Départ)
@@ -75,7 +73,8 @@ class TransfereStockFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'csrf_protection' => false
+            'csrf_protection' => true,
+            'csrf_token_id'   => 'transfert_stock_item',
         ]);
     }
 }

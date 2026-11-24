@@ -15,6 +15,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Component\Security\Core\User\UserInterface as SecurityUserInterface;
 
 #[Route("/product")]
 final class ProduitArticleController extends AbstractController
@@ -54,6 +56,7 @@ final class ProduitArticleController extends AbstractController
         $formTransfert->handleRequest($request);
         if ($formTransfert->isSubmitted() && $formTransfert->isValid()) {
             $data = $formTransfert->getData();
+//            dd($data);
 
             $produit = $data['product'];
             $source = $data['entrepotSource'];
@@ -67,8 +70,11 @@ final class ProduitArticleController extends AbstractController
                 return $this->redirectToRoute('app_produit_article');
             }
 
+
             $stockSource = $this->em->getRepository(EntrepotStock::class)
                 ->findOneBy(['product' => $produit, 'entrepot' => $source]);
+
+
 
             if (!$stockSource || (int) $stockSource->getQuantite() < $quantite) {
                 $this->addFlash('error', sprintf(
@@ -234,6 +240,62 @@ final class ProduitArticleController extends AbstractController
 
         return $this->render('produit_article/add-product.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/edit/{id}', name: 'app_produit_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ProductTypeFormType::class, $produit, [
+            'entrepot_responsable' => null,
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entrepotSelectionne = $form->get('entrepots')->getData();
+
+            if ($entrepotSelectionne) {
+                $produit->addEntrepot($entrepotSelectionne);
+            }
+
+            $entityManager->persist($produit);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le produit a été modifié avec succès.');
+
+            return $this->redirectToRoute('app_produit_article');
+        }
+
+        return $this->render('produit_article/edit-product.html.twig', [
+            'produit' => $produit,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'app_produit_delete', methods: ['POST'])]
+    public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete_product_' . $produit->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($produit);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Le produit a été supprimé avec succès.');
+        }
+
+        return $this->redirectToRoute('app_produit_article');
+    }
+
+    #[Route('/details/{id}', name: 'app_produit_details')]
+    public function details(Produit $produit): Response
+    {
+        $entrepotStocks = $produit->getEntrepotStocks();
+        $mouvements = $produit->getStockMovements();
+
+        return $this->render('produit_article/details.html.twig', [
+            'produit' => $produit,
+            'entrepotStocks' => $entrepotStocks,
+            'mouvements' => $mouvements,
         ]);
     }
 }

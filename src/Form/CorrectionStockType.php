@@ -83,7 +83,8 @@ class CorrectionStockType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'csrf_protection' => true,
+            'csrf_token_id'   => 'correction_stock_item',
         ]);
     }
 }

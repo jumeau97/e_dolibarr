@@ -1,0 +1,208 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail - {{ produit.libelle }}{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-box text-indigo mr-2"></i> Fiche produit
+                        </h1>
+                        <p class="text-muted mb-0">{{ produit.reference }} · {{ produit.category.libelle|default('Non classée') }}</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-sm btn-indigo mr-2">
+                            <i class="fas fa-pencil-alt mr-1"></i> Modifier
+                        </a>
+                        <a href="{{ path('app_produit_article') }}" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left mr-1"></i> Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Cartes d'info -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ produit.prixVente|number_format(0, ',', ' ') }}</h3>
+                                <p>Prix de vente (FCFA)</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ produit.prixAchat|number_format(0, ',', ' ') }}</h3>
+                                <p>Prix d'achat (FCFA)</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ produit.stockPhysique }}</h3>
+                                <p>Stock physique</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-{{ produit.stockPhysique <= (produit.limitStock|default(999999)) ? 'danger' : 'success' }}">
+                            <div class="inner">
+                                <h3>{{ produit.limitStock|default('N/A') }}</h3>
+                                <p>Seuil d'alerte</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <!-- Stock par entrepôt -->
+                    <div class="col-lg-6">
+                        <div class="card card-outline card-indigo shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-warehouse mr-1"></i> Répartition par entrepôt
+                                </h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Entrepôt</th>
+                                        <th class="text-center">Quantité</th>
+                                        <th class="text-center">Ville</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for stock in entrepotStocks %}
+                                        <tr>
+                                            <td>{{ stock.entrepot.lieu }}</td>
+                                            <td class="text-center font-weight-bold">{{ stock.quantite }}</td>
+                                            <td>{{ stock.entrepot.town|default('-') }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted py-4">Aucun entrepôt associé.</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informations produit -->
+                    <div class="col-lg-6">
+                        <div class="card card-outline card-primary shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-info-circle mr-1"></i> Informations
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-borderless">
+                                    <tr>
+                                        <th style="width: 40%;">Référence</th>
+                                        <td>{{ produit.reference|default('-') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Libellé</th>
+                                        <td>{{ produit.libelle }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Catégorie</th>
+                                        <td>{{ produit.category.libelle|default('Non classée') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Stock optimal</th>
+                                        <td>{{ produit.stockOptimal|default('N/A') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Statut stock</th>
+                                        <td>
+                                            <span class="badge {% if produit.stockPhysique <= (produit.limitStock|default(999999)) %}badge-danger{% else %}badge-success{% endif %}">
+                                                {% if produit.stockPhysique <= (produit.limitStock|default(999999)) %}Alerte rupture{% else %}OK{% endif %}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historique des mouvements -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card card-outline card-info shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-history mr-1"></i> Historique des mouvements
+                                </h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Type</th>
+                                        <th class="text-center">Qté</th>
+                                        <th>Motif</th>
+                                        <th>Utilisateur</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for mvt in mouvements|slice(0, 10) %}
+                                        <tr>
+                                            <td>{{ mvt.createdAt|date('d/m/Y H:i') }}</td>
+                                            <td>
+                                                <span class="badge {% if mvt.typeMouvement == 'SORTIE_VENTE' %}badge-danger{% elseif mvt.typeMouvement == 'ENTREE_ACHAT' %}badge-success{% elseif mvt.typeMouvement == 'TRANSFERT' %}badge-warning{% else %}badge-info{% endif %}">
+                                                    {{ mvt.typeMouvement }}
+                                                </span>
+                                            </td>
+                                            <td class="text-center">{{ mvt.quantite }}</td>
+                                            <td>{{ mvt.motif|default('-') }}</td>
+                                            <td>{{ mvt.user.firstName|default('-') }} {{ mvt.user.lastName|default('-') }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted py-4">Aucun mouvement enregistré.</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if mouvements|length > 10 %}
+                                <div class="card-footer text-center">
+                                    <a href="{{ path('app_stock_mouvement_index') }}" class="btn btn-sm btn-info">
+                                        Voir l'historique complet
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

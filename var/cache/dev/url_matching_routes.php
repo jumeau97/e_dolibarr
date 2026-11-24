@@ -68,6 +68,13 @@ return [
                     .'|delete/([^/]++)(*:293)'
                 .')'
                 .'|/entrepot/details/([^/]++)(*:328)'
+                .'|/product/(?'
+                    .'|edit/([^/]++)(*:361)'
+                    .'|de(?'
+                        .'|lete/([^/]++)(*:387)'
+                        .'|tails/([^/]++)(*:409)'
+                    .')'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -82,8 +89,11 @@ return [
         232 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         270 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
         293 => [[['_route' => 'app_categorie_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        328 => [
-            [['_route' => 'details_entrepot', '_controller' => 'App\\Controller\\EntrepotController::details'], ['id'], null, null, false, true, null],
+        328 => [[['_route' => 'details_entrepot', '_controller' => 'App\\Controller\\EntrepotController::details'], ['id'], null, null, false, true, null]],
+        361 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        387 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        409 => [
+            [['_route' => 'app_produit_details', '_controller' => 'App\\Controller\\ProduitArticleController::details'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

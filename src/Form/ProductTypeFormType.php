@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Entrepot;
 use App\Entity\Produit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -34,6 +35,17 @@ class ProductTypeFormType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Ex: Sac de Ciment 50kg'
                 ]
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'libelle',
+                'label' => 'Catégorie',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control select2',
+                    'style' => 'width: 100%;'
+                ],
+                'placeholder' => 'Sélectionner une catégorie...'
             ])
 
             // --- SECTION PRIX ---

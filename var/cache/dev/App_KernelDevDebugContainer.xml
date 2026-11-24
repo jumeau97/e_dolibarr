@@ -914,7 +914,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.donaV3U"/>
+      <argument type="service" id=".service_locator.Sl0jnga"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -4208,7 +4208,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.donaV3U"/>
+      <argument type="service" id=".service_locator.Sl0jnga"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -11769,6 +11769,37 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.egipcEH" method="withContext"/>
     </service>
+    <service id=".service_locator.wkzzwmi" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="produit" type="service_closure" id=".errored..service_locator.wkzzwmi.App\Entity\Produit"/>
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::edit()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProduitArticleController::edit()"/>
+      <argument>App\Controller\ProduitArticleController::edit()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.wkzzwmi" method="withContext"/>
+    </service>
+    <service id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::delete()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProduitArticleController::delete()"/>
+      <argument>App\Controller\ProduitArticleController::delete()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.wkzzwmi" method="withContext"/>
+    </service>
+    <service id=".service_locator.1qsaO7R" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="produit" type="service_closure" id=".errored..service_locator.1qsaO7R.App\Entity\Produit"/>
+      </argument>
+    </service>
+    <service id=".service_locator.1qsaO7R.App\Controller\ProduitArticleController::details()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ProduitArticleController::details()"/>
+      <argument>App\Controller\ProduitArticleController::details()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.1qsaO7R" method="withContext"/>
+    </service>
     <service id=".service_locator.1vY8XKK" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -11845,7 +11876,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.GL345QQ" method="withContext"/>
     </service>
-    <service id=".service_locator.donaV3U" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Sl0jnga" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -11860,6 +11891,9 @@
         <argument key="App\Controller\EntrepotController::index" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\EntrepotController::index()"/>
         <argument key="App\Controller\EntrepotController::details" type="service_closure" id=".service_locator.jcEeHbA.App\Controller\EntrepotController::details()"/>
         <argument key="App\Controller\ProduitArticleController::addProduct" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProduitArticleController::addProduct()"/>
+        <argument key="App\Controller\ProduitArticleController::edit" type="service_closure" id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::edit()"/>
+        <argument key="App\Controller\ProduitArticleController::delete" type="service_closure" id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::delete()"/>
+        <argument key="App\Controller\ProduitArticleController::details" type="service_closure" id=".service_locator.1qsaO7R.App\Controller\ProduitArticleController::details()"/>
         <argument key="App\Controller\RegisterController::index" type="service_closure" id=".service_locator.1vY8XKK.App\Controller\RegisterController::index()"/>
         <argument key="App\Controller\RegisterController::add" type="service_closure" id=".service_locator.qyV9AZK.App\Controller\RegisterController::add()"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
@@ -11876,6 +11910,9 @@
         <argument key="App\Controller\EntrepotController:index" type="service_closure" id=".service_locator.Kq27LHM.App\Controller\EntrepotController::index()"/>
         <argument key="App\Controller\EntrepotController:details" type="service_closure" id=".service_locator.jcEeHbA.App\Controller\EntrepotController::details()"/>
         <argument key="App\Controller\ProduitArticleController:addProduct" type="service_closure" id=".service_locator.egipcEH.App\Controller\ProduitArticleController::addProduct()"/>
+        <argument key="App\Controller\ProduitArticleController:edit" type="service_closure" id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::edit()"/>
+        <argument key="App\Controller\ProduitArticleController:delete" type="service_closure" id=".service_locator.wkzzwmi.App\Controller\ProduitArticleController::delete()"/>
+        <argument key="App\Controller\ProduitArticleController:details" type="service_closure" id=".service_locator.1qsaO7R.App\Controller\ProduitArticleController::details()"/>
         <argument key="App\Controller\RegisterController:index" type="service_closure" id=".service_locator.1vY8XKK.App\Controller\RegisterController::index()"/>
         <argument key="App\Controller\RegisterController:add" type="service_closure" id=".service_locator.qyV9AZK.App\Controller\RegisterController::add()"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.3QECKYg.App\Controller\SecurityController::login()"/>
@@ -13215,6 +13252,12 @@
     <service id=".errored..service_locator.jcEeHbA.App\Entity\Entrepot" class="App\Entity\Entrepot">
       <tag name="container.error" message="Cannot autowire service &quot;.service_locator.jcEeHbA&quot;: it needs an instance of &quot;App\Entity\Entrepot&quot; but this type has been excluded because it's a Doctrine entity."/>
     </service>
+    <service id=".errored..service_locator.wkzzwmi.App\Entity\Produit" class="App\Entity\Produit">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.wkzzwmi&quot;: it needs an instance of &quot;App\Entity\Produit&quot; but this type has been excluded because it's a Doctrine entity."/>
+    </service>
+    <service id=".errored..service_locator.1qsaO7R.App\Entity\Produit" class="App\Entity\Produit">
+      <tag name="container.error" message="Cannot autowire service &quot;.service_locator.1qsaO7R&quot;: it needs an instance of &quot;App\Entity\Produit&quot; but this type has been excluded because it's a Doctrine entity."/>
+    </service>
     <service id=".App\Command\SeedCommand.lazy" class="Symfony\Component\Console\Command\LazyCommand">
       <argument>app:seed</argument>
       <argument type="collection"/>
@@ -14538,7 +14581,7 @@
     <service id="nelmio_api_doc.generator" alias="nelmio_api_doc.generator.default" public="true"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.donaV3U"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Sl0jnga"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id=".Psr\Log\LoggerInterface $request.logger" alias="monolog.logger.request"/>
@@ -14607,6 +14650,8 @@
     <service id=".service_locator.AJ56rbI" alias=".service_locator.gADJ5td"/>
     <service id=".service_locator.HQZddX8" alias=".service_locator.Kq27LHM"/>
     <service id=".service_locator.CbjJ1oR" alias=".service_locator.jcEeHbA"/>
+    <service id=".service_locator.PZWEOM0" alias=".service_locator.wkzzwmi"/>
+    <service id=".service_locator.HY1TXRe" alias=".service_locator.1qsaO7R"/>
     <service id=".service_locator.RwYP26K" alias=".service_locator.1vY8XKK"/>
     <service id=".service_locator.72VHEFR" alias=".service_locator.qyV9AZK"/>
     <service id=".service_locator.Nrz07Zz" alias=".service_locator.3QECKYg"/>
