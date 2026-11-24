@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Dépense{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-plus-circle text-success mr-2"></i> Nouvelle Dépense
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a href="{{ path('app_depense_index') }}" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left mr-1"></i> Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card card-outline card-success shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-arrow-circle-down mr-1"></i> Enregistrer une dépense
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                                <div class="form-group">
+                                    {{ form_label(form.montant) }}
+                                    {{ form_widget(form.montant, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.montant) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.motif) }}
+                                    {{ form_widget(form.motif, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.motif) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.categorie) }}
+                                    {{ form_widget(form.categorie, {'attr': {'class': 'form-control select2'}}) }}
+                                    {{ form_errors(form.categorie) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.reference) }}
+                                    {{ form_widget(form.reference, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.reference) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.dateDepense) }}
+                                    {{ form_widget(form.dateDepense, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.dateDepense) }}
+                                </div>
+                                <div class="form-group mt-4 text-right">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block font-weight-bold">
+                                        <i class="fas fa-save mr-2"></i> Enregistrer la dépense
+                                    </button>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

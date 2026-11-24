@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de Caisse{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-money-bill-wave text-indigo mr-2"></i> Gestion de Caisse
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        {% if caisseOuverte %}
+                            <span class="badge badge-success p-2">Caisse OUVERTE</span>
+                            <a href="{{ path('app_caisse_fermer') }}" class="btn btn-sm btn-danger ml-2">
+                                <i class="fas fa-lock mr-1"></i> Fermer la caisse
+                            </a>
+                        {% else %}
+                            <span class="badge badge-danger p-2">Caisse FERMÉE</span>
+                            <a href="{{ path('app_caisse_ouvrir') }}" class="btn btn-sm btn-success ml-2">
+                                <i class="fas fa-unlock mr-1"></i> Ouvrir la caisse
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Cartes récapitulatives -->
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ soldeCaisse|number_format(0, ',', ' ') }}</h3>
+                                <p>Solde caisse (FCFA)</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>{{ totalVentesJour|number_format(0, ',', ' ') }}</h3>
+                                <p>Ventes aujourd'hui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-cash-register"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ totalDepensesJour|number_format(0, ',', ' ') }}</h3>
+                                <p>Dépenses aujourd'hui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-arrow-circle-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-{{ soldeCaisse >= 0 ? 'success' : 'danger' }}">
+                            <div class="inner">
+                                <h3>{{ (soldeCaisse + totalVentesJour - totalDepensesJour)|number_format(0, ',', ' ') }}</h3>
+                                <p>Solde net estimé</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <!-- Statut caisse actuelle -->
+                    <div class="col-lg-6">
+                        <div class="card card-outline card-{{ caisseOuverte ? 'success' : 'danger' }} shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-{{ caisseOuverte ? 'unlock' : 'lock' }} mr-1"></i>
+                                    État de la caisse
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                {% if caisseOuverte %}
+                                    <div class="alert alert-success">
+                                        <i class="fas fa-check-circle mr-2"></i>
+                                        <strong>Caisse ouverte depuis le {{ caisseOuverte.dateOuverture|date('d/m/Y H:i') }}</strong><br>
+                                        Ouverte par : {{ caisseOuverte.utilisateur.firstName|default('Inconnu') }} {{ caisseOuverte.utilisateur.lastName|default('') }}<br>
+                                        Solde initial : {{ caisseOuverte.soldeInitial|number_format(0, ',', ' ') }} FCFA
+                                    </div>
+                                {% else %}
+                                    <div class="alert alert-danger">
+                                        <i class="fas fa-times-circle mr-2"></i>
+                                        <strong>La caisse est fermée.</strong><br>
+                                        Dernière fermeture : {% if caisseOuverte is not null %}{{ caisseOuverte.dateFermeture|date('d/m/Y H:i') }}{% else %}Jamais ouverte{% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action rapide -->
+                    <div class="col-lg-6">
+                        <div class="card card-outline card-primary shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-plus mr-1"></i> Action rapide
+                                </h3>
+                            </div>
+                            <div class="card-body text-center">
+                                {% if caisseOuverte %}
+                                    <a href="{{ path('app_caisse_fermer') }}" class="btn btn-danger btn-lg px-5 py-3">
+                                        <i class="fas fa-lock mr-2"></i><br>FERMER LA CAISSE
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('app_caisse_ouvrir') }}" class="btn btn-success btn-lg px-5 py-3">
+                                        <i class="fas fa-unlock mr-2"></i><br>OUVRIR LA CAISSE
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Historique récent -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card card-outline card-info shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-history mr-1"></i> Historique des caisses
+                                </h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Date ouverture</th>
+                                        <th>Date fermeture</th>
+                                        <th class="text-center">Solde initial</th>
+                                        <th class="text-center">Solde final</th>
+                                        <th class="text-center">Statut</th>
+                                        <th>Utilisateur</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for c in caisses %}
+                                        <tr>
+                                            <td>{{ c.dateOuverture|date('d/m/Y H:i') }}</td>
+                                            <td>{{ c.dateFermeture|date('d/m/Y H:i')|default('-') }}</td>
+                                            <td class="text-center">{{ c.soldeInitial|number_format(0, ',', ' ') }}</td>
+                                            <td class="text-center">{{ c.soldeFinal|number_format(0, ',', ' ')|default('-') }}</td>
+                                            <td class="text-center">
+                                                <span class="badge {% if c.statut == 'ouverte' %}badge-success{% else %}badge-danger{% endif %}">
+                                                    {{ c.statut == 'ouverte' ? 'Ouverte' : 'Fermée' }}
+                                                </span>
+                                            </td>
+                                            <td>{{ c.utilisateur.firstName|default('-') }} {{ c.utilisateur.lastName|default('-') }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted py-4">Aucune caisse enregistrée.</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer text-center">
+                                <a href="{{ path('app_caisse_historique') }}" class="btn btn-sm btn-info">Voir tout l'historique</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fermer la caisse{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-lock text-danger mr-2"></i> Fermeture de Caisse
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a href="{{ path('app_caisse') }}" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left mr-1"></i> Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card card-outline card-danger shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-money-bill-wave mr-1"></i> Fermer la caisse n°{{ caisse.id }}
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Ouverte le {{ caisse.dateOuverture|date('d/m/Y H:i') }} par {{ caisse.utilisateur.firstName|default('Inconnu') }}<br>
+                                    Solde initial : {{ caisse.soldeInitial|number_format(0, ',', ' ') }} FCFA
+                                </div>
+
+                                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                                <div class="form-group">
+                                    {{ form_label(form.soldeFinal) }}
+                                    {{ form_widget(form.soldeFinal, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.soldeFinal) }}
+                                </div>
+                                <div class="form-group mt-3">
+                                    {{ form_label(form.motifFermeture) }}
+                                    {{ form_widget(form.motifFermeture, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.motifFermeture) }}
+                                </div>
+                                <div class="form-group mt-4">
+                                    <button type="submit" class="btn btn-danger btn-lg btn-block font-weight-bold">
+                                        <i class="fas fa-lock mr-2"></i> Fermer la caisse
+                                    </button>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

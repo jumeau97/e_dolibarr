@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Dépenses{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-arrow-circle-down text-indigo mr-2"></i> Dépenses
+                        </h1>
+                        <p class="text-muted mb-0">Suivez et catégorisez toutes les dépenses de l'entreprise.</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a href="{{ path('app_depense_ajouter') }}" class="btn btn-sm btn-success">
+                            <i class="fas fa-plus mr-1"></i> Nouvelle dépense
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{ totalDepensesJour|number_format(0, ',', ' ') }}</h3>
+                                <p>Dépenses aujourd'hui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-arrow-circle-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ totalGeneral|number_format(0, ',', ' ') }}</h3>
+                                <p>Total général</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ depensesDuJour|length }}</h3>
+                                <p>Nombre aujourd'hui</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                        <div class="small-box bg-secondary">
+                            <div class="inner">
+                                <h3>{{ depenses|length }}</h3>
+                                <p>Total entrées</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-list-ul"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card card-outline card-danger shadow-sm">
+                            <div class="card-header bg-white">
+                                <h3 class="card-title font-weight-bold text-dark">
+                                    <i class="fas fa-list mr-1"></i> Liste des Dépenses
+                                </h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Motif</th>
+                                        <th class="text-center">Catégorie</th>
+                                        <th class="text-right">Montant (FCFA)</th>
+                                        <th>Référence</th>
+                                        <th>Utilisateur</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for d in depenses %}
+                                        <tr>
+                                            <td>{{ d.dateDepense|date('d/m/Y H:i') }}</td>
+                                            <td>{{ d.motif }}</td>
+                                            <td class="text-center">
+                                                <span class="badge badge-info">{{ d.categorie|default('Non catégorisée') }}</span>
+                                            </td>
+                                            <td class="text-right font-weight-bold">{{ d.montant|number_format(0, ',', ' ') }}</td>
+                                            <td>{{ d.reference|default('-') }}</td>
+                                            <td>{{ d.utilisateur.firstName|default('-') }} {{ d.utilisateur.lastName|default('-') }}</td>
+                                            <td class="text-right">
+                                                <form action="{{ path('app_depense_supprimer', {'id': d.id}) }}" method="post" style="display: inline;"
+                                                    onsubmit="return confirm('Supprimer cette dépense ?')">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete_depense_' ~ d.id) }}">
+                                                    <button type="submit" class="btn btn-xs btn-danger" title="Supprimer">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="7" class="text-center text-muted py-4">Aucune dépense enregistrée.</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

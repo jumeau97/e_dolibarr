@@ -7,11 +7,13 @@ use App\Entity\Entrepot;
 use App\Entity\Produit;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProductTypeFormType extends AbstractType
 {
@@ -102,6 +104,17 @@ class ProductTypeFormType extends AbstractType
                 'help' => $entrepotResponsable
                     ? 'Affectation automatique à votre entrepôt de responsabilité.'
                     : 'Sélectionnez le site physique unique où stocker cet article.'
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image du produit',
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'accept' => 'image/*'
+                ],
+                'help' => 'Format recommandé : JPG, PNG, WEBP (max 2Mo)'
             ]);
     }
 

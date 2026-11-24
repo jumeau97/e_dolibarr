@@ -18,9 +18,15 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/alert/rupture/stock' => [[['_route' => 'app_alert_rupture_stock', '_controller' => 'App\\Controller\\AlertRuptureStockController::index'], null, null, null, false, false, null]],
+        '/caisse' => [[['_route' => 'app_caisse', '_controller' => 'App\\Controller\\CaisseController::index'], null, null, null, false, false, null]],
+        '/caisse/ouvrir' => [[['_route' => 'app_caisse_ouvrir', '_controller' => 'App\\Controller\\CaisseController::ouvrir'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/caisse/fermer' => [[['_route' => 'app_caisse_fermer', '_controller' => 'App\\Controller\\CaisseController::fermer'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/caisse/historique' => [[['_route' => 'app_caisse_historique', '_controller' => 'App\\Controller\\CaisseController::historique'], null, null, null, false, false, null]],
         '/categorie' => [[['_route' => 'app_categorie_index', '_controller' => 'App\\Controller\\CategoryController::index'], null, ['GET' => 0], null, false, false, null]],
         '/categorie/add' => [[['_route' => 'app_categorie_add', '_controller' => 'App\\Controller\\CategoryController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/dashboard' => [[['_route' => 'app_dashboard', '_controller' => 'App\\Controller\\DashboardController::index'], null, null, null, false, false, null]],
+        '/depense' => [[['_route' => 'app_depense_index', '_controller' => 'App\\Controller\\DepenseController::index'], null, null, null, false, false, null]],
+        '/depense/ajouter' => [[['_route' => 'app_depense_ajouter', '_controller' => 'App\\Controller\\DepenseController::ajouter'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
         '/entrepot' => [[['_route' => 'app_entrepot', '_controller' => 'App\\Controller\\EntrepotController::index'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/predprediction/vente' => [[['_route' => 'app_predprediction_vente', '_controller' => 'App\\Controller\\PredpredictionVenteController::index'], null, null, null, false, false, null]],
@@ -30,6 +36,7 @@ return [
         '/user/register' => [[['_route' => 'register_customer', '_controller' => 'App\\Controller\\RegisterController::index'], null, null, null, false, false, null]],
         '/api/user/list-utilisateur' => [[['_route' => 'dashboard_list_utilisateurs', '_controller' => 'App\\Controller\\RegisterController::findAll'], null, null, null, false, false, null]],
         '/api/user/add-user' => [[['_route' => 'dashboard_add_user', '_controller' => 'App\\Controller\\RegisterController::add'], null, null, null, false, false, null]],
+        '/reporting' => [[['_route' => 'app_reporting', '_controller' => 'App\\Controller\\ReportingController::index'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
         '/api/login' => [[['_route' => 'api_login', '_controller' => 'App\\Controller\\SecurityController::apiLogin'], null, null, null, false, false, null]],
@@ -67,12 +74,13 @@ return [
                     .'|edit/([^/]++)(*:270)'
                     .'|delete/([^/]++)(*:293)'
                 .')'
-                .'|/entrepot/details/([^/]++)(*:328)'
+                .'|/depense/supprimer/([^/]++)(*:329)'
+                .'|/entrepot/details/([^/]++)(*:363)'
                 .'|/product/(?'
-                    .'|edit/([^/]++)(*:361)'
+                    .'|edit/([^/]++)(*:396)'
                     .'|de(?'
-                        .'|lete/([^/]++)(*:387)'
-                        .'|tails/([^/]++)(*:409)'
+                        .'|lete/([^/]++)(*:422)'
+                        .'|tails/([^/]++)(*:444)'
                     .')'
                 .')'
             .')/?$}sDu',
@@ -89,10 +97,11 @@ return [
         232 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         270 => [[['_route' => 'app_categorie_edit', '_controller' => 'App\\Controller\\CategoryController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
         293 => [[['_route' => 'app_categorie_delete', '_controller' => 'App\\Controller\\CategoryController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        328 => [[['_route' => 'details_entrepot', '_controller' => 'App\\Controller\\EntrepotController::details'], ['id'], null, null, false, true, null]],
-        361 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
-        387 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        409 => [
+        329 => [[['_route' => 'app_depense_supprimer', '_controller' => 'App\\Controller\\DepenseController::supprimer'], ['id'], ['POST' => 0], null, false, true, null]],
+        363 => [[['_route' => 'details_entrepot', '_controller' => 'App\\Controller\\EntrepotController::details'], ['id'], null, null, false, true, null]],
+        396 => [[['_route' => 'app_produit_edit', '_controller' => 'App\\Controller\\ProduitArticleController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
+        422 => [[['_route' => 'app_produit_delete', '_controller' => 'App\\Controller\\ProduitArticleController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        444 => [
             [['_route' => 'app_produit_details', '_controller' => 'App\\Controller\\ProduitArticleController::details'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

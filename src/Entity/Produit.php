@@ -7,9 +7,12 @@ use App\Repository\ProduitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
 class Produit
 {
     #[ORM\Id]
@@ -67,6 +70,16 @@ class Produit
     #[ORM\OneToMany(targetEntity: EntrepotStock::class, mappedBy: 'product')]
     #[Groups(["getProduct"])]
     private Collection $entrepotStocks;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["getProduct"])]
+    private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'produit_images', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $imageUpdatedAt = null;
 
     public function __construct()
     {
@@ -262,6 +275,44 @@ class Produit
                 $entrepotStock->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->imageUpdatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->imageUpdatedAt;
+    }
+
+    public function setImageUpdatedAt(?\DateTimeImmutable $imageUpdatedAt): static
+    {
+        $this->imageUpdatedAt = $imageUpdatedAt;
 
         return $this;
     }

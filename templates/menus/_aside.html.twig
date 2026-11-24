@@ -102,17 +102,22 @@
 
                 <!-- ARGENT / FINANCES -->
                 <li class="nav-header">ARGENT & TRÉSORERIE</li>
-                {# TODO: À activer lorsque les modules Finances seront créés #}
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-muted" style="pointer-events: none; opacity: 0.5;">
-                        <i class="nav-icon fas fa-arrow-circle-down text-danger"></i>
-                        <p>Enregistrer une Dépense</p>
+                    <a href="{{ path('app_caisse') }}" class="nav-link {{ app.current_route starts with('app_caisse') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill-wave"></i>
+                        <p>Caisse (Ouverture / Fermeture)</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-muted" style="pointer-events: none; opacity: 0.5;">
-                        <i class="nav-icon fas fa-wallet"></i>
-                        <p>État de la Caisse / Banque</p>
+                    <a href="{{ path('app_depense_index') }}" class="nav-link {{ app.current_route starts with('app_depense') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-arrow-circle-down text-danger"></i>
+                        <p>Dépenses</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_reporting') }}" class="nav-link {{ app.current_route == 'app_reporting' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>Reporting Financier</p>
                     </a>
                 </li>
 

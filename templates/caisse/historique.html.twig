@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des Caisses{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 font-weight-bold text-dark">
+                            <i class="fas fa-history text-indigo mr-2"></i> Historique des Caisses
+                        </h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a href="{{ path('app_caisse') }}" class="btn btn-sm btn-secondary">
+                            <i class="fas fa-arrow-left mr-1"></i> Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-outline card-info shadow-sm">
+                    <div class="card-header bg-white">
+                        <h3 class="card-title font-weight-bold text-dark">
+                            <i class="fas fa-list mr-1"></i> Toutes les ouvertures/fermetures
+                        </h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date ouverture</th>
+                                <th>Date fermeture</th>
+                                <th class="text-center">Solde initial</th>
+                                <th class="text-center">Solde final</th>
+                                <th class="text-center">Statut</th>
+                                <th>Utilisateur</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for c in caisses %}
+                                <tr>
+                                    <td>{{ c.id }}</td>
+                                    <td>{{ c.dateOuverture|date('d/m/Y H:i') }}</td>
+                                    <td>{{ c.dateFermeture|date('d/m/Y H:i')|default('-') }}</td>
+                                    <td class="text-center">{{ c.soldeInitial|number_format(0, ',', ' ') }}</td>
+                                    <td class="text-center">{{ c.soldeFinal|number_format(0, ',', ' ')|default('-') }}</td>
+                                    <td class="text-center">
+                                        <span class="badge {% if c.statut == 'ouverte' %}badge-success{% else %}badge-danger{% endif %}">
+                                            {{ c.statut == 'ouverte' ? 'Ouverte' : 'Fermée' }}
+                                        </span>
+                                    </td>
+                                    <td>{{ c.utilisateur.firstName|default('-') }} {{ c.utilisateur.lastName|default('-') }}</td>
+                                    <td class="text-right">
+                                        {% if c.statut == 'ouverte' %}
+                                            <a href="{{ path('app_caisse_fermer') }}" class="btn btn-xs btn-danger">
+                                                <i class="fas fa-lock"></i>
+                                            </a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted py-4">Aucune caisse enregistrée.</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
