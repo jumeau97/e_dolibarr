@@ -5,48 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2269479e-66ed-465e-86da-1061337a2054" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20261124120000.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/CaisseController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/DepenseController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ReportingController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Caisse.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Depense.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/CaisseType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/DepenseType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CaisseRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/DepenseRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/caisse/fermer.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/caisse/historique.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/caisse/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/caisse/ouvrir.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/depense/ajouter.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/depense/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/reporting/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/vich_uploader.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Produit.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Produit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ProductTypeFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProductTypeFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/components/ProductListComponent.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/ProductListComponent.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/menus/_aside.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/menus/_aside.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit_article/add-product.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit_article/add-product.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/produit_article/details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/produit_article/details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php.meta" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php.meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.php.meta.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.preload.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.preload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml.meta" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml.meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainer.xml.meta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainerCompiler.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainerCompiler.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainerDeprecations.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/App_KernelDevDebugContainerDeprecations.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/live_components_twig_templates.map" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/live_components_twig_templates.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/profiler/index.csv" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/profiler/index.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php.meta" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php.meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_generating_routes.php.meta.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php.meta" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php.meta.json" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/url_matching_routes.php.meta.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/cache/dev/vich_uploader/App-Entity-User.cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/var/cache/dev/vich_uploader/App-Entity-User.cache.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/var/log/dev.log" beforeDir="false" afterPath="$PROJECT_DIR$/var/log/dev.log" afterDir="false" />
     </list>
