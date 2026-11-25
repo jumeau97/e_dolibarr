@@ -721,6 +721,7 @@
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
       <argument type="service" id="App\Repository\ProduitRepository"/>
+      <argument type="service" id="App\Repository\CaisseRepository"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.ZyP9f7K.App\Controller\VenteController"/>
       </call>
